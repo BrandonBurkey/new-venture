@@ -1,13 +1,13 @@
 {
   "studio": {
     "name": "Studio HQ",
-    "venture": "Untitled venture, niche pending",
+    "venture": "Niche re-opened: mariner killed at the competitor gate",
     "founder": "Brandon",
     "operatingPartner": "AI operating partner",
     "branch": "claude/venture-studio-ios-app-2ytfbe",
-    "updated": "2026-10-19T22:30:00Z",
-    "statusLine": "Phase 1 is done. Four finalists deep-dived, all four downgraded their own score. Recommendation ready and waiting on your Gate 1 answer.",
-    "phaseCurrent": 1,
+    "updated": "2026-10-19T23:10:00Z",
+    "statusLine": "The mariner niche is dead. A free incumbent already computes the window and is bundled by our planned channel. Pre-committed rule applied, build stopped, fallback under test.",
+    "phaseCurrent": 2,
     "killDate": "2026-12-14",
     "killCriterion": "If no niche reaches 10 paid founding deposits by the kill date, the venture stops and the studio picks a different market."
   },
@@ -39,8 +39,8 @@
     {
       "n": 2,
       "name": "Validation kit",
-      "status": "pending",
-      "detail": "Rules engine with 50+ golden vectors, landing page that gives the aha moment free in-browser, 8-week validation plan with pre-committed thresholds.",
+      "status": "blocked",
+      "detail": "Halted at the hard gate before any Swift was written, exactly as designed. Five build agents stopped mid-flight. Fallback niches now being re-gated with a mechanic-first search.",
       "deliverable": "engine/, landing/, validation/",
       "progress": 0
     },
@@ -76,6 +76,19 @@
       "alsoNeedFromYou": "Budget for the 8-week test, any insider access you have, and your risk appetite on market size."
     },
     {
+      "n": "1b",
+      "name": "Confirm the pivot",
+      "status": "awaiting_you",
+      "question": "Mariner is dead. Pivot to the pre-committed fallback, or redirect?",
+      "options": [
+        "Motorsport gear dates, if it clears the same gate",
+        "Govcon recert portfolio, if it clears the same gate",
+        "Put this repo down and move to UK commercial construction",
+        "Something else"
+      ],
+      "alsoNeedFromYou": "Optional 4-minute check on your phone: open mmseas.com and confirm the free tier really does compute the window. It is the only thing that could reverse the kill."
+    },
+    {
       "n": 2,
       "name": "Go or no-go after validation",
       "status": "scheduled",
@@ -90,33 +103,27 @@
       "agents": [
         {
           "name": "research-analyst",
-          "charter": "Deep dive: USCG mariner sea-service and recency",
+          "charter": "E1/E2 competitor gate",
           "status": "done",
-          "assignment": "Pursue conditional, 6.5/10. Found two paid competitors Phase 1 missed, and corrected the core rule"
+          "assignment": "FAIL. Found MM-SEAS, free, computing the exact window plus CG-719S generation"
         },
         {
           "name": "research-analyst",
-          "charter": "Deep dive: government-contracting recertification dates",
-          "status": "done",
-          "assignment": "Pursue cheaply, 6/10. A 2024 FAR rule change removes the fear pitch; SAM-only product fails a hard gate"
-        },
-        {
-          "name": "research-analyst",
-          "charter": "Deep dive: motorsport dated safety gear",
-          "status": "done",
-          "assignment": "Pursue as a cheap experiment, 6/10. Carve-out holds, but the pain is a lost weekend and retention is structurally weak"
-        },
-        {
-          "name": "research-analyst",
-          "charter": "Deep dive: startup equity date windows",
-          "status": "done",
-          "assignment": "Pursue conditionally, 6/10, but ranked fourth: no community channel, and its own maths reaches 40-60 users in six months"
+          "charter": "Mechanic-first gate on the fallback niches",
+          "status": "working",
+          "assignment": "Searching the computation, not the rival, before any build"
         },
         {
           "name": "research-analyst x5",
-          "charter": "Scouting: 37 niches across five clusters",
+          "charter": "Scouting: 48 niches",
           "status": "done",
-          "assignment": "All five clusters reported. Raw findings in research/raw/"
+          "assignment": "Raw findings in research/raw/"
+        },
+        {
+          "name": "research-analyst x4",
+          "charter": "Finalist deep dives",
+          "status": "done",
+          "assignment": "research/deep-dive-*.md"
         }
       ]
     },
@@ -127,13 +134,13 @@
           "name": "ux-designer",
           "charter": "Aha moment before paywall, screen specs, tokens, Dynamic Type, App Store screenshots",
           "status": "standby",
-          "assignment": "Starts at Gate 1"
+          "assignment": "Stopped mid-flight when the gate failed. Awaiting a live niche."
         },
         {
           "name": "brand-copywriter",
           "charter": "MAGIC name, Grand Slam Offer stack, paywall and ASO copy",
           "status": "standby",
-          "assignment": "Starts at Gate 1"
+          "assignment": "Stopped mid-flight when the gate failed. Awaiting a live niche."
         }
       ]
     },
@@ -144,25 +151,25 @@
           "name": "rules-engineer",
           "charter": "Dependency-free JS rules engine, 50+ golden vectors, every rule cited",
           "status": "standby",
-          "assignment": "Phase 2"
+          "assignment": "Stopped mid-flight when the gate failed. Awaiting a live niche."
         },
         {
           "name": "ios-engineer",
           "charter": "SwiftUI, SwiftData, StoreKit 2, XcodeGen, PDF export",
           "status": "standby",
-          "assignment": "Phase 3"
+          "assignment": "Stopped mid-flight when the gate failed. Awaiting a live niche."
         },
         {
           "name": "ios-reviewer",
           "charter": "Adversarial compiler-eye review and engine parity",
           "status": "standby",
-          "assignment": "Phase 3, after the engineer"
+          "assignment": "Stopped mid-flight when the gate failed. Awaiting a live niche."
         },
         {
           "name": "qa-verifier",
           "charter": "Runs the checks, screenshots, CI, cross-agent consistency sweep",
           "status": "standby",
-          "assignment": "Phases 2 to 4"
+          "assignment": "Stopped mid-flight when the gate failed. Awaiting a live niche."
         }
       ]
     },
@@ -173,13 +180,13 @@
           "name": "growth-marketer",
           "charter": "Channels to the first 100 paying users, 8-week plan, thresholds, event taxonomy",
           "status": "standby",
-          "assignment": "Phase 2"
+          "assignment": "Stopped mid-flight when the gate failed. Awaiting a live niche."
         },
         {
           "name": "sales-closer",
           "charter": "Mom Test interviews, concierge SOP, deposit conversion, objections",
           "status": "standby",
-          "assignment": "Phase 2"
+          "assignment": "Stopped mid-flight when the gate failed. Awaiting a live niche."
         }
       ]
     },
@@ -190,7 +197,7 @@
           "name": "compliance-counsel",
           "charter": "App Store wording review, payment compliance, risk memo. Not legal advice",
           "status": "standby",
-          "assignment": "Phase 2, then gates every phase"
+          "assignment": "Stopped mid-flight when the gate failed. Awaiting a live niche."
         }
       ]
     }
@@ -231,6 +238,11 @@
     ]
   },
   "risks": [
+    {
+      "severity": "high",
+      "risk": "Five research passes missed the incumbent that kills the niche, because they searched for rivals by name in an App Store this environment cannot reach.",
+      "mitigation": "New standing rule in CLAUDE.md: the first search for any candidate is the mechanic in the customer's words, before the deep dive. Applied to the fallback niches now."
+    },
     {
       "severity": "high",
       "risk": "Phase 1 scouting missed paid competitors in at least one finalist niche, because the App Store could not be searched. The first deep dive found two.",
@@ -320,6 +332,16 @@
     }
   ],
   "log": [
+    {
+      "at": "2026-10-19T23:10:00Z",
+      "who": "operating partner",
+      "what": "Mariner niche dropped under the pre-committed E1 rule. Five build agents stopped. No Swift was written, which is exactly what the gate was for."
+    },
+    {
+      "at": "2026-10-19T23:05:00Z",
+      "who": "gate analyst",
+      "what": "E1/E2 FAIL. MM-SEAS computes trailing 5 and 7-year windows with the 1.5-day credit, generates CG-719S forms, has a free-forever tier, and is bundled by the licence schools we planned to court."
+    },
     {
       "at": "2026-10-19T22:30:00Z",
       "who": "operating partner",

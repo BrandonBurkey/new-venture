@@ -56,7 +56,13 @@ These four questions killed 44 of 48 niches last time. Ask them before you get a
 1. **"Who writes the cheque for the mistake, and does somebody already get paid to prevent it?"** Whoever owns the data usually gives tracking away free. In construction, watch for: CITB and the CSCS card schemes, accreditation bodies (CHAS, SafeContractor, Constructionline, Acclaim), insurers, the main contractor's own portal, and the employer's H&S consultant. If one of them already does it free, drop the niche.
 2. **"Does the employer pay the fine?"** If the consequence lands on the company and not the individual, the individual will not subscribe. This killed crane operators, welders and wildland firefighters last time. In construction it threatens anything framed around HSE enforcement. Prefer the **owner-operator**: the subcontractor who IS the business, the self-employed tradesperson, the small firm's director.
 3. **"Is this a one-off?"** A once-in-a-lifetime event cannot carry a subscription, and the professional who is already paid — the solicitor, the accountant, the consultant — sends the reminder free. Demand a multi-year, multi-item date portfolio that follows the person.
-4. **"Can I actually search for the competition?"** Last time the environment could not reach the App Store, and three of four finalists turned out to have competitors we had scored as blue ocean. **Fix this before you start** (see Environment).
+4. **"Search the mechanic, not the rival."** This one cost the maritime run its whole Phase 2. Five
+   research passes searched for competitors *by app name* in an App Store the environment could not
+   reach, and all five missed the incumbent that already did the entire job for free. A single search
+   for the *computation* — in the words a customer would use — found it in one hit. So for every
+   candidate, your FIRST search is the mechanic: "trailing 12 month total", "card expiry tracker",
+   "next LOLER date", "off-hire reminder". Do this before the deep dive, not after.
+5. **"Can I actually search for the competition?"** Last time the environment could not reach the App Store, and three of four finalists turned out to have competitors we had scored as blue ocean. **Fix this before you start** (see Environment).
 
 ## Candidate seeds — a starting point, not a shortlist
 
