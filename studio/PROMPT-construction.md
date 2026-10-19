@@ -53,16 +53,29 @@ Run this like a real studio: evidence over vibes, kill bad ideas fast, and finis
 
 These four questions killed 44 of 48 niches last time. Ask them before you get attached to anything:
 
-1. **"Who writes the cheque for the mistake, and does somebody already get paid to prevent it?"** Whoever owns the data usually gives tracking away free. In construction, watch for: CITB and the CSCS card schemes, accreditation bodies (CHAS, SafeContractor, Constructionline, Acclaim), insurers, the main contractor's own portal, and the employer's H&S consultant. If one of them already does it free, drop the niche.
-2. **"Does the employer pay the fine?"** If the consequence lands on the company and not the individual, the individual will not subscribe. This killed crane operators, welders and wildland firefighters last time. In construction it threatens anything framed around HSE enforcement. Prefer the **owner-operator**: the subcontractor who IS the business, the self-employed tradesperson, the small firm's director.
-3. **"Is this a one-off?"** A once-in-a-lifetime event cannot carry a subscription, and the professional who is already paid — the solicitor, the accountant, the consultant — sends the reminder free. Demand a multi-year, multi-item date portfolio that follows the person.
-4. **"Search the mechanic, not the rival."** This one cost the maritime run its whole Phase 2. Five
+1. **The counter-incentive test — the most valuable filter we have, apply it first.** Whoever holds
+   the date almost always notifies for free. That single pattern killed three of the last run's four
+   finalists at the gate: a free incumbent computed the maritime window and was bundled by our own
+   planned channel; the SBA already emails every federal recertification window it was proposed we
+   track; the equity platforms already email the filing clock. **So the question is not "is the pain
+   real" but "does anyone holding this date have a reason NOT to tell the user?"** Only two answers
+   survive: the date lives on physical property bought from many different vendors, so no single
+   party holds it; or the holder actively profits from the user forgetting. In construction, test
+   every candidate against this. The card schemes, the accreditation bodies, the inspection
+   companies and the insurers all notify — they sell renewals. **But a plant hire company has no
+   incentive whatsoever to remind you to off-hire**, and a main contractor has none to remind a
+   subbie that retention is due for release. Follow the counter-incentive; that is where the
+   unserved dates are.
+2. **"Who writes the cheque for the mistake, and does somebody already get paid to prevent it?"** Whoever owns the data usually gives tracking away free. In construction, watch for: CITB and the CSCS card schemes, accreditation bodies (CHAS, SafeContractor, Constructionline, Acclaim), insurers, the main contractor's own portal, and the employer's H&S consultant. If one of them already does it free, drop the niche.
+3. **"Does the employer pay the fine?"** If the consequence lands on the company and not the individual, the individual will not subscribe. This killed crane operators, welders and wildland firefighters last time. In construction it threatens anything framed around HSE enforcement. Prefer the **owner-operator**: the subcontractor who IS the business, the self-employed tradesperson, the small firm's director.
+4. **"Is this a one-off?"** A once-in-a-lifetime event cannot carry a subscription, and the professional who is already paid — the solicitor, the accountant, the consultant — sends the reminder free. Demand a multi-year, multi-item date portfolio that follows the person.
+5. **"Search the mechanic, not the rival."** This one cost the maritime run its whole Phase 2. Five
    research passes searched for competitors *by app name* in an App Store the environment could not
    reach, and all five missed the incumbent that already did the entire job for free. A single search
    for the *computation* — in the words a customer would use — found it in one hit. So for every
    candidate, your FIRST search is the mechanic: "trailing 12 month total", "card expiry tracker",
    "next LOLER date", "off-hire reminder". Do this before the deep dive, not after.
-5. **"Can I actually search for the competition?"** Last time the environment could not reach the App Store, and three of four finalists turned out to have competitors we had scored as blue ocean. **Fix this before you start** (see Environment).
+6. **"Can I actually search for the competition?"** Last time the environment could not reach the App Store, and three of four finalists turned out to have competitors we had scored as blue ocean. **Fix this before you start** (see Environment).
 
 ## Candidate seeds — a starting point, not a shortlist
 

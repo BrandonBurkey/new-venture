@@ -6,8 +6,8 @@ window.HQ_STATE = {
     "founder": "Brandon",
     "operatingPartner": "AI operating partner",
     "branch": "claude/venture-studio-ios-app-2ytfbe",
-    "updated": "2026-10-19T23:10:00Z",
-    "statusLine": "The mariner niche is dead. A free incumbent already computes the window and is bundled by our planned channel. Pre-committed rule applied, build stopped, fallback under test.",
+    "updated": "2026-10-19T23:40:00Z",
+    "statusLine": "Two of two fallback gates have failed. The pattern is now the finding: whoever holds the date already emails it free. One gate still running.",
     "phaseCurrent": 2,
     "killDate": "2026-12-14",
     "killCriterion": "If no niche reaches 10 paid founding deposits by the kill date, the venture stops and the studio picks a different market."
@@ -110,9 +110,15 @@ window.HQ_STATE = {
         },
         {
           "name": "research-analyst",
-          "charter": "Mechanic-first gate on the fallback niches",
+          "charter": "Mechanic-first gate: govcon",
+          "status": "done",
+          "assignment": "FAIL. SBA already emails every window at 30, 90 and 120 days, and sets the 8(a) date by its own notice"
+        },
+        {
+          "name": "research-analyst",
+          "charter": "Mechanic-first gate: motorsport",
           "status": "working",
-          "assignment": "Searching the computation, not the rival, before any build"
+          "assignment": "The last niche standing"
         },
         {
           "name": "research-analyst x5",
@@ -241,6 +247,11 @@ window.HQ_STATE = {
   "risks": [
     {
       "severity": "high",
+      "risk": "Three of four finalists died at the gate to the same cause: the party holding the date already notifies for free. The Phase 1 shortlist was built without that filter.",
+      "mitigation": "The counter-incentive test is now the first filter in CLAUDE.md and in the construction brief. A niche only survives if nobody holds the date, or the holder profits from the user forgetting."
+    },
+    {
+      "severity": "high",
       "risk": "Five research passes missed the incumbent that kills the niche, because they searched for rivals by name in an App Store this environment cannot reach.",
       "mitigation": "New standing rule in CLAUDE.md: the first search for any candidate is the mechanic in the customer's words, before the deep dive. Applied to the fallback niches now."
     },
@@ -333,6 +344,11 @@ window.HQ_STATE = {
     }
   ],
   "log": [
+    {
+      "at": "2026-10-19T23:40:00Z",
+      "who": "gate analyst",
+      "what": "Govcon FAIL. SBA notifies HUBZone at 30 days, WOSB at 120, VOSB at 90 with reminders, CPARS by system notification; the 8(a) review date is set per firm by SBA notice and is not computable at all. Also confirmed the FAR amendment, under a different case number than the deep dive cited."
+    },
     {
       "at": "2026-10-19T23:10:00Z",
       "who": "operating partner",
