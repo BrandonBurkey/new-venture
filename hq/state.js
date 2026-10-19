@@ -6,7 +6,7 @@ window.HQ_STATE = {
     "founder": "Brandon",
     "operatingPartner": "AI operating partner",
     "branch": "claude/venture-studio-ios-app-2ytfbe",
-    "updated": "2026-10-19T21:20:00Z",
+    "updated": "2026-10-19T22:00:00Z",
     "statusLine": "All five research scouts are in. Four finalist niches are in deep-dive now. Nothing is built yet and no niche is chosen.",
     "phaseCurrent": 1,
     "killDate": "2026-12-14",
@@ -92,20 +92,20 @@ window.HQ_STATE = {
         {
           "name": "research-analyst",
           "charter": "Deep dive: USCG mariner sea-service and recency",
-          "status": "working",
-          "assignment": "Value equation, offer, MVP, v1 spec, channels"
+          "status": "done",
+          "assignment": "Pursue conditional, 6.5/10. Found two paid competitors Phase 1 missed, and corrected the core rule"
         },
         {
           "name": "research-analyst",
           "charter": "Deep dive: government-contracting recertification dates",
-          "status": "working",
-          "assignment": "Value equation, offer, MVP, v1 spec, channels"
+          "status": "done",
+          "assignment": "Pursue cheaply, 6/10. A 2024 FAR rule change removes the fear pitch; SAM-only product fails a hard gate"
         },
         {
           "name": "research-analyst",
           "charter": "Deep dive: motorsport dated safety gear",
-          "status": "working",
-          "assignment": "Value equation, offer, MVP, v1 spec, channels"
+          "status": "done",
+          "assignment": "Pursue as a cheap experiment, 6/10. Carve-out holds, but the pain is a lost weekend and retention is structurally weak"
         },
         {
           "name": "research-analyst",
@@ -234,6 +234,11 @@ window.HQ_STATE = {
   "risks": [
     {
       "severity": "high",
+      "risk": "Phase 1 scouting missed paid competitors in at least one finalist niche, because the App Store could not be searched. The first deep dive found two.",
+      "mitigation": "Every finalist gets an App Store search by hand before any code is written, and a competitor that already computes the same thing is an immediate drop."
+    },
+    {
+      "severity": "high",
       "risk": "No primary source was readable. The environment's network policy refused every research host, so all Phase 1 evidence is search-snippet only.",
       "mitigation": "Treat every penalty and interval figure as unverified. A domain expert signs off the rule set before launch, and the engine marks each rule verified, snippet-only or unverified."
     },
@@ -316,6 +321,21 @@ window.HQ_STATE = {
     }
   ],
   "log": [
+    {
+      "at": "2026-10-19T22:00:00Z",
+      "who": "motorsport analyst",
+      "what": "Deep dive done: 6/10. Paywall carve-out holds and reachability is the best of the four, but the price ceiling is about $60/yr and gear dates are entered once a year, so there is little to retain."
+    },
+    {
+      "at": "2026-10-19T21:48:00Z",
+      "who": "govcon analyst",
+      "what": "Deep dive done: 6/10. Found a 2024 FAR amendment that invalidates the case law both scouts anchored on, and that GSA's free emails are more accurate than ours would be. Only the wider recert portfolio survives."
+    },
+    {
+      "at": "2026-10-19T21:34:00Z",
+      "who": "mariner analyst",
+      "what": "Deep dive done: pursue conditional, 6.5/10. Corrected the qualifying-day rule (8 hours, not 4 hours underway) and found two paid competitors Phase 1 missed. Blue-ocean score cut from 4 to 3."
+    },
     {
       "at": "2026-10-19T21:20:00Z",
       "who": "operating partner",
