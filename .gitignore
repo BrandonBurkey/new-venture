@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+
+# Xcode / XcodeGen
+*.xcodeproj
+*.xcworkspace
+xcuserdata/
+DerivedData/
+build/
+.swiftpm/
+*.hmap
+*.ipa
+*.dSYM.zip
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Playwright / local artifacts
+playwright-report/
+test-results/
+screenshots/*.tmp.png
+
+# Secrets / local config
+.env
+.env.local
