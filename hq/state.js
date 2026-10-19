@@ -1,0 +1,370 @@
+/* Generated from state.json by build.mjs. Do not edit. */
+window.HQ_STATE = {
+  "studio": {
+    "name": "Studio HQ",
+    "venture": "Untitled venture, niche pending",
+    "founder": "Brandon",
+    "operatingPartner": "AI operating partner",
+    "branch": "claude/venture-studio-ios-app-2ytfbe",
+    "updated": "2026-10-19T21:20:00Z",
+    "statusLine": "All five research scouts are in. Four finalist niches are in deep-dive now. Nothing is built yet and no niche is chosen.",
+    "phaseCurrent": 1,
+    "killDate": "2026-12-14",
+    "killCriterion": "If no niche reaches 10 paid founding deposits by the kill date, the venture stops and the studio picks a different market."
+  },
+  "needsYou": [
+    {
+      "id": "gate-1",
+      "title": "Answer Gate 1: pick the niche",
+      "why": "Four candidates survived scoring. Your choice sets everything downstream: the rules engine, the landing page, the app. I have a recommendation ready.",
+      "urgency": "now",
+      "effort": "10 minutes"
+    },
+    {
+      "id": "network",
+      "title": "Optional: widen this environment's network access",
+      "why": "The environment's network policy refused connections to capterra.com, trustpilot.com, appfollow.io, apps.apple.com, reddit.com and every .gov host we tried, so all Phase 1 evidence is search-snippet only and no App Store competitive survey was possible. Open the cloud environment menu in the session title bar, choose Edit, and add those hosts under Allowed domains with 'Allow package managers' left ticked. Docs: https://code.claude.com/docs/en/cloud-environments#network-access",
+      "urgency": "before build",
+      "effort": "5 minutes"
+    }
+  ],
+  "phases": [
+    {
+      "n": 1,
+      "name": "Research",
+      "status": "in_progress",
+      "detail": "Five scouts across 37 niches, all returned. Four finalists now in full deep-dive: offer, hypotheses, MVP, v1 spec, channels.",
+      "deliverable": "research/market-research.md",
+      "progress": 0.9
+    },
+    {
+      "n": 2,
+      "name": "Validation kit",
+      "status": "pending",
+      "detail": "Rules engine with 50+ golden vectors, landing page that gives the aha moment free in-browser, 8-week validation plan with pre-committed thresholds.",
+      "deliverable": "engine/, landing/, validation/",
+      "progress": 0
+    },
+    {
+      "n": 3,
+      "name": "iOS MVP",
+      "status": "pending",
+      "detail": "SwiftUI, SwiftData, StoreKit 2, engine ported to a local Swift package passing the same vectors, then an adversarial review pass.",
+      "deliverable": "ios/",
+      "progress": 0
+    },
+    {
+      "n": 4,
+      "name": "Ship-readiness",
+      "status": "pending",
+      "detail": "Green CI on macOS, App Store listing, final report with your five actions.",
+      "deliverable": ".github/workflows/ios.yml",
+      "progress": 0
+    }
+  ],
+  "gates": [
+    {
+      "n": 1,
+      "name": "Pick the niche",
+      "status": "awaiting_you",
+      "question": "Which of the four surviving niches do we build?",
+      "options": [
+        "USCG mariner sea-service days and credential recency",
+        "Government-contracting registration and recertification dates",
+        "Motorsport dated safety gear and annual tech inspection",
+        "Startup equity date windows (83(b), QSBS, option windows)"
+      ],
+      "alsoNeedFromYou": "Budget for the 8-week test, any insider access you have, and your risk appetite on market size."
+    },
+    {
+      "n": 2,
+      "name": "Go or no-go after validation",
+      "status": "scheduled",
+      "question": "Did the validation kit hit its pre-committed thresholds by the kill date?",
+      "options": [],
+      "alsoNeedFromYou": "Nothing until the thresholds report."
+    }
+  ],
+  "teams": [
+    {
+      "team": "Research",
+      "agents": [
+        {
+          "name": "research-analyst",
+          "charter": "Deep dive: USCG mariner sea-service and recency",
+          "status": "working",
+          "assignment": "Value equation, offer, MVP, v1 spec, channels"
+        },
+        {
+          "name": "research-analyst",
+          "charter": "Deep dive: government-contracting recertification dates",
+          "status": "working",
+          "assignment": "Value equation, offer, MVP, v1 spec, channels"
+        },
+        {
+          "name": "research-analyst",
+          "charter": "Deep dive: motorsport dated safety gear",
+          "status": "working",
+          "assignment": "Value equation, offer, MVP, v1 spec, channels"
+        },
+        {
+          "name": "research-analyst",
+          "charter": "Deep dive: startup equity date windows",
+          "status": "working",
+          "assignment": "Stress-testing three stated reservations"
+        },
+        {
+          "name": "research-analyst x5",
+          "charter": "Scouting: 37 niches across five clusters",
+          "status": "done",
+          "assignment": "All five clusters reported. Raw findings in research/raw/"
+        }
+      ]
+    },
+    {
+      "team": "Product and design",
+      "agents": [
+        {
+          "name": "ux-designer",
+          "charter": "Aha moment before paywall, screen specs, tokens, Dynamic Type, App Store screenshots",
+          "status": "standby",
+          "assignment": "Starts at Gate 1"
+        },
+        {
+          "name": "brand-copywriter",
+          "charter": "MAGIC name, Grand Slam Offer stack, paywall and ASO copy",
+          "status": "standby",
+          "assignment": "Starts at Gate 1"
+        }
+      ]
+    },
+    {
+      "team": "Engineering",
+      "agents": [
+        {
+          "name": "rules-engineer",
+          "charter": "Dependency-free JS rules engine, 50+ golden vectors, every rule cited",
+          "status": "standby",
+          "assignment": "Phase 2"
+        },
+        {
+          "name": "ios-engineer",
+          "charter": "SwiftUI, SwiftData, StoreKit 2, XcodeGen, PDF export",
+          "status": "standby",
+          "assignment": "Phase 3"
+        },
+        {
+          "name": "ios-reviewer",
+          "charter": "Adversarial compiler-eye review and engine parity",
+          "status": "standby",
+          "assignment": "Phase 3, after the engineer"
+        },
+        {
+          "name": "qa-verifier",
+          "charter": "Runs the checks, screenshots, CI, cross-agent consistency sweep",
+          "status": "standby",
+          "assignment": "Phases 2 to 4"
+        }
+      ]
+    },
+    {
+      "team": "Go to market",
+      "agents": [
+        {
+          "name": "growth-marketer",
+          "charter": "Channels to the first 100 paying users, 8-week plan, thresholds, event taxonomy",
+          "status": "standby",
+          "assignment": "Phase 2"
+        },
+        {
+          "name": "sales-closer",
+          "charter": "Mom Test interviews, concierge SOP, deposit conversion, objections",
+          "status": "standby",
+          "assignment": "Phase 2"
+        }
+      ]
+    },
+    {
+      "team": "Risk",
+      "agents": [
+        {
+          "name": "compliance-counsel",
+          "charter": "App Store wording review, payment compliance, risk memo. Not legal advice",
+          "status": "standby",
+          "assignment": "Phase 2, then gates every phase"
+        }
+      ]
+    }
+  ],
+  "funnel": {
+    "note": "Targets are pre-committed in Phase 2, before any traffic arrives, so they cannot be moved to fit the result.",
+    "metrics": [
+      {
+        "label": "Landing visits",
+        "value": null,
+        "target": null
+      },
+      {
+        "label": "Aha completions",
+        "value": null,
+        "target": null
+      },
+      {
+        "label": "Email captures",
+        "value": null,
+        "target": null
+      },
+      {
+        "label": "Interviews booked",
+        "value": null,
+        "target": null
+      },
+      {
+        "label": "Concierge sales",
+        "value": null,
+        "target": null
+      },
+      {
+        "label": "Founding deposits",
+        "value": null,
+        "target": null
+      }
+    ]
+  },
+  "risks": [
+    {
+      "severity": "high",
+      "risk": "No primary source was readable. The environment's network policy refused every research host, so all Phase 1 evidence is search-snippet only.",
+      "mitigation": "Treat every penalty and interval figure as unverified. A domain expert signs off the rule set before launch, and the engine marks each rule verified, snippet-only or unverified."
+    },
+    {
+      "severity": "high",
+      "risk": "No App Store competitive survey was possible, because apps.apple.com is refused. Competitive weakness scores are provisional.",
+      "mitigation": "You run four App Store searches by hand on your phone at Gate 1. Ten minutes, and it can kill a pick."
+    },
+    {
+      "severity": "high",
+      "risk": "The recurring killer across 37 niches: whoever owns the data gives tracking away free. CE Broker, NCEES, NABP, SeaLog, Zoetis all do.",
+      "mitigation": "Only niches where nobody is already paid to track the dates survived. Re-test this for the chosen niche before building."
+    },
+    {
+      "severity": "medium",
+      "risk": "The shared web-search budget ran out mid-research, leaving parts of three clusters under-researched.",
+      "mitigation": "Named gaps are listed per niche in the raw scout files and re-run against the chosen niche only."
+    },
+    {
+      "severity": "medium",
+      "risk": "No Swift compiler in this environment. The first real compile happens in GitHub Actions on macOS.",
+      "mitigation": "Conservative stable-API Swift, a line-by-line adversarial review, and CI watched until green."
+    },
+    {
+      "severity": "medium",
+      "risk": "App Store rejection or liability from wording that reads as a verdict on legality or safety.",
+      "mitigation": "Every string passes the compliance wording test. We state the user's records and the public interval, never a verdict."
+    }
+  ],
+  "files": [
+    {
+      "path": "research/market-research.md",
+      "what": "The Phase 1 report: scores, deep dives, offers, hypotheses, MVPs",
+      "state": "writing"
+    },
+    {
+      "path": "research/scoring-rubric.md",
+      "what": "Weights and hard gates, locked before evidence arrived",
+      "state": "done"
+    },
+    {
+      "path": "research/raw/",
+      "what": "Raw scout findings with sources, quotes and caveats",
+      "state": "done"
+    },
+    {
+      "path": "studio/ORG.md",
+      "what": "Who is on the team and what each one owns",
+      "state": "done"
+    },
+    {
+      "path": "CLAUDE.md",
+      "what": "Studio standing rules every agent inherits",
+      "state": "done"
+    },
+    {
+      "path": "hq/index.html",
+      "what": "This dashboard",
+      "state": "done"
+    },
+    {
+      "path": "engine/",
+      "what": "Rules engine and golden test vectors",
+      "state": "planned"
+    },
+    {
+      "path": "landing/index.html",
+      "what": "Landing page that delivers the aha moment free",
+      "state": "planned"
+    },
+    {
+      "path": "validation/",
+      "what": "8-week plan, channel posts, interview script, SOPs, risk memo",
+      "state": "planned"
+    },
+    {
+      "path": "ios/",
+      "what": "The app",
+      "state": "planned"
+    }
+  ],
+  "log": [
+    {
+      "at": "2026-10-19T21:20:00Z",
+      "who": "operating partner",
+      "what": "Four deep-dive analysts dispatched on the finalists. Equity windows added as a fourth because it tied the top weighted score."
+    },
+    {
+      "at": "2026-10-19T21:12:00Z",
+      "who": "scout 3",
+      "what": "Cross-border cluster done. Equity date windows score highest in that cluster; immigration killed as legal advice."
+    },
+    {
+      "at": "2026-10-19T21:05:00Z",
+      "who": "operating partner",
+      "what": "Studio HQ built. Ten agents appointed across five teams."
+    },
+    {
+      "at": "2026-10-19T21:00:00Z",
+      "who": "scout 4",
+      "what": "SMB cluster done. GovCon recerts and DOT small fleets survive; lien deadlines killed as legal advice plus Levelset."
+    },
+    {
+      "at": "2026-10-19T20:55:00Z",
+      "who": "scout 1",
+      "what": "Assets cluster done. Charter captains and show horses survive; classic cars killed because no deadline exists."
+    },
+    {
+      "at": "2026-10-19T20:52:00Z",
+      "who": "scout 5",
+      "what": "Wildcards done. Motorsport safety gear scores highest in any cluster; welders killed on a paywalled standard."
+    },
+    {
+      "at": "2026-10-19T20:48:00Z",
+      "who": "scout 2",
+      "what": "Credentials cluster done. Most killed: the data owner gives tracking away free."
+    },
+    {
+      "at": "2026-10-19T20:35:00Z",
+      "who": "operating partner",
+      "what": "Network policy refused every research host. Evidence quality downgraded to snippet-only and recorded as a risk."
+    },
+    {
+      "at": "2026-10-19T20:30:00Z",
+      "who": "operating partner",
+      "what": "Scoring rubric and hard gates locked before any scout reported."
+    },
+    {
+      "at": "2026-10-19T20:29:00Z",
+      "who": "operating partner",
+      "what": "Five research scouts dispatched across 37 candidate niches."
+    }
+  ]
+};
