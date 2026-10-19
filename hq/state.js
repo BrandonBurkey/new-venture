@@ -6,8 +6,8 @@ window.HQ_STATE = {
     "founder": "Brandon",
     "operatingPartner": "AI operating partner",
     "branch": "claude/venture-studio-ios-app-2ytfbe",
-    "updated": "2026-10-19T22:00:00Z",
-    "statusLine": "All five research scouts are in. Four finalist niches are in deep-dive now. Nothing is built yet and no niche is chosen.",
+    "updated": "2026-10-19T22:30:00Z",
+    "statusLine": "Phase 1 is done. Four finalists deep-dived, all four downgraded their own score. Recommendation ready and waiting on your Gate 1 answer.",
     "phaseCurrent": 1,
     "killDate": "2026-12-14",
     "killCriterion": "If no niche reaches 10 paid founding deposits by the kill date, the venture stops and the studio picks a different market."
@@ -32,10 +32,10 @@ window.HQ_STATE = {
     {
       "n": 1,
       "name": "Research",
-      "status": "in_progress",
+      "status": "done",
       "detail": "Five scouts across 37 niches, all returned. Four finalists now in full deep-dive: offer, hypotheses, MVP, v1 spec, channels.",
       "deliverable": "research/market-research.md",
-      "progress": 0.9
+      "progress": 1
     },
     {
       "n": 2,
@@ -110,8 +110,8 @@ window.HQ_STATE = {
         {
           "name": "research-analyst",
           "charter": "Deep dive: startup equity date windows",
-          "status": "working",
-          "assignment": "Stress-testing three stated reservations"
+          "status": "done",
+          "assignment": "Pursue conditionally, 6/10, but ranked fourth: no community channel, and its own maths reaches 40-60 users in six months"
         },
         {
           "name": "research-analyst x5",
@@ -272,7 +272,7 @@ window.HQ_STATE = {
     {
       "path": "research/market-research.md",
       "what": "The Phase 1 report: scores, deep dives, offers, hypotheses, MVPs",
-      "state": "writing"
+      "state": "done"
     },
     {
       "path": "research/scoring-rubric.md",
@@ -321,6 +321,16 @@ window.HQ_STATE = {
     }
   ],
   "log": [
+    {
+      "at": "2026-10-19T22:30:00Z",
+      "who": "operating partner",
+      "what": "Phase 1 report written. Recommending the mariner niche, gated on a day-one competitor check, with motorsport as the same-day fallback."
+    },
+    {
+      "at": "2026-10-19T22:12:00Z",
+      "who": "equity analyst",
+      "what": "Deep dive done: 6/10. Found a free competitor with the same feature list, and no community channel: its own forecast is 40-60 paying users in six months."
+    },
     {
       "at": "2026-10-19T22:00:00Z",
       "who": "motorsport analyst",
