@@ -1,12 +1,12 @@
 {
   "studio": {
     "name": "Studio HQ",
-    "venture": "Niche re-opened: mariner killed at the competitor gate",
+    "venture": "Motorsport gear dates \u2014 the one survivor of four",
     "founder": "Brandon",
     "operatingPartner": "AI operating partner",
     "branch": "claude/venture-studio-ios-app-2ytfbe",
-    "updated": "2026-10-19T23:40:00Z",
-    "statusLine": "Two of two fallback gates have failed. The pattern is now the finding: whoever holds the date already emails it free. One gate still running.",
+    "updated": "2026-10-20T00:05:00Z",
+    "statusLine": "Three of four finalists are dead at the gate. Motorsport passed, and also passes the new counter-incentive test. Waiting on your pivot decision.",
     "phaseCurrent": 2,
     "killDate": "2026-12-14",
     "killCriterion": "If no niche reaches 10 paid founding deposits by the kill date, the venture stops and the studio picks a different market."
@@ -116,8 +116,8 @@
         {
           "name": "research-analyst",
           "charter": "Mechanic-first gate: motorsport",
-          "status": "working",
-          "assignment": "The last niche standing"
+          "status": "done",
+          "assignment": "PASS. 17 searches, nine idioms, nothing computes gear expiry. But SFI now prints the date on the label"
         },
         {
           "name": "research-analyst x5",
@@ -245,6 +245,11 @@
   },
   "risks": [
     {
+      "severity": "medium",
+      "risk": "Since 2018 SFI prints the expiry date on the label, and FIA always printed a year. For newer gear there is no arithmetic left to do, so the aha shrinks to a legacy installed base.",
+      "mitigation": "Reframe the product around the per-body interval table and the event calendar rather than the subtraction. Validate the reframed aha before building it."
+    },
+    {
       "severity": "high",
       "risk": "Three of four finalists died at the gate to the same cause: the party holding the date already notifies for free. The Phase 1 shortlist was built without that filter.",
       "mitigation": "The counter-incentive test is now the first filter in CLAUDE.md and in the construction brief. A niche only survives if nobody holds the date, or the holder profits from the user forgetting."
@@ -343,6 +348,11 @@
     }
   ],
   "log": [
+    {
+      "at": "2026-10-20T00:05:00Z",
+      "who": "gate analyst",
+      "what": "Motorsport PASS. Nothing free or paid computes gear expiry against per-body intervals, and no manufacturer or recert shop sells reminders, so the channel-bundling failure that killed mariner does not repeat. Caveat: since 2018 SFI prints the expiry date on the label, so the subtraction only helps legacy punch tags."
+    },
     {
       "at": "2026-10-19T23:40:00Z",
       "who": "gate analyst",
