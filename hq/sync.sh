@@ -12,12 +12,17 @@ MSG=${1:-"Update HQ state"}
 node hq/validate.mjs
 node hq/build.mjs
 
-if git diff --quiet -- hq/state.json hq/state.js; then
+# Mirror into docs/, which is what GitHub Pages serves straight from the branch.
+# Pages only accepts / or /docs as the folder, hence the copy rather than serving hq/.
+mkdir -p docs
+cp hq/index.html hq/state.json hq/state.js docs/
+
+if git diff --quiet -- hq/state.json hq/state.js docs/; then
   echo "No HQ changes to push."
   exit 0
 fi
 
-git add hq/state.json hq/state.js
+git add hq/state.json hq/state.js docs/
 git commit -q -m "HQ: $MSG"
 
 # Retry the push with backoff; cloud sessions see transient network failures.

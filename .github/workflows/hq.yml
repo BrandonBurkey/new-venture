@@ -1,36 +1,31 @@
 # Keeps the founder's HQ dashboard live, for free, with no server and no session.
 #
-# On every push that touches hq/, this validates state.json, regenerates the
-# offline state.js from it, and publishes hq/ to GitHub Pages. The dashboard then
-# re-reads state.json every 30 seconds, so an open tab updates itself.
+# This validates state.json and checks that docs/ — the folder GitHub Pages serves
+# straight from this branch — is actually in sync with hq/. It does NOT deploy.
 #
-# The first run enables Pages itself (configure-pages with enablement: true). If your
-# org policy blocks that, set it by hand: Settings -> Pages -> Source: "GitHub Actions".
+# Pages is configured as "Deploy from a branch" on /docs, so GitHub publishes the
+# folder on every push with no workflow involved. That removes the github-pages
+# environment and its deployment branch rule, which is what failed repeatedly.
 name: HQ
 
 on:
   push:
     branches: [claude/construction-venture]
-    paths: ["hq/**", ".github/workflows/hq.yml"]
+    paths: ["hq/**", "docs/**", ".github/workflows/hq.yml"]
   workflow_dispatch: {}
 
 # Allow the Pages deployment, and let a newer run supersede an in-flight one
 # rather than queueing stale dashboards behind it.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: hq-pages
+  group: hq-check
   cancel-in-progress: true
 
 jobs:
-  publish:
+  check:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -38,38 +33,24 @@ jobs:
         with:
           node-version: "24"
 
-      # Fails the run on a malformed or invented-number state file, so a broken
-      # dashboard never reaches the founder.
+      # Fails on malformed state, a bad status, or a funnel figure typed as text,
+      # so a broken dashboard never reaches the founder.
       - name: Validate state
         run: node hq/validate.mjs
 
-      # state.js is the offline fallback the dashboard uses when opened from disk.
-      # Regenerating here means it can never drift from state.json.
+      # state.js is the offline fallback; regenerating here means it cannot drift.
       - name: Rebuild offline state
+        run: node hq/build.mjs
+
+      # docs/ is what Pages serves. If it has drifted from hq/, the live dashboard is
+      # stale and that must fail loudly rather than quietly serve old numbers.
+      - name: Check the published copy is in sync
         run: |
-          node hq/build.mjs
-          git diff --stat -- hq/state.js
-
-      # Pages cannot be created by this workflow's token ("Resource not accessible by
-      # integration"), so until a repo admin enables it the deploy is skipped rather than
-      # failed. The validation above is the part worth failing on; a missing Pages site is
-      # a setup step, not a broken dashboard.
-      - id: pages
-        continue-on-error: true
-        uses: actions/configure-pages@v5
-
-      - name: Say what to do if Pages is off
-        if: steps.pages.outcome != 'success'
-        run: |
-          echo "::notice title=Pages not enabled::State validated and rebuilt, but there is no"\
-               "GitHub Pages site to publish to. A repo admin enables it once:"\
-               "Settings -> Pages -> Source: 'GitHub Actions'. Then re-run this workflow."
-
-      - if: steps.pages.outcome == 'success'
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: hq
-
-      - id: deploy
-        if: steps.pages.outcome == 'success'
-        uses: actions/deploy-pages@v4
+          mkdir -p docs
+          cp hq/index.html hq/state.json hq/state.js docs/
+          if ! git diff --quiet -- docs/ hq/state.js; then
+            echo "::error title=docs out of sync::docs/ does not match hq/. Run ./hq/sync.sh and push."
+            git diff --stat -- docs/ hq/state.js
+            exit 1
+          fi
+          echo "docs/ matches hq/ — Pages is serving current state."
