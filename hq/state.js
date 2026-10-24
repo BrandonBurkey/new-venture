@@ -6,7 +6,7 @@ window.HQ_STATE = {
     "founder": "Brandon",
     "operatingPartner": "Bob, project manager",
     "branch": "claude/construction-venture",
-    "updated": "2026-10-24T16:20:00Z",
+    "updated": "2026-10-24T16:50:00Z",
     "statusLine": "A1/A2 confirmed dead on re-fetch. Wave 1 produced two legal mechanisms that kill nine more rows for free. B1 off-hire is under re-gate on the founder’s push-back: most plant is hired, and the buyer is the owner, not the site manager.",
     "phaseCurrent": 1,
     "killDate": null,
@@ -18,8 +18,8 @@ window.HQ_STATE = {
   "needsYou": [
     {
       "id": "pages",
-      "title": "Turn on GitHub Pages so your HQ updates itself, free and forever",
-      "why": "One click: repo Settings → Pages → Source: \"GitHub Actions\". Then the Actions tab → run the \"HQ\" workflow once, and it prints your permanent URL. After that every push updates the dashboard with no server, no session and no cost. Note it is a public site, as this repo already is.",
+      "title": "Point Pages at the /docs folder (last attempt, simpler route)",
+      "why": "The Actions-based deploy failed four times. Cause: enabling Pages created a github-pages environment whose deployment branch rule names the branch that was default at the time, and changing the repo default does not rewrite that rule. Rather than have you edit environment rules, the dashboard is now mirrored into docs/ and Pages can serve it straight from the branch with no workflow, no environment and no deploy step. Set Settings → Pages → Source: \"Deploy from a branch\" → Branch: claude/construction-venture → Folder: /docs → Save. URL becomes https://brandonburkey.github.io/new-venture/",
       "urgency": "whenever — blocks nothing",
       "effort": "2 minutes"
     },
@@ -393,6 +393,11 @@ window.HQ_STATE = {
       "at": "2026-10-24T16:20:00Z",
       "who": "bob",
       "what": "Founder pushed back on the B1 kill with insider knowledge: most UK plant is hired rather than owned. This invalidates part of the original verdict. The first scout tested gate 9 against a site manager, who is PAYE and loses nothing, and concluded the employer pays; the correct buyer is the subcontractor owner, for whom an overcharge is personal money. It also exposes a gap the scout did not test: each hirer’s portal shows only that hirer’s kit, so a subbie hiring from several firms has no consolidated view, which is exactly the many-vendors pattern CLAUDE.md §0 says survives. Re-gate dispatched with instructions to test the multi-hirer premise and Re-flow’s price and target customer, and explicitly not to revive the candidate to please the founder."
+    },
+    {
+      "at": "2026-10-24T16:50:00Z",
+      "who": "bob",
+      "what": "Pages deploy failed four times. Runs 1 and 2 reached configure-pages and failed because no Pages site existed; runs 7 to 10 failed in under four seconds with no steps executed at all, which is the github-pages environment rejecting the job before it starts. Enabling Pages creates that environment with a deployment branch rule naming the then-default branch, and changing the repo default does not rewrite the rule. Could not read the run page to confirm the exact wording — the proxy permits only repo-scoped API calls — so rather than send the founder to edit environment rules on a third guess, the approach was changed: hq/ is now mirrored into docs/, Pages serves that folder directly from the branch with no workflow, no environment and no deploy step, and the workflow is reduced to validating state and failing if docs/ has drifted from hq/."
     }
   ]
 };

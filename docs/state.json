@@ -1,0 +1,402 @@
+{
+  "studio": {
+    "name": "Studio HQ",
+    "venture": "UK commercial construction — niche not yet chosen",
+    "founder": "Brandon",
+    "operatingPartner": "Bob, project manager",
+    "branch": "claude/construction-venture",
+    "updated": "2026-10-24T16:50:00Z",
+    "statusLine": "A1/A2 confirmed dead on re-fetch. Wave 1 produced two legal mechanisms that kill nine more rows for free. B1 off-hire is under re-gate on the founder’s push-back: most plant is hired, and the buyer is the owner, not the site manager.",
+    "phaseCurrent": 1,
+    "killDate": null,
+    "stoppedMark": "13",
+    "stoppedLabel": "candidates killed of 33",
+    "stoppedOn": "2026-10-24",
+    "killCriterion": "The kill date is set in Phase 1, before any research returns, and written into validation/OFFER.md."
+  },
+  "needsYou": [
+    {
+      "id": "pages",
+      "title": "Point Pages at the /docs folder (last attempt, simpler route)",
+      "why": "The Actions-based deploy failed four times. Cause: enabling Pages created a github-pages environment whose deployment branch rule names the branch that was default at the time, and changing the repo default does not rewrite that rule. Rather than have you edit environment rules, the dashboard is now mirrored into docs/ and Pages can serve it straight from the branch with no workflow, no environment and no deploy step. Set Settings → Pages → Source: \"Deploy from a branch\" → Branch: claude/construction-venture → Folder: /docs → Save. URL becomes https://brandonburkey.github.io/new-venture/",
+      "urgency": "whenever — blocks nothing",
+      "effort": "2 minutes"
+    },
+    {
+      "id": "intro-experiment",
+      "title": "Get ONE real introduction to a subcontractor owner, by 31 Oct",
+      "why": "You confirmed a site manager can introduce you. Good — that reopens the candidates where the buyer actually loses their own money. But a promised introduction and a completed one are different things, and the previous venture died of assuming a channel worked. So this is a dated experiment, not a scoring input: one completed introduction by 31 Oct keeps contact proximity at 3 and keeps those candidates live. If it does not happen, it drops to 2.",
+      "urgency": "by 31 Oct",
+      "effort": "one phone call"
+    },
+    {
+      "id": "gate1-budget",
+      "title": "Set the 8-week validation budget",
+      "why": "Cash for organic validation before any app is built. Shapes the Phase 2 experiment plan. The previous venture’s plans came in at £170–£570.",
+      "urgency": "needed by Phase 2",
+      "effort": "1 minute"
+    },
+    {
+      "id": "gate1-risk",
+      "title": "State your risk appetite on market size",
+      "why": "How much eventual business size weighs against the odds it works at all. Tunes one scoring weight and the kill thresholds.",
+      "urgency": "shapes Phase 1 scoring",
+      "effort": "1 minute"
+    }
+  ],
+  "phases": [
+    {
+      "n": 1,
+      "name": "Research",
+      "status": "active",
+      "detail": "25+ niches, weights locked before evidence, counter-incentive and mechanic gates run INSIDE this phase, then adversarial deep dives on the survivors.",
+      "deliverable": "research/market-research.md",
+      "progress": 75
+    },
+    {
+      "n": 2,
+      "name": "Validation kit",
+      "status": "pending",
+      "detail": "Freeze the offer and engine contracts first, then rules engine with golden vectors, landing page delivering the aha free in-browser, and the 8-week plan with pre-committed thresholds.",
+      "deliverable": "engine/, landing/, validation/",
+      "progress": 0
+    },
+    {
+      "n": 3,
+      "name": "iOS MVP",
+      "status": "pending",
+      "detail": "SwiftUI, SwiftData, StoreKit 2, engine ported to a local Swift package passing the same vectors, then an adversarial review pass.",
+      "deliverable": "ios/",
+      "progress": 0
+    },
+    {
+      "n": 4,
+      "name": "Ship-readiness",
+      "status": "pending",
+      "detail": "Green CI on macOS, App Store listing, final report.",
+      "deliverable": ".github/workflows/ios.yml",
+      "progress": 0
+    }
+  ],
+  "gates": [
+    {
+      "n": 1,
+      "name": "Pick the niche",
+      "status": "approaching",
+      "question": "The shortlist is collapsing for a structural reason. Do we test the two narrow survivors, pivot the audience, or stop?",
+      "options": [
+        "Run wave 2 on the few candidates that survive the three structural killers",
+        "Pivot the audience to genuinely self-employed trades who do buy their own kit",
+        "Stop the venture and write the handoff"
+      ],
+      "alsoNeedFromYou": "Which roles and companies you can reach, your validation budget, and your risk appetite on market size."
+    },
+    {
+      "n": 2,
+      "name": "Go or no-go after validation",
+      "status": "scheduled",
+      "question": "Did the validation kit hit its pre-committed thresholds by the kill date?",
+      "options": [],
+      "alsoNeedFromYou": "Nothing until the thresholds report."
+    }
+  ],
+  "teams": [
+    {
+      "team": "Command",
+      "agents": [
+        {
+          "name": "bob",
+          "charter": "Dispatch, sequencing, gate enforcement, arbitration, the dashboard. The founder’s only point of contact.",
+          "status": "working",
+          "assignment": "Running the Phase 1 mechanic gate in waves"
+        }
+      ]
+    },
+    {
+      "team": "Research",
+      "agents": [
+        {
+          "name": "research-analyst",
+          "charter": "Sourced evidence, counter-incentive and mechanic gates, scoring, deep dives",
+          "status": "standby",
+          "assignment": "Wave 1 complete, 4 of 4 killed. Awaiting the founder’s decision before wave 2."
+        }
+      ]
+    },
+    {
+      "team": "Product and design",
+      "agents": [
+        {
+          "name": "ux-designer",
+          "charter": "Aha before paywall, screen specs, tokens, Dynamic Type, App Store screenshots",
+          "status": "standby",
+          "assignment": "Phase 2"
+        },
+        {
+          "name": "brand-copywriter",
+          "charter": "MAGIC name, Grand Slam Offer stack, paywall and ASO copy",
+          "status": "standby",
+          "assignment": "Phase 2"
+        }
+      ]
+    },
+    {
+      "team": "Engineering",
+      "agents": [
+        {
+          "name": "rules-engineer",
+          "charter": "Dependency-free JS rules engine, 50+ golden vectors, every rule cited",
+          "status": "standby",
+          "assignment": "Phase 2"
+        },
+        {
+          "name": "ios-engineer",
+          "charter": "SwiftUI, SwiftData, StoreKit 2, XcodeGen, PDF export",
+          "status": "standby",
+          "assignment": "Phase 3"
+        },
+        {
+          "name": "ios-reviewer",
+          "charter": "Adversarial compiler-eye review and engine parity",
+          "status": "standby",
+          "assignment": "Phase 3, after the engineer"
+        },
+        {
+          "name": "qa-verifier",
+          "charter": "Runs the checks, screenshots, CI, cross-agent consistency sweep",
+          "status": "standby",
+          "assignment": "Phases 2 to 4"
+        }
+      ]
+    },
+    {
+      "team": "Go to market",
+      "agents": [
+        {
+          "name": "growth-marketer",
+          "charter": "Channels to the first 100 paying users, 8-week plan, thresholds, event taxonomy",
+          "status": "standby",
+          "assignment": "Phase 2"
+        },
+        {
+          "name": "sales-closer",
+          "charter": "Mom Test interviews for warm introductions, concierge SOP, deposits, objections",
+          "status": "standby",
+          "assignment": "Phase 2"
+        }
+      ]
+    },
+    {
+      "team": "Risk",
+      "agents": [
+        {
+          "name": "compliance-counsel",
+          "charter": "App Store wording, UK GDPR, Consumer Contracts Regulations, risk memo. Not legal advice",
+          "status": "standby",
+          "assignment": "Phase 2, then every gate"
+        }
+      ]
+    }
+  ],
+  "funnel": {
+    "note": "Targets are pre-committed in Phase 2, before any traffic arrives, so they cannot be moved afterwards to fit the result.",
+    "metrics": [
+      {
+        "label": "Landing visits",
+        "value": null,
+        "target": null
+      },
+      {
+        "label": "Aha completions",
+        "value": null,
+        "target": null
+      },
+      {
+        "label": "Email captures",
+        "value": null,
+        "target": null
+      },
+      {
+        "label": "Interviews booked",
+        "value": null,
+        "target": null
+      },
+      {
+        "label": "Concierge sales",
+        "value": null,
+        "target": null
+      },
+      {
+        "label": "Founding deposits",
+        "value": null,
+        "target": null
+      }
+    ]
+  },
+  "risks": [
+    {
+      "severity": "high",
+      "risk": "STRUCTURAL, not candidate-specific. Three general killers emerged from wave 1 and they apply across UK commercial construction. (1) Where an examination is statutory, the examiner is legally required to write the next due date on the report, so the date holder is compelled to notify — LOLER Schedule 1. (2) Employers must provide work equipment and PPE and may not charge employees for it — HASAWA s.9 and PPER reg 4 — so the individual never owns the kit and never loses the money. (3) Counterparties publish live portals where money is at stake. Together these mean the venture’s premise, an individual tracking their own dates on their own phone, is actively prevented by the legal structure of this industry.",
+      "mitigation": "Reported to the founder as a decision rather than absorbed as a research failure. Applied as a free pre-filter to the remaining longlist before any further search budget is spent."
+    },
+    {
+      "severity": "medium",
+      "risk": "WebFetch is broken in this environment: it returns getaddrinfo ENOTFOUND on every host, including ones the allowlist permits, while the proxy reports healthy. A scout nearly recorded good hosts as blocked and downgraded verified claims to snippets because of it.",
+      "mitigation": "Verified independently by Bob, then routed to the running scout: all agents use curl via Bash, never WebFetch, and re-fetch anything marked unverified on that basis. Evidence levels stay honest."
+    },
+    {
+      "severity": "high",
+      "risk": "The two strongest seeds both died at the gate, and for the reason the standing rules predicted: someone already ships the mechanic free. Off-hire is published free in hire-company portals and is a salaried job inside contractors (apprenticeship standard ST0269), so the employer pays. Retention release is already done end to end by a UK product at £10 per contract with the first three free. If A1/A2 also fails, the shortlist has collapsed and stopping is the honest recommendation.",
+      "mitigation": "Gating five candidates rather than three, as the brief requires. A8 and B2 (scaffold inspection and scaffold hire) are held for wave 2. The founder is told early that the shortlist may be collapsing, because that is a signal about the market rather than a failure of research."
+    },
+    {
+      "severity": "medium",
+      "risk": "The reachable audience is not the buyer, but a one-hop route to one now exists. The founder can reach site managers, who are PAYE; the candidates that survive the counter-incentive test are bought by subcontractor owners. On 24 Oct the founder confirmed a site manager can introduce him to an owner, which moves contact proximity from 2 to the rubric’s \"one hop\" score of 3.",
+      "mitigation": "Treated as a claim to test, not a fact to lean on: one completed introduction by 31 Oct. Scores stay capped at 3 — no niche is scored as though the founder IS the buyer. If the introduction does not happen, proximity drops to 2 and stopping becomes the honest recommendation."
+    },
+    {
+      "severity": "high",
+      "risk": "The card schemes, accreditation bodies, inspection companies and insurers all sell renewals, so they probably already email every date. That pattern killed three of four finalists on the previous venture.",
+      "mitigation": "The counter-incentive test is hard gate 2 and carries 20% of the score. Verify who notifies before investing research in any candidate."
+    },
+    {
+      "severity": "high",
+      "risk": "British Standards are paywalled by BSI, and many trade-body documents are too. A niche whose intervals exist only inside a paid standard cannot ship.",
+      "mitigation": "Hard gate 4. Verify the free-source carve-out explicitly for every interval, rather than assuming it."
+    },
+    {
+      "severity": "high",
+      "risk": "Most obvious construction ideas are about chasing other people for their documents, which needs a backend and accounts.",
+      "mitigation": "Hard gate 5, applied early and strictly. The target is one person's phone, offline in a site cabin."
+    },
+    {
+      "severity": "low",
+      "risk": "RESOLVED 24 Oct. The allowlist was widened and verified: hse.gov.uk and legislation.gov.uk return real content on deep pages, and GB App Store search returns app names, sellers, prices and rating counts. Primary sources and the mechanic gate are both available for the first time.",
+      "mitigation": "Residual risk only: one App Store search returned an empty body before a retry succeeded, so a single empty result is treated as transient and retried, never scored as \"no competitor found\"."
+    },
+    {
+      "severity": "medium",
+      "risk": "No Swift compiler in this environment. The first real compile happens in GitHub Actions on macOS.",
+      "mitigation": "Conservative stable-API Swift, an adversarial line-by-line review, and CI watched until green."
+    }
+  ],
+  "files": [
+    {
+      "path": "SETUP.md",
+      "what": "The five setup steps. Start here.",
+      "state": "done"
+    },
+    {
+      "path": "PROMPT.md",
+      "what": "The brief to paste as your first message",
+      "state": "done"
+    },
+    {
+      "path": "CLAUDE.md",
+      "what": "Studio standing rules, led by the counter-incentive and mechanic rules",
+      "state": "done"
+    },
+    {
+      "path": "research/scoring-rubric.md",
+      "what": "Weights and hard gates. Fill in and commit before any research returns.",
+      "state": "done"
+    },
+    {
+      "path": "studio/ORG.md",
+      "what": "Org chart and how work flows",
+      "state": "done"
+    },
+    {
+      "path": "templates/OFFER.template.md",
+      "what": "The frozen offer contract. Copy to validation/OFFER.md in Phase 2.",
+      "state": "done"
+    },
+    {
+      "path": "templates/ENGINE-API.template.md",
+      "what": "The frozen engine surface. Copy to engine/API.md in Phase 2.",
+      "state": "done"
+    },
+    {
+      "path": "research/market-research.md",
+      "what": "Phase 1 report",
+      "state": "planned"
+    },
+    {
+      "path": "engine/",
+      "what": "Rules engine and golden vectors",
+      "state": "planned"
+    },
+    {
+      "path": "landing/index.html",
+      "what": "Landing page delivering the aha free",
+      "state": "planned"
+    },
+    {
+      "path": "validation/",
+      "what": "8-week plan, channels, interviews, SOPs, risk memo",
+      "state": "planned"
+    },
+    {
+      "path": "ios/",
+      "what": "The app",
+      "state": "planned"
+    }
+  ],
+  "log": [
+    {
+      "at": "2026-10-24T00:00:00Z",
+      "who": "operating partner",
+      "what": "Studio scaffolding seeded from the previous venture: ten agent charters, the standing rules, the rubric with the counter-incentive gate, the frozen-contract templates and this dashboard."
+    },
+    {
+      "at": "2026-10-24T01:15:00Z",
+      "who": "operating partner",
+      "what": "Step 0 network verification: all three test hosts refused. www.hse.gov.uk, www.legislation.gov.uk and itunes.apple.com each failed DNS resolution; the proxy recorded a 403 on CONNECT for all three. Control hosts github.com and registry.npmjs.org returned normally, so the egress path works and the allowed-domains list is the sole cause. Web search returns snippets only. Stopped and waiting for the founder; no research scouts dispatched."
+    },
+    {
+      "at": "2026-10-24T02:05:00Z",
+      "who": "operating partner",
+      "what": "Founder widened the network allowlist. Re-verified: www.hse.gov.uk 200, www.legislation.gov.uk 200, itunes.apple.com lookup 200 with parsed JSON. Deep pages confirmed (HSE thorough-examinations guidance; LOLER 1998 reg 9 on legislation.gov.uk). GB App Store search returns names, sellers, prices and rating counts, so the mechanic gate is runnable. One transient empty search body observed and retried successfully. Step 0 closed."
+    },
+    {
+      "at": "2026-10-24T02:40:00Z",
+      "who": "operating partner",
+      "what": "Froze the founder’s three Gate 1 answers into research/scoring-rubric.md without touching the weights, and added hard gate 9 (does the employer pay?). Wrote research/niche-longlist.md: 33 candidates in four groups ordered by who holds the date, every line marked unverified, with predictions recorded before gating. Built the zero-cost HQ update path: hq/validate.mjs, hq/sync.sh and .github/workflows/hq.yml deploying hq/ to GitHub Pages on every push."
+    },
+    {
+      "at": "2026-10-24T14:05:00Z",
+      "who": "bob",
+      "what": "Founder asked for a project manager as single point of contact. Added .claude/agents/bob.md and studio/COMMS.md, which states plainly that sub-agents have no peer channel: they hand off through files at agreed paths and route questions through Bob via a mandatory handoff block. COMMS.md also fixes write ownership per path so two agents never hold one file in a wave, and sets the reporting contract that keeps the founder’s chat to decisions only. Dispatched wave 1 of the mechanic gate."
+    },
+    {
+      "at": "2026-10-24T14:30:00Z",
+      "who": "bob",
+      "what": "Founder confirmed a site manager can introduce him to a subcontractor owner. Contact proximity lifted from the interim cap of 2 to the rubric’s defined \"one hop\" score of 3, and no higher — 5 is reserved for contacts who ARE the buyer, which remains untrue. Reopens candidates A1, A2 and B5. Recorded as a dated experiment rather than a scoring input: one completed introduction by 31 Oct, or proximity drops back to 2."
+    },
+    {
+      "at": "2026-10-24T15:10:00Z",
+      "who": "bob",
+      "what": "Wave 1 verdicts. B1 plant hire off-hire FAILED gates 3, 4, 5 and 9: hire-company portals publish live on-hire lists for free (Ardent InSite, Speedy, GAP, and HAE’s white-label Hire HQ sold to the whole association), Re-flow already sends automated return alerts, and off-hire is a salaried contractor role with its own apprenticeship standard, so the employer pays. B5 retention release FAILED gates 3, 4, 5 and 8: Retention Track already ships the entire v1 for the UK at £10 per contract with three free, a free browser calculator already outputs both moiety dates, and no free authoritative interval exists because retention dates live in paywalled JCT and NEC particulars. Both scouts lowered their own prior scores, which is the behaviour asked for. Also confirmed dead: C10, LOLER on hired plant, since hirers email expiry alerts. Separately verified that WebFetch is broken environment-wide and routed the curl workaround to the running scout."
+    },
+    {
+      "at": "2026-10-24T15:40:00Z",
+      "who": "bob",
+      "what": "A1 and A2 also FAILED, completing wave 1 at four kills from four. A2: the free rule set is genuine — LOLER reg 9(3)(a)(i) \"at least every 6 months\" verified on legislation.gov.uk — but LOLER Schedule 1 obliges the examiner to state the next due date on the report, so the holder is legally compelled to notify, and Scannable offers a free-forever plan explicitly for individuals managing their own gear. A1: the inspection interval is free in INDG367, but the service life, which is the actual mechanic, is per-manufacturer and published free nowhere; two manuals disagree at 5 and 10 years. Both also fail gate 9 via HASAWA s.9 and PPER reg 4, which forbid an employer charging an employee for equipment, so employed operatives never buy the kit; the only self-providers found were arborists and rope-access technicians, a different industry from the founder’s access. Scout rated contact proximity 1, not the capped 3. Its closing recommendation to spend remaining budget on B1 and B5 was written without knowing both were already dead, and was not acted on."
+    },
+    {
+      "at": "2026-10-24T16:20:00Z",
+      "who": "bob",
+      "what": "A1 and A2 re-confirmed FAIL after a full curl re-fetch. Scores rose slightly on the corrected proximity input (A1 1.95, A2 2.15) and the verdicts did not move, because hard gates kill at any score. The A1 free-source carve-out was tested rather than assumed and fails on three grounds: it is a per-model dataset rather than a stable rule set, some manufacturers defer to a paywalled standard for the figure, and a competent person overrides it in both directions. Papertrail was upgraded to verified-fetch and documents the entire A2 computation already. The scout also generalised two verified legal mechanisms — the statutory inspection report must state the next due date, and HASAWA s.9 forbids charging an employee for employer-provided equipment — which kill A3, A5, A6, A8, A9, A10, A11, A12 and C10 at no research cost. Recorded in the longlist as a reasoned inference, marked unverified per candidate. Only A4 and A7 survive that filter, both thin."
+    },
+    {
+      "at": "2026-10-24T16:20:00Z",
+      "who": "bob",
+      "what": "Founder pushed back on the B1 kill with insider knowledge: most UK plant is hired rather than owned. This invalidates part of the original verdict. The first scout tested gate 9 against a site manager, who is PAYE and loses nothing, and concluded the employer pays; the correct buyer is the subcontractor owner, for whom an overcharge is personal money. It also exposes a gap the scout did not test: each hirer’s portal shows only that hirer’s kit, so a subbie hiring from several firms has no consolidated view, which is exactly the many-vendors pattern CLAUDE.md §0 says survives. Re-gate dispatched with instructions to test the multi-hirer premise and Re-flow’s price and target customer, and explicitly not to revive the candidate to please the founder."
+    },
+    {
+      "at": "2026-10-24T16:50:00Z",
+      "who": "bob",
+      "what": "Pages deploy failed four times. Runs 1 and 2 reached configure-pages and failed because no Pages site existed; runs 7 to 10 failed in under four seconds with no steps executed at all, which is the github-pages environment rejecting the job before it starts. Enabling Pages creates that environment with a deployment branch rule naming the then-default branch, and changing the repo default does not rewrite the rule. Could not read the run page to confirm the exact wording — the proxy permits only repo-scoped API calls — so rather than send the founder to edit environment rules on a third guess, the approach was changed: hq/ is now mirrored into docs/, Pages serves that folder directly from the branch with no workflow, no environment and no deploy step, and the workflow is reduced to validating state and failing if docs/ has drifted from hq/."
+    }
+  ]
+}
