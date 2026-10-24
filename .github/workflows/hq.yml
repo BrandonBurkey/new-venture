@@ -4,7 +4,8 @@
 # offline state.js from it, and publishes hq/ to GitHub Pages. The dashboard then
 # re-reads state.json every 30 seconds, so an open tab updates itself.
 #
-# One-time setup by the repo owner: Settings -> Pages -> Source: "GitHub Actions".
+# The first run enables Pages itself (configure-pages with enablement: true). If your
+# org policy blocks that, set it by hand: Settings -> Pages -> Source: "GitHub Actions".
 name: HQ
 
 on:
@@ -49,7 +50,11 @@ jobs:
           node hq/build.mjs
           git diff --stat -- hq/state.js
 
+      # enablement creates the Pages site on first run, so the repo owner does not
+      # have to flip Settings -> Pages by hand. Needs the pages: write permission above.
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
