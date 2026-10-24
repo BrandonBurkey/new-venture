@@ -36,7 +36,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
 
       # Fails the run on a malformed or invented-number state file, so a broken
       # dashboard never reaches the founder.
@@ -50,15 +50,26 @@ jobs:
           node hq/build.mjs
           git diff --stat -- hq/state.js
 
-      # enablement creates the Pages site on first run, so the repo owner does not
-      # have to flip Settings -> Pages by hand. Needs the pages: write permission above.
-      - uses: actions/configure-pages@v5
-        with:
-          enablement: true
+      # Pages cannot be created by this workflow's token ("Resource not accessible by
+      # integration"), so until a repo admin enables it the deploy is skipped rather than
+      # failed. The validation above is the part worth failing on; a missing Pages site is
+      # a setup step, not a broken dashboard.
+      - id: pages
+        continue-on-error: true
+        uses: actions/configure-pages@v5
 
-      - uses: actions/upload-pages-artifact@v3
+      - name: Say what to do if Pages is off
+        if: steps.pages.outcome != 'success'
+        run: |
+          echo "::notice title=Pages not enabled::State validated and rebuilt, but there is no"\
+               "GitHub Pages site to publish to. A repo admin enables it once:"\
+               "Settings -> Pages -> Source: 'GitHub Actions'. Then re-run this workflow."
+
+      - if: steps.pages.outcome == 'success'
+        uses: actions/upload-pages-artifact@v3
         with:
           path: hq
 
       - id: deploy
+        if: steps.pages.outcome == 'success'
         uses: actions/deploy-pages@v4
