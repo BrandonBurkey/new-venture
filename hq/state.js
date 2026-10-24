@@ -6,16 +6,23 @@ window.HQ_STATE = {
     "founder": "Brandon",
     "operatingPartner": "Bob, project manager",
     "branch": "claude/construction-venture",
-    "updated": "2026-10-24T16:50:00Z",
-    "statusLine": "A1/A2 confirmed dead on re-fetch. Wave 1 produced two legal mechanisms that kill nine more rows for free. B1 off-hire is under re-gate on the founder’s push-back: most plant is hired, and the buyer is the owner, not the site manager.",
+    "updated": "2026-10-24T17:20:00Z",
+    "statusLine": "B1 off-hire revived to MARGINAL 3.05 on the founder’s correction. Two kills overturned by a court judgment. One free competitor still blocks it. Next step is one phone call, not more searching.",
     "phaseCurrent": 1,
     "killDate": null,
-    "stoppedMark": "13",
-    "stoppedLabel": "candidates killed of 33",
+    "stoppedMark": "12",
+    "stoppedLabel": "killed of 33, one marginal",
     "stoppedOn": "2026-10-24",
     "killCriterion": "The kill date is set in Phase 1, before any research returns, and written into validation/OFFER.md."
   },
   "needsYou": [
+    {
+      "id": "interview",
+      "title": "Run the first interview: one subcontractor owner, five questions",
+      "why": "The whole venture now turns on facts only a real owner can supply, and a scout found no verbatim owner complaint anywhere after six targeted attempts. The questions, the Mom Test rules and the pre-committed kill trigger are in validation/first-interview.md. Ask your site manager for \"someone who runs their own gang or small firm and hires their own plant\". Do not pitch, and do not mention an app.",
+      "urgency": "by 31 Oct",
+      "effort": "one phone call"
+    },
     {
       "id": "pages",
       "title": "Point Pages at the /docs folder (last attempt, simpler route)",
@@ -52,7 +59,7 @@ window.HQ_STATE = {
       "status": "active",
       "detail": "25+ niches, weights locked before evidence, counter-incentive and mechanic gates run INSIDE this phase, then adversarial deep dives on the survivors.",
       "deliverable": "research/market-research.md",
-      "progress": 75
+      "progress": 85
     },
     {
       "n": 2,
@@ -83,13 +90,9 @@ window.HQ_STATE = {
     {
       "n": 1,
       "name": "Pick the niche",
-      "status": "approaching",
-      "question": "The shortlist is collapsing for a structural reason. Do we test the two narrow survivors, pivot the audience, or stop?",
-      "options": [
-        "Run wave 2 on the few candidates that survive the three structural killers",
-        "Pivot the audience to genuinely self-employed trades who do buy their own kit",
-        "Stop the venture and write the handoff"
-      ],
+      "status": "waiting on evidence",
+      "question": "Does the off-hire gap survive YardLink? Decided by owner interviews, not by search.",
+      "options": [],
       "alsoNeedFromYou": "Which roles and companies you can reach, your validation budget, and your risk appetite on market size."
     },
     {
@@ -235,6 +238,16 @@ window.HQ_STATE = {
     ]
   },
   "risks": [
+    {
+      "severity": "medium",
+      "risk": "B1 has no rule set to compute from. Hire charging terms are commercial, not statutory, so there is no cited regulation, no conflicting-sources UI and no 60-second in-browser aha — which was our first tie-breaker. The product would be a reminder over user-entered dates.",
+      "mitigation": "Recorded against the candidate rather than argued away. If B1 survives the interviews it must win on pain and counter-incentive alone, and the thin product shape is a reason to prefer a concierge test over a build."
+    },
+    {
+      "severity": "high",
+      "risk": "B1’s remaining blocker is YardLink: free, cross-supplier, with one-click and scheduled off-hire from any project and any supplier. That is close to our entire v1, given away. Its one limitation is that it consolidates only what was ordered through YardLink, so a subbie keeping direct credit accounts with local depots is not covered — but whether owners do that is unevidenced.",
+      "mitigation": "Question 5 of the first interview targets exactly this, and the kill trigger is pre-committed: fewer than six of ten owners naming two or more concurrent hirers closes B1 for good."
+    },
     {
       "severity": "high",
       "risk": "STRUCTURAL, not candidate-specific. Three general killers emerged from wave 1 and they apply across UK commercial construction. (1) Where an examination is statutory, the examiner is legally required to write the next due date on the report, so the date holder is compelled to notify — LOLER Schedule 1. (2) Employers must provide work equipment and PPE and may not charge employees for it — HASAWA s.9 and PPER reg 4 — so the individual never owns the kit and never loses the money. (3) Counterparties publish live portals where money is at stake. Together these mean the venture’s premise, an individual tracking their own dates on their own phone, is actively prevented by the legal structure of this industry.",
@@ -398,6 +411,11 @@ window.HQ_STATE = {
       "at": "2026-10-24T16:50:00Z",
       "who": "bob",
       "what": "Pages deploy failed four times. Runs 1 and 2 reached configure-pages and failed because no Pages site existed; runs 7 to 10 failed in under four seconds with no steps executed at all, which is the github-pages environment rejecting the job before it starts. Enabling Pages creates that environment with a deployment branch rule naming the then-default branch, and changing the repo default does not rewrite the rule. Could not read the run page to confirm the exact wording — the proxy permits only repo-scoped API calls — so rather than send the founder to edit environment rules on a third guess, the approach was changed: hq/ is now mirrored into docs/, Pages serves that folder directly from the branch with no workflow, no environment and no deploy step, and the workflow is reduced to validating state and failing if docs/ has drifted from hq/."
+    },
+    {
+      "at": "2026-10-24T17:20:00Z",
+      "who": "bob",
+      "what": "B1 re-gate: MARGINAL 3.05 of 5, up from 2.35 FAIL, strength of bet 4 of 10. The founder’s push-back was correct and overturned two kills. Gate 9 now PASSES on evidence rather than inference: VP plc v Megarry [2012] NIQB 22, an unincorporated partnership pursued for £26,155.50 on one machine with the defence \"we thought it was off hire\", judgment £13,331 plus interest and costs. Gate 5 also passes: CPA Supplementary Conditions 2011 cl 7.2.3 makes the hirer liable if he cannot produce the off-hire number, so merely holding that reference is single-user, offline and phone-shaped. Re-flow was over-weighted by the first scout at £39 per user per month, one plan, demo-only entry, mid-market civils. But gate 3 is still not cleared: YardLink ships a free cross-supplier live hire report with one-click and scheduled off-hire from any supplier, limited only to kit ordered through YardLink. Gate 4 has no rule set at all, so there is no engine and no browser aha. Knock-on: B2 and B3 were killed on the same wrong site-manager reasoning and are now re-openable. Next step is the founder’s introduction, not more search budget."
     }
   ]
 };
