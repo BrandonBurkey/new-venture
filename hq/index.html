@@ -205,7 +205,7 @@ footer{margin-top:28px;color:var(--fg-3);font-size:12.5px;text-align:center}
     </div>
     <div class="countdown">
       <div class="n" id="days">—</div>
-      <div class="l">days to kill date</div>
+      <div class="l" id="daysLabel">days to kill date</div>
       <div class="d" id="killDate"></div>
     </div>
   </section>
@@ -304,12 +304,17 @@ footer{margin-top:28px;color:var(--fg-3);font-size:12.5px;text-align:center}
     $("phaseLabel").textContent = "Phase " + st.phaseCurrent + " of " + (s.phases || []).length +
       (ph ? " · " + ph.name : "") + " · " + (st.venture || "");
 
-    // countdown
+    // countdown, or the stopped state
     if (st.killDate) {
       var ms = new Date(st.killDate + "T00:00:00Z") - new Date();
       var days = Math.ceil(ms / 86400000);
       $("days").textContent = isNaN(days) ? "—" : days;
+      $("daysLabel").textContent = "days to kill date";
       $("killDate").textContent = fmtDate(st.killDate);
+    } else {
+      $("days").textContent = st.stoppedMark || "—";
+      $("daysLabel").textContent = st.stoppedLabel || "venture stopped";
+      $("killDate").textContent = st.stoppedOn ? fmtDate(st.stoppedOn) : "";
     }
 
     // needs you

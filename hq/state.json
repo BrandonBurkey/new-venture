@@ -7,9 +7,12 @@
     "branch": "claude/venture-studio-ios-app-2ytfbe",
     "updated": "2026-10-24T09:00:00Z",
     "statusLine": "Stopped deliberately with no app built. Three of four finalists died at the competitor gate, and the studio is moving to UK commercial construction where the founder has an insider edge.",
-    "phaseCurrent": 2,
-    "killDate": "2026-12-14",
-    "killCriterion": "This venture was stopped at Gate 1b on 24 October 2026. The construction venture sets its own kill date in its Phase 1."
+    "phaseCurrent": 1,
+    "killDate": null,
+    "killCriterion": "This venture was stopped at Gate 1b on 24 October 2026. The construction venture sets its own kill date in its Phase 1.",
+    "stoppedMark": "0",
+    "stoppedLabel": "lines of app code written",
+    "stoppedOn": "2026-10-24"
   },
   "needsYou": [
     {
