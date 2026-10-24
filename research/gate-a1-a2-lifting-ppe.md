@@ -1,7 +1,14 @@
 # Mechanic gate — A1 fall-arrest PPE service lives / A2 lifting accessory 6-month thorough examination
 
-Run 2026-10-24. ~11 web searches, ~25 direct page fetches. Verification levels are marked on every
-claim and never upgraded.
+Run 2026-10-24. ~14 web searches, ~35 direct page fetches via `curl` (see §7 on WebFetch).
+Verification levels are marked on every claim and never upgraded except where a re-fetch opened the
+page, which is called out explicitly.
+
+**Note on independence.** Bob told me mid-task that B1 and B5 had both failed, making these two the
+last candidates standing, and asked me not to soften the verdict for that reason. I did not. The
+extra work that news prompted — an explicit test of the manufacturer-instructions carve-out, and a
+curl re-fetch of every source WebFetch had cost me — made the case against A1 stronger. Both
+verdicts below were reached before that message and are unchanged by it.
 
 ## Verdicts
 
@@ -10,27 +17,44 @@ claim and never upgraded.
 | **A2 — lifting accessories, 6-month thorough examination** | **FAIL** | The free rule set is real and verified, but the competent person who performs the examination is **required by law to write the next due date on the report**, sells the next examination, and increasingly hands the customer a portal — and at least four free iOS apps and two free web templates already compute and remind on exactly this date, one of them explicitly advertising "tracks your 6-month LOLER thorough examinations and reminds you". |
 | **A1 — harness / lanyard / fall-arrest service lives** | **FAIL** | The inspection interval is free (INDG367) but the *service life* — the actual mechanic, "when does my harness expire" — is not a public rule at all: it is a per-manufacturer figure that UK practitioners openly disagree about and that a LOLER examiner is paid to judge, so the app would either ship a licensed per-model dataset or issue precisely the verdict `CLAUDE.md` §4 forbids. |
 
-Scores below are **lower than my Phase 1 longlist position** for both. Longlist point 4 predicted
-"Group A is where the reachable-and-payable overlap might actually sit, specifically A1/A2". That
-prediction is wrong and this file is the evidence against it.
+Longlist point 4 predicted "Group A is where the reachable-and-payable overlap might actually sit,
+specifically A1/A2". **That prediction is wrong and this file is the evidence against it.** The
+reason is not the one the longlist worried about: A2's rule set turned out to be perfectly free, and
+the founder's access turned out to be better than assumed. A1/A2 died because the statutory
+inspection report *is* the notification (§3), and because the free competitors were already there
+(§4).
 
 ## Scores (rubric weights from `research/scoring-rubric.md`, unchanged)
 
-| Criterion | Weight | A1 | A2 |
-| --- | --- | --- | --- |
-| Pain £ (cost of one mistake) | 20% | 1 | 2 |
-| Audience wealth | 10% | 2 | 2 |
-| Competitive weakness | 15% | 1 | 1 |
-| Counter-incentive strength | 20% | 2 | 1 |
-| v1 buildability | 10% | 2 | 4 |
-| Reachability | 10% | 3 | 3 |
-| Founder's contact proximity | 10% | 1 | 1 |
-| Willingness to pay | 5% | 2 | 2 |
-| **Weighted total** | | **1.65** | **1.85** |
+**Revised 2026-10-24 after Bob routed a corrected founder input:** a site manager *can* introduce
+the founder to a subcontractor owner, so contact proximity for an owner-operator buyer is 3 (still
+capped at 3 — he is not the buyer himself). I have raised contact proximity from 1 to 3 and
+audience wealth from 2 to 3 for both candidates, because a small UK construction subcontractor
+owner who owns harnesses and slings is now one hop away and is a real buyer. **Both scores went up
+and both verdicts are unchanged**, because gates 2, 3, 4 and 8 kill a candidate at any score.
+
+| Criterion | Weight | A1 | A2 | Change |
+| --- | --- | --- | --- | --- |
+| Pain £ (cost of one mistake) | 20% | 1 | 2 | — |
+| Audience wealth | 10% | 3 | 3 | +1 both (subbie owner now reachable) |
+| Competitive weakness | 15% | 1 | 1 | — |
+| Counter-incentive strength | 20% | 2 | 1 | — |
+| v1 buildability | 10% | 2 | 4 | — |
+| Reachability | 10% | 3 | 3 | — |
+| Founder's contact proximity | 10% | 3 | 3 | +2 both (Bob's corrected input) |
+| Willingness to pay | 5% | 2 | 2 | — |
+| **Weighted total** | | **1.95** | **2.15** | was 1.65 / 1.85 |
 
 Arithmetic (estimate of weighted mean, shown in full):
-A1 = 1(.20)+2(.10)+1(.15)+2(.20)+2(.10)+3(.10)+1(.10)+2(.05) = .20+.20+.15+.40+.20+.30+.10+.10 = **1.65**
-A2 = 2(.20)+2(.10)+1(.15)+1(.20)+4(.10)+3(.10)+1(.10)+2(.05) = .40+.20+.15+.20+.40+.30+.10+.10 = **1.85**
+A1 = 1(.20)+3(.10)+1(.15)+2(.20)+2(.10)+3(.10)+3(.10)+2(.05) = .20+.30+.15+.40+.20+.30+.30+.10 = **1.95**
+A2 = 2(.20)+3(.10)+1(.15)+1(.20)+4(.10)+3(.10)+3(.10)+2(.05) = .40+.30+.15+.20+.40+.30+.30+.10 = **2.15**
+
+One honest consequence of the corrected input, recorded against myself: my first draft scored
+contact proximity 1 partly because every individual-owner artefact I found came from arboriculture
+and rope access. That remains true of the *evidence*, but it was wrong to let it override the
+founder's actual stated access. A construction subbie owner buying harnesses and slings for his own
+firm is a legitimate buyer. It does not save either candidate, because what he would be buying is
+already free (§4), and because he buys as a company, not out of personal money (§5).
 
 Hard gates failed — either kills the candidate at any score:
 
@@ -129,15 +153,57 @@ or 10 years from date of first storage for textile components" in another [snipp
 via search, pages not opened: <https://www.bergfreunde.de/out/uploads/products/user_manuals/303-0742.pdf>,
 <https://weighmyrack.com/sites/default/files//legacy_files/product_resources/Wild%20Country%20Vision%20Harnesses%20Technical%20Info.pdf>].
 
-**Does the "user's own property" carve-out rescue it?** `CLAUDE.md` §3 allows a niche "whose dates
-come from the user's own property and the intervals are published free elsewhere". Verdict: **no,
-not for service life.** The carve-out needs the interval published free *elsewhere*. Here the
-interval exists only inside each manufacturer's instruction leaflet for each model. We would have
-to either (a) make the user type the interval, which destroys the 60-second aha moment and makes
-the app a date-arithmetic notepad, or (b) compile a per-model dataset of manufacturer service lives
-— which is exactly the licensed-data dependency §3 bans, and which a competitor has already built
-(see §4, Scannable "integrated manufacturer data"). The 6-month *inspection* half passes gate 4;
-the service-life half, which is the whole distinctive premise of A1, does not.
+### The manufacturer-instructions carve-out, verified explicitly rather than assumed
+
+Bob asked for this to be resolved with URLs and not assumed, because A1 now turns on it. `CLAUDE.md`
+§3 permits a niche where "the dates come from the user's own property **and** the intervals are
+published free elsewhere — and you must verify that carve-out explicitly".
+
+**Finding 1 — manufacturers do publish service lives free, but I could not open a single one of
+them.** Both of the two largest fall-arrest manufacturers host their instructions publicly, and both
+blocked an automated fetch:
+- `multimedia.3m.com` returned **HTTP 403 Access Denied** from 3M's own Akamai edge
+  (`Reference #18.eb18d017...`, `errors.edgesuite.net`) for
+  `3m-dbi-sala-delta-full-body-harness-user-instructions.pdf` and the matching datasheet. The proxy
+  was *not* the cause: `recentRelayFailures` was `[]` at the moment of the 403.
+- `www.petzl.com` returned **HTTP 404** with a 1.3 MB body (a JavaScript single-page-app shell) for
+  every article URL tried, including the UK harness-inspection article.
+
+So the actual figures remain `[snippet-only]`, and I am not upgrading them:
+- 3M Delta datasheet: "web products shall have a 10-year product life from the date of manufacture,
+  after which the product must be removed from service" [snippet-only]
+  <https://multimedia.3m.com/mws/media/1719522O/3m-datasheet-fall-dbi-sala-delta-full-body-harnesses.pdf>
+- Petzl: "For plastic and textile products, the maximum lifespan is 10 years from the date of
+  manufacture ... the date of manufacture does not correspond to the date of purchase, you can find
+  it using the serial number" [snippet-only]
+  <https://www.petzl.com/GB/en/Sport/News/2018-1-24/How-to-inspect-your-climbing-harness>
+- 3M Protecta X: "Inspection frequency requirements must be followed according to AS/NZS 1891.4"
+  [snippet-only] <https://multimedia.3m.com/mws/media/1723353O/3m-protecta-x-full-body-harnesses-tds.pdf>
+
+**Finding 2 — the carve-out fails on three independent grounds.**
+
+1. **It is not a rule set, it is a per-model dataset.** §3 requires "the rule set we compute from
+   must be public, free and stable". What exists is hundreds of model-specific figures in separate
+   PDFs on manufacturer CDNs, measured from *different epochs* — 10 years from manufacture (3M
+   Delta, Petzl textiles), 5 years from first use for textiles and 10 from first use for metal
+   (another manual), "indefinite" for metal (Petzl), 6–8 years (the Arbtalk poster's own harness).
+   Shipping that means compiling and maintaining a licensed-style dataset from hosts that
+   actively 403 automated clients — precisely the dependency §3 bans, and precisely what the
+   incumbent has already built ("integrated manufacturer data", §4).
+2. **Some manufacturers defer to a paywalled standard instead of giving a number.** 3M Protecta X
+   points the user at AS/NZS 1891.4; HSE's own INDG367 points at BS EN 365. A per-model lookup that
+   sometimes resolves to "go read a standard you cannot afford" is not a computable rule.
+3. **The figure is advisory and a competent person overrides it in both directions.** This is the
+   decisive one, and it is in verbatim UK evidence above: inspectors pass 8–9-year-old harnesses and
+   fail 5-year-old ones. A date we computed would contradict the only opinion that legally counts.
+
+**Verdict on the carve-out: it applies to the 6-month inspection interval, and it does NOT apply to
+service life.** The honest fallback — let the user type their own manufacturer's figure — is legal,
+buildable and useless as a wedge: it reduces A1 to date arithmetic over user-entered numbers, which
+is what `GearLog` ("store all your gear including photos and manuals ... get alerts when it's time
+to inspect your gear", 104 GB ratings) and the free tier of `Scannable` (which applies the
+*manufacturer's own checklist* for you) already ship. Gate 4 fails for the half of A1 that was its
+whole reason to exist.
 
 ### The LOLER examination-scheme caveat — it cuts against us, not for us
 
@@ -259,7 +325,7 @@ No search returned an empty body; no retry was required beyond one TLS failure n
 | **SpanSet-Inspector** | Optical 3D Ltd for SpanSet | Free | 1 | 2017-04-27 | Manufacturer-branded harness/lanyard/connector inspection guide. Stale, but it is the manufacturer's own answer. |
 | **SafetySuite Inspection Manager** | Honeywell | Free | 1 | 2020-06-17 | Manufacturer PPE inspection, offline mode, "assets that are due for inspections". |
 | **Expiry Log — Cert Tracker** | Jack Honour | Free | 1 | 2026-03-02 | Generic UK expiry tracker: "Multiple reminders per certificate so nothing slips through". The commodity substitute. |
-| Papertrail | Papertrail (web) | Paid SaaS | n/a | n/a | Records a "Next LOLER examination date", auto-sets it 6 or 12 months out, and surfaces "Records Due"/"Records Overdue" filters [snippet-only — `help.papertrail.io` did not resolve for WebFetch; curl returned 200 but the quoted mechanics come from the search snippet, so not upgraded] <https://help.papertrail.io/en/articles/5376484-managing-your-loler-inspections-with-papertrail> |
+| Papertrail | Papertrail (web) | Paid SaaS | n/a | article dated 2026-09-17 | **Upgraded to [verified-fetch]** — page opened with curl. Verbatim: "In advance of your first LOLER examination you can be reminded of the examination by editing the LOLER next examination date field on all applicable records" and "By selecting either 6 months or 12 months in the last section of the LOLER Report of Thorough Examination checklist, it will automatically change this Next LOLER examination date to 6 or 12 months on from the existing date." That is our entire A2 computation, shipped and documented. <https://help.papertrail.io/en/articles/5376484-managing-your-loler-inspections-with-papertrail> |
 | Lumiform / SafetyCulture templates | — | Free | n/a | n/a | Free register template with advance deadline notifications (§2). |
 
 **The quote that ends both candidates.** Scannable's pricing FAQ, verbatim [verified-fetch]
@@ -382,21 +448,45 @@ Three traps noted, all live:
 
 ## 7. Evidence caveats and what I could NOT verify
 
-**Network behaviour worth passing on.** `WebFetch` returned `getaddrinfo ENOTFOUND` for
-`www.hse.gov.uk`, `www.legislation.gov.uk`, `help.papertrail.io` and `coatingspromag.com`. The same
-URLs returned HTTP 200 via `curl` through the configured proxy (`curl -sS "$HTTPS_PROXY/__agentproxy/status"`
-reports `enabled: true`, `bundleCoversEveryHost: true`, `recentRelayFailures: []`). This is a
-WebFetch DNS problem, not a policy denial. **Use curl for HSE and legislation.gov.uk.**
+**Network behaviour — corrected after Bob routed a sibling's fix.** `WebFetch` returns
+`getaddrinfo ENOTFOUND` for **every** host in this environment, not just UK government ones. That is
+the tooling, not the hosts, and nothing should be marked blocked or downgraded on that basis.
+Everything load-bearing in this file was fetched with
+`curl -sS -A "Mozilla/5.0" <url> -o file` through the configured proxy, which is healthy
+(`enabled: true`, `bundleCoversEveryHost: true`, `recentRelayFailures: []`).
+I re-fetched on Bob's instruction and the free-source determination stands on opened pages:
+`hse.gov.uk` (both the thorough-examination page and the INDG367 PDF), `legislation.gov.uk` (LOLER
+reg 9, HASAWA s.9, PPER reg 4), `scannable.io/pricing`, `safetyliftingear.com`, `lumiformapp.com`,
+`arbtalk.co.uk` and `help.papertrail.io` — all HTTP 200. **Papertrail is upgraded from
+`[snippet-only]` to `[verified-fetch]` as a result**; it was the only claim the WebFetch failure had
+cost me.
 
-**Hosts that actually refused us** — reported, not routed around:
-- `spanset.com` — HTTP 403 on `/uk-en/section/inspection-testing-and-asset-management/equipment-inspections-faqs` (small body, looks like the site's own WAF). This matters: a search snippet attributes to SpanSet the claim that "BS 8437: 2005 and INDG367 recommend intervals not exceeding 6 months, or 3 months where the equipment is used in arduous conditions". I verified the INDG367 half directly from the HSE PDF; **the BS 8437 half remains `[unverified]` and must not be relied on.**
-- `humanfocus.co.uk` — HTTP 403.
-- `cowstail.co.uk` — TLS handshake failure (`tlsv1 alert internal error`). The Cowstail quotes come from the GB App Store listing, which is `[verified-fetch]`.
-- `scannable.io/smart-ppe-directory` — HTTP 404; the manufacturer-partnership breadth is therefore `[unverified]` beyond what `/pricing` states.
+**Hosts that genuinely refused us, confirmed with curl and reported rather than routed around.**
+In each case the proxy's `recentRelayFailures` was empty at the time, so these are site-side blocks:
+- `multimedia.3m.com` — **HTTP 403** from 3M's own Akamai edge (`errors.edgesuite.net`,
+  `Reference #18.eb18d017.1792850137.7eef2f69`) on two harness instruction PDFs. Retried once with
+  a full browser user-agent; same result. This is why the 3M service-life figures stay
+  `[snippet-only]`, and it is itself evidence against the carve-out (§1).
+- `www.petzl.com` — **HTTP 404** with a 1.3 MB SPA shell on every article URL. Petzl's figures stay
+  `[snippet-only]`.
+- `spanset.com` — **HTTP 403** (WAF page, 5.9 KB), retried once with browser headers. A search
+  snippet attributes to SpanSet the claim that "BS 8437: 2005 and INDG367 recommend intervals not
+  exceeding 6 months, or 3 months where the equipment is used in arduous conditions". **I verified
+  both the six-month and three-month figures independently and directly from the HSE INDG367 PDF, so
+  the substance does not depend on SpanSet; the BS 8437 attribution itself remains `[unverified]`
+  and must not be cited.**
+- `humanfocus.co.uk` — **HTTP 403**, retried once.
+- `coatingspromag.com` — **HTTP 403**, retried once with browser headers. The Guardian/Twiceme
+  in-harness-NFC claim stays `[snippet-only]`. It is corroborative only; `SpanSet-Inspector` and
+  Honeywell `SafetySuite` are manufacturer apps verified directly from the GB App Store.
+- `cowstail.co.uk` — TLS handshake failure (`tlsv1 alert internal error`), retried once. The
+  decisive Cowstail quote comes from its GB App Store listing and is `[verified-fetch]`.
+- `scannable.io/smart-ppe-directory` — **HTTP 404**; manufacturer-partnership breadth is
+  `[unverified]` beyond what `/pricing` and the App Store listing state.
 
 **Could NOT verify, ranked by how much it would have mattered:**
 1. Whether 3M, Petzl or MSA run a free registration-and-reminder scheme for individually-owned fall-arrest PPE. Searches surfaced only advisories. This is the only place a counter-incentive argument could still live, and it concerns recall reach, not dates.
-2. Papertrail's exact due/overdue mechanics — `[snippet-only]`, host did not resolve for WebFetch. Does not change the verdict; three free iOS apps already fail the gate.
+2. ~~Papertrail's exact due/overdue mechanics~~ — **resolved on re-fetch, now `[verified-fetch]`.** It is worse for us than the snippet suggested: Papertrail documents both the reminder and the automatic 6-or-12-month roll-forward.
 3. Scannable's and Cowstail's actual UK user numbers. I will not invent a figure; GB rating counts are 6 and 1 respectively and are recorded as such. Low ratings do **not** mean a weak competitor — Scannable is 4 years old, updated five days ago, with named customer quotes on its site and a per-item paid tier, which is a live business.
 4. BS 8437:2005 and BS EN 365:2004 full text. Paywalled by BSI, correctly not purchased. Only HSE's own restatement of the BS EN 365 figure is used.
 5. A verbatim complaint about the *financial loss* from a missed date. None found. **No verbatim complaints found.**
@@ -412,9 +502,37 @@ A1/A2. The examiner holds the set, by statute, and must write the next date down
 | Candidate | Killed by | Reopen only if |
 | --- | --- | --- |
 | **A2 — lifting accessories 6-month thorough examination** | Gate 2 (the examiner must write the next due date on the LOLER Schedule 1 report and sells the next examination), gate 3 and gate 8 (Cowstail, LiftLedger, Scannable, GearLog, CheckedOK, Papertrail, free Lumiform/SafetyCulture templates), gate 9 (reachable audience is PAYE; the self-providing audience is arb/rope-access, not construction). | Never, on current evidence. The statutory next-due-date requirement is structural and cannot be competed away. |
-| **A1 — fall-arrest PPE service lives** | Gate 4 (service life is per-manufacturer, contested between qualified inspectors, and not published free in any single place), gate 3 and gate 8 (Scannable ships manufacturer checklists and manufacturer data free to individuals; SpanSet and Honeywell ship their own apps), gate 9 (HASAWA s.9 forbids charging an employee for PPE the employer must provide), plus a severe §4 verdict-wording trap. | Only if a free, stable, machine-readable public register of manufacturer service lives appears — and even then the buyer problem and Scannable remain. |
+| **A1 — fall-arrest PPE service lives** | Gate 4 — **the manufacturer-instructions carve-out was tested explicitly and does not apply** (§1): service life is a per-model figure on CDNs that 403 automated clients, measured from different epochs, sometimes deferring to a paywalled standard, and overridden in both directions by the competent person. Also gate 3 and gate 8 (Scannable ships *manufacturer checklists* free to individuals; SpanSet and Honeywell ship their own apps; GearLog stores the manuals), gate 9 (HASAWA s.9 forbids charging an employee for PPE the employer must provide), plus a severe §4 verdict-wording trap. | Only if a free, stable, machine-readable public register of manufacturer service lives appears — and even then Scannable's free tier and the competent-person override remain. |
 
-**Consequence for the longlist.** Group A's headline hope is gone. The surviving logic of
-`CLAUDE.md` §0.1 now points harder at Group B, where the holder profits from silence and no
-statutory document hands the user the date: **B1 off-hire** and **B5 retention release**. Neither has
-a legal obligation on the counterparty to disclose the date, which is precisely what killed A2.
+**Consequence for the longlist — written after learning both siblings also failed.**
+
+Bob told me, while I was working, that B1 (off-hire) and B5 (retention release) had both failed, so
+A1/A2 were the last candidates standing in wave 1. I have not softened anything as a result. The
+additional work that news prompted — the explicit carve-out test and the re-fetch of every source
+WebFetch had cost me — made the case against A1 **stronger**, not weaker: Papertrail turned out to
+document the exact 6-or-12-month roll-forward, and the manufacturer carve-out turned out to fail on
+three independent grounds instead of one.
+
+So wave 1 is a clean sweep of failures, and the pattern across all four is worth more than any one
+of them:
+
+| Candidate | Why it died | Underlying pattern |
+| --- | --- | --- |
+| B1 off-hire | hirer portals publish live on-hire lists free; off-hire is a salaried job | the holder publishes it anyway |
+| B5 retention | Retention Track at £10/contract, 3 free; no free interval | a rival already shipped it |
+| A2 lifting accessories | statutory report must carry the next due date; 4 free apps | **the law itself notifies** |
+| A1 PPE service lives | no public rule set; free incumbents; employer must provide | the number is a professional judgement |
+
+**The honest read for Phase 2.** `CLAUDE.md` §0.1 says only two patterns survive: nobody holds the
+set, or the holder profits from forgetting. A1/A2 were the best "nobody holds the set" candidates on
+the longlist and they failed because **a competent person is legally required to hand the date over
+in writing**. That generalises: any UK construction date created by a *statutory inspection regime*
+is a bad bet, because the inspection report is itself the notification. That rules out A3, A5, A6,
+A8, A9, A10, A11 and C10 by the same mechanism, which is most of the remaining longlist.
+
+What is left unexamined and not killed by that logic: **A4** (resin/sealant/grout shelf lives — the
+date is printed on a consumable the user bought from many vendors and no inspector ever visits it)
+and **A7** (temporary works design-check validity, where the site-based TWC is plausibly the buyer).
+Both are thin and I am not advocating them. My recommendation to Bob is to treat wave 1 as evidence
+that the *constraint set* may be unsatisfiable with site-manager-only access, and to spend the next
+move on widening access rather than on a fifth candidate.

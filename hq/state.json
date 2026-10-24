@@ -5,12 +5,12 @@
     "founder": "Brandon",
     "operatingPartner": "Bob, project manager",
     "branch": "claude/construction-venture",
-    "updated": "2026-10-24T15:40:00Z",
-    "statusLine": "Wave 1: all four gated candidates killed. The reason is structural and comes from UK law, not from these four ideas. Recommendation needed from the founder.",
+    "updated": "2026-10-24T16:20:00Z",
+    "statusLine": "A1/A2 confirmed dead on re-fetch. Wave 1 produced two legal mechanisms that kill nine more rows for free. B1 off-hire is under re-gate on the founder’s push-back: most plant is hired, and the buyer is the owner, not the site manager.",
     "phaseCurrent": 1,
     "killDate": null,
-    "stoppedMark": "4",
-    "stoppedLabel": "candidates gated, 4 killed",
+    "stoppedMark": "13",
+    "stoppedLabel": "candidates killed of 33",
     "stoppedOn": "2026-10-24",
     "killCriterion": "The kill date is set in Phase 1, before any research returns, and written into validation/OFFER.md."
   },
@@ -51,7 +51,7 @@
       "status": "active",
       "detail": "25+ niches, weights locked before evidence, counter-incentive and mechanic gates run INSIDE this phase, then adversarial deep dives on the survivors.",
       "deliverable": "research/market-research.md",
-      "progress": 65
+      "progress": 75
     },
     {
       "n": 2,
@@ -382,6 +382,16 @@
       "at": "2026-10-24T15:40:00Z",
       "who": "bob",
       "what": "A1 and A2 also FAILED, completing wave 1 at four kills from four. A2: the free rule set is genuine — LOLER reg 9(3)(a)(i) \"at least every 6 months\" verified on legislation.gov.uk — but LOLER Schedule 1 obliges the examiner to state the next due date on the report, so the holder is legally compelled to notify, and Scannable offers a free-forever plan explicitly for individuals managing their own gear. A1: the inspection interval is free in INDG367, but the service life, which is the actual mechanic, is per-manufacturer and published free nowhere; two manuals disagree at 5 and 10 years. Both also fail gate 9 via HASAWA s.9 and PPER reg 4, which forbid an employer charging an employee for equipment, so employed operatives never buy the kit; the only self-providers found were arborists and rope-access technicians, a different industry from the founder’s access. Scout rated contact proximity 1, not the capped 3. Its closing recommendation to spend remaining budget on B1 and B5 was written without knowing both were already dead, and was not acted on."
+    },
+    {
+      "at": "2026-10-24T16:20:00Z",
+      "who": "bob",
+      "what": "A1 and A2 re-confirmed FAIL after a full curl re-fetch. Scores rose slightly on the corrected proximity input (A1 1.95, A2 2.15) and the verdicts did not move, because hard gates kill at any score. The A1 free-source carve-out was tested rather than assumed and fails on three grounds: it is a per-model dataset rather than a stable rule set, some manufacturers defer to a paywalled standard for the figure, and a competent person overrides it in both directions. Papertrail was upgraded to verified-fetch and documents the entire A2 computation already. The scout also generalised two verified legal mechanisms — the statutory inspection report must state the next due date, and HASAWA s.9 forbids charging an employee for employer-provided equipment — which kill A3, A5, A6, A8, A9, A10, A11, A12 and C10 at no research cost. Recorded in the longlist as a reasoned inference, marked unverified per candidate. Only A4 and A7 survive that filter, both thin."
+    },
+    {
+      "at": "2026-10-24T16:20:00Z",
+      "who": "bob",
+      "what": "Founder pushed back on the B1 kill with insider knowledge: most UK plant is hired rather than owned. This invalidates part of the original verdict. The first scout tested gate 9 against a site manager, who is PAYE and loses nothing, and concluded the employer pays; the correct buyer is the subcontractor owner, for whom an overcharge is personal money. It also exposes a gap the scout did not test: each hirer’s portal shows only that hirer’s kit, so a subbie hiring from several firms has no consolidated view, which is exactly the many-vendors pattern CLAUDE.md §0 says survives. Re-gate dispatched with instructions to test the multi-hirer premise and Re-flow’s price and target customer, and explicitly not to revive the candidate to please the founder."
     }
   ]
 }

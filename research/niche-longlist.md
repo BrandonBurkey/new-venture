@@ -107,3 +107,58 @@ Written before the gate runs, so it cannot be revised afterwards:
 
 Five candidates into the mechanic gate, not three, per the brief. In priority order:
 **B1, A2, A1, B5, A8.** Group C gets two cheap confirmation searches each, no deep dive.
+
+---
+
+## Free pre-filter, added 2026-10-24 after wave 1
+
+Wave 1 produced a general mechanism that kills many rows at no research cost. Recording it here so
+no further search budget is spent on candidates whose killer is already known.
+
+### The statutory-report mechanism
+
+Where a date is created by a **statutory inspection or examination regime**, the competent person
+doing the inspection is legally required to hand the next due date to the user in writing. The
+inspection report *is* the notification. Verified example, `[verified-fetch]`: LOLER 1998 Schedule 1
+requires the report to contain "the date when the next thorough examination is due"
+(legislation.gov.uk; HSE's own thorough-examinations page). So the party holding the date is
+**compelled by law** to tell the user — the strongest possible failure of the counter-incentive
+test in `CLAUDE.md` §0.1.
+
+### The employer-provision mechanism
+
+`[verified-fetch]` HASAWA 1974 s.9: "No employer shall levy or permit to be levied on any employee
+of his any charge in respect of anything done or provided" in pursuance of a statutory duty. With
+PPER reg 4, the employer provides work equipment and PPE and may not charge the employee. So an
+employed operative never owns the kit and never personally loses money when a date passes — hard
+gate 9 fails by legal design, not by accident.
+
+### Rows killed by one of those two mechanisms, without further research
+
+| # | Candidate | Mechanism |
+| --- | --- | --- |
+| A3 | Site instrument calibration | Calibration certificate states the next due date |
+| A5 | Gas detector bump test and calibration | As A3 |
+| A6 | Fire extinguisher and fire-point servicing | Servicing company schedules and certifies |
+| A8 | Scaffold 7-day inspection cycle | Statutory inspection report; and employer pays |
+| A9 | Excavation inspection cycle | As A8 |
+| A10 | Ladder, stepladder and podium inspections | As A8, and low pain |
+| A11 | 110v tool and PAT inspection intervals | Test report states the next due date |
+| A12 | Concrete cube tests | The testing lab reports results, so it notifies |
+| C10 | LOLER on hired plant | Hirer performs and certifies it, and emails alerts |
+
+**Status of this filter:** it is a reasoned inference from two verified legal mechanisms, not a
+per-candidate verification. Marked `[unverified]` per candidate. If any row is ever revived, the
+mechanism must be checked against that specific regime before it is scored.
+
+### Rows the mechanism does NOT touch
+
+Only two, and both are thin. Neither is being advocated.
+
+| # | Candidate | Why it survives the filter |
+| --- | --- | --- |
+| A4 | Resin, sealant and adhesive shelf lives | Printed on the tube by the manufacturer, bought from many vendors, no inspector ever attends |
+| A7 | Temporary works design-check validity | Held by the temporary works coordinator, a site-based role, not an external inspection regime |
+
+Everything else that remains live sits in Group B, where the counterparty is commercial rather than
+statutory, and B1 is under re-gate against a corrected buyer.
