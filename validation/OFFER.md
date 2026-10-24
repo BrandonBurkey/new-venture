@@ -66,11 +66,42 @@ No account, no email, no paywall in front of it. Under sixty seconds.
 | Annual | **£190 a year** (two months free) |
 | Free tier | **Three machines, forever.** Full off-hire record keeping. |
 
-Anchored to the problem, not to competitors: the only verified figure for personal exposure is
-*VP plc v Megarry* [2012] NIQB 22 `[verified-fetch]`, a partnership pursued for £26,155.50 over one
-machine, judgment £13,331 plus interest and costs, on a disputed "off hire". Competitor anchors for
-sanity only: Risk Assessor Pro £18 per user per month, Fast RAMS £12.99 one-off, HandsHQ £275 a
-month demo-gated.
+Anchored to the problem, not to competitors.
+
+**The anchor, corrected 2026-10-24 after reading the judgment in full.** An earlier draft of this
+file described *VP plc v Megarry* [2012] NIQB 22 as "a partnership pursued for £26,155.50 over one
+machine, judgment £13,331 plus interest and costs, on a disputed off hire". The case is real and I
+have now read it `[verified-fetch]`
+(<https://www.judiciaryni.uk/judicial-decisions/2012-niqb-22>, Weatherup J, delivered 29 February
+2012) — **but my summary misrepresented the money, and that matters because it was holding up the
+price.**
+
+What the judgment actually says:
+
+- VP plc claimed **£26,155.50** for the hire of an HB80 Hydroburst, charged 1 February to 31 March
+  2008. That figure is correct.
+- The machine had been supplied **on trial, with a purchase under negotiation**. This is not a
+  plain hire-and-forgot-to-off-hire case.
+- The off-hire dispute is real and is the useful part. The plaintiff's own office log carried an
+  entry for 8 February 2008 with the words **"off hire"** under the heading 'reference'. The
+  defendants relied on that entry as confirmation the machine was off hire. The plaintiff's witness
+  said it meant something else — an automated reminder about the expiry of a seven-day notice
+  period. The hirers had **no record of their own** and lost the point.
+- Judgment was **£13,331** plus interest at 4% and costs — but that sum is a **forfeited conditional
+  purchase discount**, not hire charges. The judge reasoned that the consequence of not paying the
+  rental was that the defendants forfeited a discount granted on condition the rental was paid.
+
+**So the honest use of this case is narrow.** It is evidence that a hirer who relies on the hire
+company's own ambiguous record, instead of keeping their own, can lose the argument and a large sum
+with it. It is **not** evidence that forgetting to off-hire costs £13,331 in hire charges, and
+nobody may write that. Any claim implying the latter is a banned claim under this file.
+
+**Pricing therefore rests on arithmetic the user can check themselves**, not on this case: one
+missed weekly charge at the rates hirers actually publish exceeds a month of subscription. Show
+that arithmetic rather than waving a judgment at people.
+
+Competitor anchors for sanity only: Risk Assessor Pro £18 per user per month, Fast RAMS £12.99
+one-off, HandsHQ £275 a month demo-gated.
 
 ## Guarantee — honest, and ours to honour because we bill through Stripe
 

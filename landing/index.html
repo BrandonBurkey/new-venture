@@ -17,7 +17,7 @@
   --surface-2:#e9ebe4;
   --ink:#14181a;
   --ink-2:#464f52;
-  --ink-3:#6b7478;
+  --ink-3:#5d666a;
   --line:#d2d7ce;
   --line-strong:#a9b0a7;
   --accent:#0d5f52;
@@ -138,7 +138,8 @@ a:hover{text-decoration-thickness:2px}
 .themebtn:hover{color:var(--ink);border-color:var(--ink-3)}
 
 /* ---- hero ---- */
-.hero>.wrap{padding-block:clamp(1.75rem,5vw,3rem) clamp(1.25rem,3vw,1.75rem)}
+.hero>.wrap{padding-block:clamp(1.5rem,4vw,2.5rem) clamp(1rem,2vw,1.25rem)}
+#tool-section>.wrap{padding-block:0 clamp(2.25rem,6vw,3.75rem)}
 .hero h1{max-width:22em}
 .hero .lede{font-size:clamp(1.125rem,3.6vw,1.375rem);color:var(--ink-2)}
 .hirule{height:5px;width:4.5rem;background:var(--hivis);margin-bottom:1.25rem}
@@ -238,6 +239,9 @@ details.extras[open]>summary{margin-bottom:.875rem}
 .basis{border:1px solid var(--line);background:var(--surface);padding:1rem}
 .basis ol{margin:.65rem 0 0;padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
 .basis li{font-family:var(--font-data);font-size:.8125rem;line-height:1.5;color:var(--ink-2);overflow-wrap:anywhere}
+.readings{display:grid;grid-template-columns:1fr;gap:.75rem}
+@media (min-width:34rem){.readings{grid-template-columns:1fr 1fr}}
+.reading{display:flex;flex-direction:column;gap:.3rem;min-width:0;padding:.75rem;background:var(--surface-2);border-left:3px solid var(--line-strong);font-size:.9375rem;color:var(--ink-2)}
 
 .record{border:1px solid var(--line-strong);background:var(--surface)}
 .record__head{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:space-between;padding:.75rem .875rem;border-bottom:1px dashed var(--line)}
@@ -397,6 +401,33 @@ footer.band>.wrap{padding-block:2rem 2.75rem;display:flex;flex-direction:column;
       </div>
     </div>
     <p class="fine" style="margin-top:.875rem">Everything above stays in your browser. We never contact your hire company. You do, and you record it here.</p>
+
+    <div class="card" style="margin-top:1.5rem">
+      <div class="stack">
+        <div class="stack stack--tight">
+          <p class="eyebrow">Why the number matters</p>
+          <h2>Hire desks ask for the off-hire number. Keep it, with the date, time and who you spoke to.</h2>
+        </div>
+        <p class="small">That is the whole job of this tool: the date you worked to, and a record of
+          the call you made.</p>
+        <div class="notice" style="border-left-color:var(--accent)">
+          <p class="eyebrow" style="margin-bottom:.4rem">Where that comes from</p>
+          <p>The CPA <em>Supplementary Conditions Applicable to Tool and Equipment Hire</em> put it
+            plainly at clause 9.2.3 of the 2021 edition, and in the same words at clause 8.3.3 of the
+            earlier edition: the owner does not charge hire for a period covered by an off-hire
+            number, <q>but the Hirer shall still be responsible for such hire charges for those items
+            if the Hirer is unable to provide the off-hire number</q>. The same conditions say the
+            off-hire goes in writing and each item is identified clearly enough for a unique number
+            to be issued.
+            <a href="https://www.ardenthire.com/file/2021-tool-and-equipment-hire-supplmentary-conditions.pdf" rel="noopener">Read the 2021 conditions</a>.</p>
+          <p style="margin-top:.6rem"><strong>That wording is the tool and equipment conditions.</strong>
+            Plant proper — excavators, dumpers, telehandlers — is usually hired under the CPA Model
+            Conditions, and we have not read the equivalent clause there, so we make no claim about
+            what those conditions say. Your own hire agreement is the one that counts; read it, or
+            ask your hire company.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -445,10 +476,13 @@ footer.band>.wrap{padding-block:2rem 2.75rem;display:flex;flex-direction:column;
       </div>
     </div>
 
-    <p class="small">The anchor is not other apps. In <em>VP plc v Megarry</em> [2012] NIQB 22 a
-      partnership was pursued for £26,155.50 over a single machine on a disputed off hire, and
-      judgment went against them for £13,331 plus interest and costs.
-      <a href="https://www.bailii.org/nie/cases/NIHC/QB/2012/22.html" rel="noopener">Read the judgment</a>.</p>
+    <p class="small">The anchor is not other apps, it is one missed charging period. In
+      <em>VP plc v Megarry</em> [2012] NIQB 22 the hirers believed a machine was off hire because
+      of an entry reading &ldquo;off hire&rdquo; in the hire company&rsquo;s own phone log. The hire
+      company said that entry meant something else. The hirers had no record of their own, and they
+      lost the point. What the judgment awarded was a forfeited purchase discount rather than hire
+      charges, so we make no claim here about what a forgotten off-hire costs &mdash; only that
+      your own record is the one you can rely on.</p>
 
     <div class="deposit" id="deposit">
       <div class="stack">
@@ -749,10 +783,15 @@ function readTerms() {
 /* Describes the number the engine returned. It does not judge it. */
 function describeDays(n) {
   if (!Number.isFinite(n)) return { text: "", chip: "", chipClass: "chip--near" };
-  if (n > 1) return { text: n + " days after the date you are working from.", chip: n + " days of room", chipClass: n <= 3 ? "chip--near" : "chip--ahead" };
-  if (n === 1) return { text: "The day after the date you are working from.", chip: "1 day of room", chipClass: "chip--near" };
-  if (n === 0) return { text: "The same day you are working from.", chip: "Today", chipClass: "chip--near" };
-  return { text: Math.abs(n) + " days earlier than the date you are working from.", chip: Math.abs(n) + " days behind", chipClass: "chip--behind" };
+  if (n > 1) return { text: "That is " + n + " days after the date you are working from.", chip: n + " days of room", chipClass: n <= 3 ? "chip--near" : "chip--ahead" };
+  if (n === 1) return { text: "That is the day after the date you are working from.", chip: "1 day of room", chipClass: "chip--near" };
+  if (n === 0) return { text: "That is the same day you are working from.", chip: "That day is today", chipClass: "chip--near" };
+  const d = Math.abs(n);
+  return {
+    text: "That date is " + d + " day" + (d === 1 ? "" : "s") + " before the date you are working from.",
+    chip: d + " day" + (d === 1 ? "" : "s") + " before today",
+    chipClass: "chip--behind"
+  };
 }
 
 function render(win, record, terms, today) {
@@ -763,6 +802,25 @@ function render(win, record, terms, today) {
   const periodWord = terms.chargePeriod === "day" ? "day" : "week";
 
   const basis = (win.basis || []).map((line) => "<li>" + escapeHtml(line) + "</li>").join("");
+
+  /* The engine returns one labelled line per reading when the notice period and the
+     minimum hire period give different call-by dates. Both are shown side by side;
+     the page never drops one of them. */
+  const readingLines = (win.basis || []).filter((line) => /^reading from/i.test(String(line).trim()));
+  const readings = readingLines.length < 2 ? "" : [
+    '<div class="basis">',
+      '<p class="eyebrow">Both readings, side by side</p>',
+      '<p class="fine" style="margin:.5rem 0 .75rem">Your notice period and your minimum hire period are read separately. Here is each reading, labelled as the calculator returned it. The date shown above is whichever of them falls first.</p>',
+      '<div class="readings">',
+        readingLines.map((line) => {
+          const at = String(line).indexOf(":");
+          const label = at > 0 ? String(line).slice(0, at) : "Reading";
+          const body = at > 0 ? String(line).slice(at + 1).trim() : String(line);
+          return '<div class="reading"><span class="tile__label">' + escapeHtml(label) + '</span><span>' + escapeHtml(body) + '</span></div>';
+        }).join(""),
+      '</div>',
+    '</div>'
+  ].join("");
 
   resultBox.innerHTML = [
     '<div class="stack stack--loose">',
@@ -785,6 +843,8 @@ function render(win, record, terms, today) {
           '<span class="tile__note">That ' + periodWord + ' begins ' + escapeHtml(ukDate(win.nextChargeDate)) + '.</span>',
         '</div>',
       '</div>',
+
+      readings,
 
       '<dl class="rows">',
         '<div><dt class="k">Charging periods from the on-hire date to the date you are working from</dt><dd class="v">' + escapeHtml(String(win.periodsCharged)) + '</dd></div>',
