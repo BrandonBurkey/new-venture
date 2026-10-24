@@ -7,9 +7,33 @@ here, once, by Bob — never edited in a landing page, an email or the app.
 
 **Name: Off-Hire Proof**
 
-Chosen because the product is not a reminder, it is the **proof**. CPA Supplementary Conditions
-2011 cl 7.2.3 `[verified-fetch]`: the hirer pays anyway if he cannot produce the off-hire number.
-A reminder is a nice-to-have. Proof you sent it back is what stops the invoice.
+Chosen because the product is not a reminder, it is the **proof**. A reminder is a nice-to-have.
+Proof you sent it back is what stops the invoice.
+
+**The clause this rests on, corrected 2026-10-24 and now verified.** An earlier draft of this file
+cited "CPA Supplementary Conditions 2011 cl 7.2.3" at `[verified-fetch]`. **That clause number was
+wrong** — 7.2 is payment timing — and it was propagated from a scout report into a frozen contract
+without being opened. The rules engineer refused to upgrade it past `[snippet]`, which is what
+caught it. The correct clause, read in full from two independent copies:
+
+> "The Owner shall not charge the Hirer any hire charges for any period for which an off-hire number
+> has been obtained, **but the Hirer shall still be responsible for such hire charges for those
+> items if the Hirer is unable to provide the off-hire number** to the Owner for that item of Tools
+> and Equipment."
+
+**CPA Supplementary Conditions Applicable to Tool and Equipment Hire, clause 9.2.3** in the 2021
+edition `[verified-fetch]`
+(<https://www.ardenthire.com/file/2021-tool-and-equipment-hire-supplmentary-conditions.pdf>), and
+the same wording at **clause 8.3.3** in the earlier edition `[verified-fetch]`
+(<https://www.synergyhire.co.uk/wp-content/uploads/2019/05/cpa-tools-equipment-supplementary-conditions-1.pdf>).
+Clauses 9.2.1 and 9.2.2 are the other half of the mechanism: off-hire must be **in writing**, and
+each item identified clearly enough for the Owner to issue **a unique off-hire number**.
+
+**Scope limit, stated rather than glossed.** What is verified above is the **Tool and Equipment**
+Hire supplementary conditions. Plant hire proper — excavators, dumpers, telehandlers — runs under
+the CPA **Model Conditions**, whose equivalent clause is **not yet verified**. So the "proof"
+positioning is on solid ground for tools and equipment and is `[unverified]` for plant. Resolve
+this before any paid claim is made about plant, and do not let a marketing line outrun it.
 
 Hormozi M-A-G-I-C check: **Avatar** is the subcontractor owner, **Goal** is to stop paying for kit
 already returned, **Interval** is before the next charging week starts. Magnetic because it names

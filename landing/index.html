@@ -1,0 +1,975 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Off-Hire Proof</title>
+<meta name="description" content="Know what is still on hire, and keep proof of every off-hire call.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Layout: one column, docket-width. Hire-desk ticket as the visual model:
+   dashed rules, tabular figures, a hi-vis stripe on the panel that matters. */
+:root{
+  --bg:#f3f4f1;
+  --surface:#ffffff;
+  --surface-2:#e9ebe4;
+  --ink:#14181a;
+  --ink-2:#464f52;
+  --ink-3:#6b7478;
+  --line:#d2d7ce;
+  --line-strong:#a9b0a7;
+  --accent:#0d5f52;
+  --accent-ink:#ffffff;
+  --accent-soft:#e1efe9;
+  --hivis:#d8a900;
+  --good:#1a6a49;
+  --warn:#845300;
+  --crit:#982d1d;
+  --shadow:0 1px 0 rgba(20,24,26,.06), 0 10px 24px -18px rgba(20,24,26,.45);
+  --font-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --font-body:"Source Sans 3","Helvetica Neue",Arial,sans-serif;
+  --font-data:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1313;
+    --surface:#191e1d;
+    --surface-2:#232928;
+    --ink:#edf0ed;
+    --ink-2:#b0b9b5;
+    --ink-3:#8a938f;
+    --line:#2c3331;
+    --line-strong:#47514f;
+    --accent:#4fd0b4;
+    --accent-ink:#06211c;
+    --accent-soft:#15302a;
+    --hivis:#f2c400;
+    --good:#55c99b;
+    --warn:#e0a83c;
+    --crit:#f08a79;
+    --shadow:0 1px 0 rgba(0,0,0,.4), 0 10px 24px -18px rgba(0,0,0,.9);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1313;
+  --surface:#191e1d;
+  --surface-2:#232928;
+  --ink:#edf0ed;
+  --ink-2:#b0b9b5;
+  --ink-3:#8a938f;
+  --line:#2c3331;
+  --line-strong:#47514f;
+  --accent:#4fd0b4;
+  --accent-ink:#06211c;
+  --accent-soft:#15302a;
+  --hivis:#f2c400;
+  --good:#55c99b;
+  --warn:#e0a83c;
+  --crit:#f08a79;
+  --shadow:0 1px 0 rgba(0,0,0,.4), 0 10px 24px -18px rgba(0,0,0,.9);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:1.0625rem;
+  line-height:1.55;
+  overflow-x:hidden;
+}
+img{max-width:100%}
+[hidden]{display:none!important}
+
+.band{width:100%}
+.band--sunken{background:var(--surface-2);border-block:1px solid var(--line)}
+.wrap{
+  max-width:62rem;
+  margin-inline:auto;
+  padding-left:16px;
+  padding-right:16px;
+}
+.wrap--narrow{max-width:44rem}
+section.band>.wrap{padding-block:clamp(2.25rem,6vw,3.75rem)}
+
+h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:1.1;text-wrap:balance;margin:0}
+h1{font-size:clamp(2rem,7.2vw,3.1rem);letter-spacing:-.025em}
+h2{font-size:clamp(1.4rem,4.4vw,1.9rem);letter-spacing:-.015em}
+h3{font-size:1.0625rem;letter-spacing:-.005em;font-weight:600}
+p{margin:0}
+.lede{font-size:clamp(1.0625rem,3.4vw,1.25rem);color:var(--ink-2);max-width:34em}
+.small{font-size:.9375rem;color:var(--ink-2)}
+.fine{font-size:.8125rem;color:var(--ink-3);line-height:1.5}
+.stack{display:flex;flex-direction:column;gap:1rem}
+.stack--tight{gap:.5rem}
+.stack--loose{gap:1.75rem}
+.eyebrow{
+  font-family:var(--font-data);font-size:.6875rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.14em;color:var(--ink-3);margin:0;
+}
+.num{font-family:var(--font-data);font-variant-numeric:tabular-nums}
+a{color:var(--accent);text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+
+:where(a,button,input,select,textarea,summary):focus-visible{
+  outline:2.5px solid var(--accent);
+  outline-offset:2px;
+  border-radius:2px;
+}
+
+/* ---- site header ---- */
+.topbar{border-bottom:1px solid var(--line);background:var(--surface)}
+.topbar>.wrap{display:flex;align-items:center;gap:1rem;padding-block:.75rem;justify-content:space-between}
+.mark{display:flex;align-items:baseline;gap:.5rem;min-width:0}
+.mark b{font-family:var(--font-display);font-weight:700;letter-spacing:-.02em;font-size:1.0625rem}
+.mark span{font-family:var(--font-data);font-size:.625rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap}
+.themebtn{
+  font-family:var(--font-data);font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;
+  background:transparent;color:var(--ink-2);border:1px solid var(--line-strong);
+  padding:.4rem .6rem;border-radius:2px;cursor:pointer;
+}
+.themebtn:hover{color:var(--ink);border-color:var(--ink-3)}
+
+/* ---- hero ---- */
+.hero>.wrap{padding-block:clamp(1.75rem,5vw,3rem) clamp(1.25rem,3vw,1.75rem)}
+.hero h1{max-width:22em}
+.hero .lede{font-size:clamp(1.125rem,3.6vw,1.375rem);color:var(--ink-2)}
+.hirule{height:5px;width:4.5rem;background:var(--hivis);margin-bottom:1.25rem}
+
+/* ---- tool ---- */
+.tool{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-top:5px solid var(--hivis);
+  box-shadow:var(--shadow);
+}
+.tool__head{padding:1.125rem 16px;border-bottom:1px dashed var(--line);display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:baseline;justify-content:space-between}
+.tool__body{padding:1.25rem 16px}
+.example-flag{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:var(--font-data);font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--warn);border:1px solid currentColor;padding:.3rem .5rem;border-radius:2px;
+}
+.grid{display:grid;grid-template-columns:1fr;gap:.875rem 1rem}
+@media (min-width:34rem){
+  .grid{grid-template-columns:1fr 1fr}
+  .grid .span2{grid-column:1/-1}
+}
+.field{display:flex;flex-direction:column;gap:.3rem;min-width:0}
+.field>label{font-size:.875rem;font-weight:600;color:var(--ink-2)}
+.field .hint{font-size:.75rem;color:var(--ink-3)}
+input,select,textarea{
+  font:inherit;font-size:1rem;
+  color:var(--ink);background:var(--bg);
+  border:1px solid var(--line-strong);border-radius:3px;
+  padding:.6rem .65rem;width:100%;min-width:0;
+}
+input[type="date"],input[type="datetime-local"],input[type="number"],.field--money input{font-family:var(--font-data);font-variant-numeric:tabular-nums}
+textarea{min-height:4.5rem;resize:vertical}
+.checkrow{display:flex;align-items:flex-start;gap:.6rem}
+.checkrow input{width:1.15rem;height:1.15rem;flex:0 0 auto;margin-top:.15rem;accent-color:var(--accent)}
+.checkrow label{font-size:.9375rem;color:var(--ink-2)}
+.money{display:flex;align-items:stretch}
+.money span{
+  font-family:var(--font-data);display:flex;align-items:center;padding:0 .55rem;
+  border:1px solid var(--line-strong);border-right:0;border-radius:3px 0 0 3px;
+  background:var(--surface-2);color:var(--ink-2);
+}
+.money input{border-radius:0 3px 3px 0}
+details.extras{border-top:1px dashed var(--line);margin-top:1.125rem;padding-top:.875rem}
+details.extras>summary{
+  cursor:pointer;font-family:var(--font-data);font-size:.75rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--accent);
+}
+details.extras[open]>summary{margin-bottom:.875rem}
+
+.btn{
+  font-family:var(--font-display);font-weight:600;font-size:1rem;
+  background:var(--accent);color:var(--accent-ink);
+  border:1px solid transparent;border-radius:3px;
+  padding:.75rem 1.1rem;cursor:pointer;min-height:2.9rem;
+}
+.btn:hover{filter:brightness(1.08)}
+.btn[disabled]{opacity:.55;cursor:not-allowed;filter:none}
+.btn--ghost{background:transparent;color:var(--accent);border-color:var(--line-strong)}
+.btn--wide{width:100%}
+.btn--sm{font-size:.875rem;padding:.5rem .75rem;min-height:2.4rem}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;margin-top:1.125rem}
+
+/* ---- result ---- */
+.result{margin-top:1.25rem;border-top:1px solid var(--line);padding-top:1.25rem}
+.notice{
+  border:1px solid var(--line-strong);border-left:5px solid var(--warn);
+  background:var(--surface-2);padding:.875rem;font-size:.9375rem;color:var(--ink-2);
+}
+.headline{
+  display:grid;grid-template-columns:1fr;gap:1px;
+  background:var(--line);border:1px solid var(--line);
+}
+@media (min-width:34rem){.headline{grid-template-columns:1fr 1fr}}
+.tile{background:var(--surface);padding:1rem;display:flex;flex-direction:column;gap:.35rem;min-width:0}
+.tile--primary{border-left:5px solid var(--hivis)}
+.tile__label{font-family:var(--font-data);font-size:.6875rem;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.tile__value{font-family:var(--font-display);font-weight:700;font-size:clamp(1.5rem,5.6vw,2.1rem);letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.05;overflow-wrap:anywhere}
+.tile__note{font-size:.875rem;color:var(--ink-2)}
+.chip{
+  display:inline-flex;align-items:center;gap:.45rem;align-self:flex-start;
+  font-family:var(--font-data);font-size:.75rem;
+  border:1px solid currentColor;border-radius:999px;padding:.2rem .55rem;
+}
+.chip i{width:.55rem;height:.55rem;background:currentColor;border-radius:1px;display:block;flex:0 0 auto}
+.chip--ahead{color:var(--good)}
+.chip--near{color:var(--warn)}
+.chip--behind{color:var(--crit)}
+
+.rows{border:1px solid var(--line);background:var(--surface)}
+.rows>div{display:flex;flex-wrap:wrap;gap:.25rem 1rem;justify-content:space-between;padding:.6rem .875rem;border-bottom:1px dashed var(--line)}
+.rows>div:last-child{border-bottom:0}
+.rows dt,.rows .k{font-size:.9375rem;color:var(--ink-2);margin:0}
+.rows dd,.rows .v{margin:0;font-family:var(--font-data);font-variant-numeric:tabular-nums;font-size:.9375rem;color:var(--ink);text-align:right}
+
+.basis{border:1px solid var(--line);background:var(--surface);padding:1rem}
+.basis ol{margin:.65rem 0 0;padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.basis li{font-family:var(--font-data);font-size:.8125rem;line-height:1.5;color:var(--ink-2);overflow-wrap:anywhere}
+
+.record{border:1px solid var(--line-strong);background:var(--surface)}
+.record__head{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:space-between;padding:.75rem .875rem;border-bottom:1px dashed var(--line)}
+.record pre{
+  margin:0;padding:.875rem;font-family:var(--font-data);font-size:.8125rem;line-height:1.65;
+  white-space:pre-wrap;overflow-wrap:anywhere;color:var(--ink);
+}
+.copied{font-family:var(--font-data);font-size:.75rem;color:var(--good)}
+
+/* ---- forms / offer ---- */
+.card{background:var(--surface);border:1px solid var(--line);padding:1.25rem;box-shadow:var(--shadow)}
+.signup{display:flex;flex-wrap:wrap;gap:.75rem}
+.signup .field{flex:1 1 15rem}
+.signup .btn{flex:0 0 auto}
+.formnote{font-size:.8125rem;color:var(--ink-3);line-height:1.5}
+.status{font-size:.9375rem;color:var(--good)}
+.status--err{color:var(--crit)}
+
+.plans{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+@media (min-width:46rem){.plans{grid-template-columns:repeat(3,1fr)}}
+.plan{background:var(--surface);padding:1.125rem;display:flex;flex-direction:column;gap:.4rem}
+.plan__name{font-family:var(--font-data);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.plan__price{font-family:var(--font-display);font-weight:700;font-size:1.5rem;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.plan__note{font-size:.875rem;color:var(--ink-2)}
+
+.deposit{border:1px solid var(--line-strong);border-left:5px solid var(--hivis);background:var(--surface);padding:1.25rem}
+.guarantee{border:1px solid var(--line-strong);background:var(--accent-soft);padding:1.25rem}
+.guarantee blockquote{
+  margin:0;font-family:var(--font-display);font-weight:600;font-size:clamp(1.0625rem,3.4vw,1.3rem);
+  line-height:1.4;letter-spacing:-.01em;color:var(--ink);
+}
+footer.band>.wrap{padding-block:2rem 2.75rem;display:flex;flex-direction:column;gap:.75rem}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="mark"><b>Off-Hire Proof</b> <span>UK plant hire</span></div>
+    <button class="themebtn" id="theme-toggle" type="button" aria-pressed="false">Dark</button>
+  </div>
+</header>
+
+<section class="band hero">
+  <div class="wrap stack">
+    <div class="hirule" aria-hidden="true"></div>
+    <h1>Know what is still on hire, and keep proof of every off-hire call.</h1>
+    <p class="lede">Put one machine in below. You get the latest you can call it off, what the next
+      charging period costs on your own terms, and a record you can paste into an email. No account,
+      no card.</p>
+  </div>
+</section>
+
+<section class="band" id="tool-section">
+  <div class="wrap">
+    <div class="tool">
+      <div class="tool__head">
+        <div class="stack stack--tight">
+          <p class="eyebrow">One machine</p>
+          <h2>Work out your off-hire window</h2>
+        </div>
+        <span class="example-flag" id="example-flag">Example figures — not yours</span>
+      </div>
+
+      <div class="tool__body">
+        <form id="hire-form" novalidate>
+          <div class="grid">
+            <div class="field span2">
+              <label for="machine">What is it</label>
+              <input id="machine" name="machine" type="text" autocomplete="off" placeholder="9t excavator, Kubota KX080">
+            </div>
+            <div class="field">
+              <label for="hirer">Which hire company</label>
+              <input id="hirer" name="hirer" type="text" autocomplete="off" placeholder="Southern Plant Hire, Eastleigh depot">
+            </div>
+            <div class="field">
+              <label for="assetRef">Their fleet or asset number</label>
+              <input id="assetRef" name="assetRef" type="text" autocomplete="off" placeholder="On the docket">
+            </div>
+            <div class="field">
+              <label for="onHireDate">Date it went on hire</label>
+              <input id="onHireDate" name="onHireDate" type="date" value="2026-10-05">
+            </div>
+            <div class="field">
+              <label for="chargePeriod">Charged by</label>
+              <select id="chargePeriod" name="chargePeriod">
+                <option value="week">The week</option>
+                <option value="day">The day</option>
+              </select>
+            </div>
+            <div class="field field--money">
+              <label for="rate">Rate for one charging period</label>
+              <div class="money"><span aria-hidden="true">£</span><input id="rate" name="rate" type="text" inputmode="decimal" autocomplete="off" value="285.00" aria-describedby="rate-hint"></div>
+              <p class="hint" id="rate-hint">Excluding VAT, as it reads on your hire confirmation.</p>
+            </div>
+            <div class="field">
+              <label for="minimumPeriods">Minimum hire period</label>
+              <input id="minimumPeriods" name="minimumPeriods" type="number" min="1" step="1" value="1" aria-describedby="min-hint">
+              <p class="hint" id="min-hint">In charging periods. Most weekly hires are 1.</p>
+            </div>
+            <div class="field">
+              <label for="noticeDays">Off-hire notice they want</label>
+              <input id="noticeDays" name="noticeDays" type="number" min="0" step="1" value="1" aria-describedby="notice-hint">
+              <p class="hint" id="notice-hint">Whole days, from your hire conditions.</p>
+            </div>
+            <div class="field">
+              <label for="today">Date you are working from</label>
+              <input id="today" name="today" type="date">
+            </div>
+            <div class="field span2 checkrow">
+              <input id="chargesWeekends" name="chargesWeekends" type="checkbox" checked>
+              <label for="chargesWeekends">They charge Saturdays and Sundays as well (applies to daily charging)</label>
+            </div>
+          </div>
+
+          <details class="extras">
+            <summary>Add the call details for your record</summary>
+            <div class="grid">
+              <div class="field">
+                <label for="offHiredAt">When you called it off</label>
+                <input id="offHiredAt" name="offHiredAt" type="datetime-local">
+              </div>
+              <div class="field">
+                <label for="reference">Off-hire number they gave you</label>
+                <input id="reference" name="reference" type="text" autocomplete="off" placeholder="The number the hire desk reads out">
+              </div>
+              <div class="field">
+                <label for="spokeTo">Who you spoke to</label>
+                <input id="spokeTo" name="spokeTo" type="text" autocomplete="off" placeholder="Name at the hire desk">
+              </div>
+              <div class="field">
+                <label for="notes">Anything else</label>
+                <input id="notes" name="notes" type="text" autocomplete="off" placeholder="Collection arranged for Friday am">
+              </div>
+            </div>
+          </details>
+
+          <div class="actions">
+            <button class="btn" id="calc" type="submit">Work it out</button>
+            <button class="btn btn--ghost btn--sm" id="clear" type="button">Clear the example</button>
+          </div>
+        </form>
+
+        <div class="result" id="result" hidden></div>
+        <div class="result" id="engine-missing" hidden>
+          <div class="notice">
+            <strong>The calculator is not loaded.</strong> This page reads its date and money
+            arithmetic from a separate file, and your browser could not fetch it, so there is
+            nothing to show you. Reload the page, or come back shortly. Nothing you typed was sent
+            anywhere.
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="fine" style="margin-top:.875rem">Everything above stays in your browser. We never contact your hire company. You do, and you record it here.</p>
+  </div>
+</section>
+
+<section class="band band--sunken" id="email-section">
+  <div class="wrap wrap--narrow stack">
+    <p class="eyebrow">When it opens</p>
+    <h2>Want to know when the full thing is ready?</h2>
+    <p class="small">Off-Hire Proof keeps every machine you have out, not one at a time, and keeps
+      the off-hire record for each call you make. One email when it opens. Nothing else.</p>
+    <form class="signup" id="email-form" novalidate>
+      <div class="field">
+        <label for="email-1" style="font-size:.875rem">Your email address</label>
+        <input id="email-1" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@yourfirm.co.uk" required>
+      </div>
+      <button class="btn" type="submit">Tell me when it opens</button>
+    </form>
+    <p class="status" id="email-status" role="status" hidden></p>
+    <p class="formnote">We use your email address for one thing: to tell you when Off-Hire Proof
+      opens, and to answer you if you write back. We do not share it or sell it, and you can ask us
+      to delete it at any time.</p>
+  </div>
+</section>
+
+<section class="band" id="pricing">
+  <div class="wrap stack stack--loose">
+    <div class="stack stack--tight">
+      <p class="eyebrow">Price</p>
+      <h2>What it costs</h2>
+    </div>
+
+    <div class="plans">
+      <div class="plan">
+        <span class="plan__name">Monthly</span>
+        <span class="plan__price">£19 a month</span>
+        <span class="plan__note">Billed by card through Stripe. Stop whenever you like.</span>
+      </div>
+      <div class="plan">
+        <span class="plan__name">Annual</span>
+        <span class="plan__price">£190 a year</span>
+        <span class="plan__note">Two months free.</span>
+      </div>
+      <div class="plan">
+        <span class="plan__name">Free tier</span>
+        <span class="plan__price">Three machines, forever.</span>
+        <span class="plan__note">Full off-hire record keeping.</span>
+      </div>
+    </div>
+
+    <p class="small">The anchor is not other apps. In <em>VP plc v Megarry</em> [2012] NIQB 22 a
+      partnership was pursued for £26,155.50 over a single machine on a disputed off hire, and
+      judgment went against them for £13,331 plus interest and costs.
+      <a href="https://www.bailii.org/nie/cases/NIHC/QB/2012/22.html" rel="noopener">Read the judgment</a>.</p>
+
+    <div class="deposit" id="deposit">
+      <div class="stack">
+        <div class="stack stack--tight">
+          <p class="eyebrow">Founding member</p>
+          <h2>£19 now, and it comes off your first year</h2>
+        </div>
+        <dl class="rows">
+          <div><dt class="k">Amount</dt><dd class="v">£19, one payment</dd></div>
+          <div><dt class="k">What it buys</dt><dd class="v">The first year at £190</dd></div>
+          <div><dt class="k">Refundable</dt><dd class="v">In full, on request, at any time before launch</dd></div>
+          <div><dt class="k">Paid by</dt><dd class="v">Card, through Stripe</dd></div>
+        </dl>
+        <p class="small"><strong>Paying this does not create an account, and nothing is unlocked
+          automatically.</strong> We write to you by hand with your account when Off-Hire Proof
+          opens. Your fourteen-day cancellation right under the Consumer Contracts Regulations
+          applies, and our own terms are more generous than it: ask any time before launch and we
+          return the £19 in full.</p>
+        <div class="actions" style="margin-top:0">
+          <button class="btn" id="deposit-btn" type="button">Take the founding place — £19</button>
+          <span class="fine" id="deposit-note" hidden></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="guarantee">
+      <div class="stack">
+        <p class="eyebrow">Guarantee</p>
+        <blockquote>If Off-Hire Proof does not save you more than it costs in your first ninety
+          days, email us and we will refund every penny you have paid. No form, no conditions.</blockquote>
+        <p class="small">We bill through Stripe, so the refund is ours to make. It is nothing to do
+          with anyone else's store or billing system.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--sunken" id="interview">
+  <div class="wrap wrap--narrow stack">
+    <p class="eyebrow">Talk to us</p>
+    <h2>Twenty minutes with the person building it</h2>
+    <p class="small">If you hire from more than one company and you have ever argued about an
+      off-hire date, we would like to hear how it went. No pitch, no slides. Leave your email and we
+      will reply to arrange a time that suits a working day.</p>
+    <form class="signup" id="interview-form" novalidate>
+      <div class="field">
+        <label for="email-2" style="font-size:.875rem">Your email address</label>
+        <input id="email-2" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@yourfirm.co.uk" required>
+      </div>
+      <button class="btn" type="submit">Set up a conversation</button>
+    </form>
+    <p class="status" id="interview-status" role="status" hidden></p>
+    <p class="formnote">Same as above: your email address is used to arrange and hold the
+      conversation, nothing else, and it is not shared.</p>
+  </div>
+</section>
+
+<footer class="band">
+  <div class="wrap">
+    <p class="eyebrow">Off-Hire Proof</p>
+    <p class="small">Off-Hire Proof records what you did and works from the hire terms you enter. It
+      never contacts a hire company, and it does not tell you your position under your contract.
+      Your hire conditions are between you and your hire company.</p>
+    <p class="fine" id="contact-line"></p>
+    <p class="fine">Hire charging rules here are commercial terms, not legislation. Every figure on
+      this page is derived from what you typed and is shown with its working.</p>
+  </div>
+</footer>
+
+<script type="module">
+/* ---------------------------------------------------------------------------
+   Placeholders. Filled in before this page goes live.
+--------------------------------------------------------------------------- */
+const STRIPE_PAYMENT_LINK = "";
+const TRACK_ENDPOINT = "";
+const FORM_ENDPOINT = "";
+const CONTACT_EMAIL = "";
+
+/* ---------------------------------------------------------------------------
+   Analytics. Exact event names from validation/OFFER.md. No variants.
+--------------------------------------------------------------------------- */
+const EVENT_NAMES = [
+  "aha_started",
+  "aha_completed",
+  "aha_record_copied",
+  "email_captured",
+  "pricing_viewed",
+  "deposit_started",
+  "deposit_completed",
+  "interview_booked"
+];
+
+const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
+
+function readUtm() {
+  const q = new URLSearchParams(location.search);
+  const out = {};
+  for (const k of UTM_KEYS) {
+    const v = q.get(k);
+    if (v) out[k] = v.slice(0, 120);
+  }
+  if (q.get("ref")) out.ref = q.get("ref").slice(0, 120);
+  return out;
+}
+const UTM = readUtm();
+
+const sent = [];
+function track(event, props) {
+  if (!EVENT_NAMES.includes(event)) return;
+  const payload = { event, props: Object.assign({}, UTM, props || {}), at: new Date().toISOString() };
+  sent.push(payload);
+  if (!TRACK_ENDPOINT) { console.debug("[track]", event, payload); return; }
+  try {
+    const body = JSON.stringify(payload);
+    if (navigator.sendBeacon) navigator.sendBeacon(TRACK_ENDPOINT, new Blob([body], { type: "application/json" }));
+    else fetch(TRACK_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body, keepalive: true });
+  } catch (e) { console.debug("[track] not sent", e); }
+}
+
+/* ---------------------------------------------------------------------------
+   Theme toggle. Both dark blocks already exist in CSS; this only sets the
+   [data-theme] override.
+--------------------------------------------------------------------------- */
+const themeBtn = document.getElementById("theme-toggle");
+function systemDark() { return window.matchMedia("(prefers-color-scheme: dark)").matches; }
+function applyTheme(mode) {
+  if (mode === "dark" || mode === "light") document.documentElement.setAttribute("data-theme", mode);
+  else document.documentElement.removeAttribute("data-theme");
+  const dark = mode === "dark" || (mode !== "light" && systemDark());
+  themeBtn.textContent = dark ? "Light" : "Dark";
+  themeBtn.setAttribute("aria-pressed", dark ? "true" : "false");
+}
+let stored = null;
+try { stored = localStorage.getItem("ohp-theme"); } catch (e) { stored = null; }
+applyTheme(stored);
+themeBtn.addEventListener("click", () => {
+  const dark = document.documentElement.getAttribute("data-theme") === "dark" ||
+    (!document.documentElement.hasAttribute("data-theme") && systemDark());
+  const next = dark ? "light" : "dark";
+  applyTheme(next);
+  try { localStorage.setItem("ohp-theme", next); } catch (e) { /* private browsing */ }
+});
+
+/* ---------------------------------------------------------------------------
+   Engine adapter. All date and money arithmetic lives in engine/index.mjs
+   (see engine/API.md). This page calls it and formats the answer. It does not
+   reimplement any of it. If the module will not load, the page says so.
+--------------------------------------------------------------------------- */
+const ENGINE_PATHS = ["../engine/index.mjs", "./engine/index.mjs", "/engine/index.mjs"];
+let engine = null;
+const engineProblems = [];
+
+async function loadEngine() {
+  for (const path of ENGINE_PATHS) {
+    try {
+      const mod = await import(path);
+      if (mod && typeof mod.offHireWindow === "function" && typeof mod.offHireRecord === "function") return mod;
+      engineProblems.push(path + ": loaded but missing offHireWindow/offHireRecord");
+    } catch (err) {
+      engineProblems.push(path + ": " + (err && err.message ? err.message : String(err)));
+    }
+  }
+  return null;
+}
+
+/* ---------------------------------------------------------------------------
+   DOM
+--------------------------------------------------------------------------- */
+const $ = (id) => document.getElementById(id);
+const form = $("hire-form");
+const resultBox = $("result");
+const missingBox = $("engine-missing");
+const exampleFlag = $("example-flag");
+const calcBtn = $("calc");
+
+function isoToday() {
+  const d = new Date();
+  const p = (n) => String(n).padStart(2, "0");
+  return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate());
+}
+function localNowInput() {
+  const d = new Date();
+  const p = (n) => String(n).padStart(2, "0");
+  return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate()) + "T" + p(d.getHours()) + ":" + p(d.getMinutes());
+}
+function poundsToPence(text) {
+  const cleaned = String(text == null ? "" : text).replace(/[£,\s]/g, "");
+  if (cleaned === "" || !/^\d*(\.\d{0,2})?$/.test(cleaned)) return null;
+  return Math.round(Number(cleaned) * 100);
+}
+function escapeHtml(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, (c) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+function ukDate(iso) {
+  const parts = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ""));
+  if (!parts) return String(iso || "");
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  return Number(parts[3]) + " " + months[Number(parts[2]) - 1] + " " + parts[1];
+}
+
+/* Example prefill, clearly flagged. Never described as the visitor's figures. */
+const EXAMPLE = {
+  machine: "9t excavator, Kubota KX080",
+  hirer: "Southern Plant Hire, Eastleigh depot",
+  assetRef: "EX-4471",
+  chargePeriod: "week",
+  rate: "285.00",
+  minimumPeriods: "1",
+  noticeDays: "1",
+  chargesWeekends: true,
+  reference: "",
+  spokeTo: "",
+  notes: ""
+};
+
+function prefillExample() {
+  $("machine").value = EXAMPLE.machine;
+  $("hirer").value = EXAMPLE.hirer;
+  $("assetRef").value = EXAMPLE.assetRef;
+  $("chargePeriod").value = EXAMPLE.chargePeriod;
+  $("rate").value = EXAMPLE.rate;
+  $("minimumPeriods").value = EXAMPLE.minimumPeriods;
+  $("noticeDays").value = EXAMPLE.noticeDays;
+  $("chargesWeekends").checked = EXAMPLE.chargesWeekends;
+  $("today").value = isoToday();
+  $("offHiredAt").value = localNowInput();
+  /* the on-hire date is set from the engine's own addDays, so this page owns no
+     date arithmetic at all; the static value in the HTML is the fallback. */
+  if (engine) $("onHireDate").value = engine.addDays(isoToday(), -19);
+}
+
+let exampleTouched = false;
+function markTouched() {
+  if (exampleTouched) return;
+  exampleTouched = true;
+  exampleFlag.hidden = true;
+}
+form.addEventListener("input", () => { markTouched(); started(); });
+form.addEventListener("change", () => { markTouched(); started(); });
+
+let startedFired = false;
+function started() {
+  if (startedFired) return;
+  startedFired = true;
+  track("aha_started", { prefilled_example: !exampleTouched });
+}
+
+$("clear").addEventListener("click", () => {
+  markTouched();
+  ["machine", "hirer", "assetRef", "reference", "spokeTo", "notes"].forEach((id) => { $(id).value = ""; });
+  $("rate").value = "";
+  $("minimumPeriods").value = "1";
+  $("noticeDays").value = "1";
+  $("onHireDate").value = "";
+  $("today").value = isoToday();
+  $("offHiredAt").value = "";
+  resultBox.hidden = true;
+  $("machine").focus();
+});
+
+function readTerms() {
+  const errors = [];
+  const onHireDate = $("onHireDate").value;
+  const today = $("today").value || isoToday();
+  const ratePence = poundsToPence($("rate").value);
+  const minimumPeriods = parseInt($("minimumPeriods").value, 10);
+  const noticeDays = parseInt($("noticeDays").value, 10);
+
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(onHireDate)) errors.push("Put in the date the machine went on hire.");
+  if (ratePence === null || ratePence <= 0) errors.push("Put in the rate for one charging period, in pounds.");
+  if (!Number.isFinite(minimumPeriods) || minimumPeriods < 1) errors.push("The minimum hire period is a whole number of charging periods, 1 or more.");
+  if (!Number.isFinite(noticeDays) || noticeDays < 0) errors.push("Off-hire notice is a whole number of days, 0 or more.");
+
+  return {
+    errors,
+    today,
+    terms: {
+      onHireDate,
+      chargePeriod: $("chargePeriod").value === "day" ? "day" : "week",
+      ratePence: ratePence === null ? 0 : ratePence,
+      minimumPeriods,
+      noticeDays,
+      chargesWeekends: $("chargesWeekends").checked
+    },
+    recordFields: {
+      hirer: $("hirer").value.trim(),
+      machine: $("machine").value.trim(),
+      assetRef: $("assetRef").value.trim(),
+      offHiredAt: $("offHiredAt").value.trim().replace("T", " "),
+      reference: $("reference").value.trim(),
+      spokeTo: $("spokeTo").value.trim(),
+      notes: $("notes").value.trim()
+    }
+  };
+}
+
+/* Describes the number the engine returned. It does not judge it. */
+function describeDays(n) {
+  if (!Number.isFinite(n)) return { text: "", chip: "", chipClass: "chip--near" };
+  if (n > 1) return { text: n + " days after the date you are working from.", chip: n + " days of room", chipClass: n <= 3 ? "chip--near" : "chip--ahead" };
+  if (n === 1) return { text: "The day after the date you are working from.", chip: "1 day of room", chipClass: "chip--near" };
+  if (n === 0) return { text: "The same day you are working from.", chip: "Today", chipClass: "chip--near" };
+  return { text: Math.abs(n) + " days earlier than the date you are working from.", chip: Math.abs(n) + " days behind", chipClass: "chip--behind" };
+}
+
+function render(win, record, terms, today) {
+  const days = describeDays(win.daysUntilCallBy);
+  const callBy = ukDate(win.callByDate);
+  const nextCharge = typeof engine.formatPence === "function" ? engine.formatPence(win.nextChargePence) : String(win.nextChargePence);
+  const chargedSoFar = typeof engine.formatPence === "function" ? engine.formatPence(win.chargedToDatePence) : String(win.chargedToDatePence);
+  const periodWord = terms.chargePeriod === "day" ? "day" : "week";
+
+  const basis = (win.basis || []).map((line) => "<li>" + escapeHtml(line) + "</li>").join("");
+
+  resultBox.innerHTML = [
+    '<div class="stack stack--loose">',
+      '<div class="stack stack--tight">',
+        '<p class="eyebrow">Your own record, and the terms you entered</p>',
+        '<h3>Working from ' + escapeHtml(ukDate(today)) + '</h3>',
+      '</div>',
+
+      '<div class="headline">',
+        '<div class="tile tile--primary">',
+          '<span class="tile__label">Latest you can call off-hire</span>',
+          '<span class="tile__value">' + escapeHtml(callBy) + '</span>',
+          '<span class="chip ' + days.chipClass + '"><i aria-hidden="true"></i>' + escapeHtml(days.chip) + '</span>',
+          '<span class="tile__note">' + escapeHtml(days.text) + ' This is ' + escapeHtml(String(terms.noticeDays)) +
+            ' day' + (terms.noticeDays === 1 ? "" : "s") + ' of notice before the next ' + periodWord + ' begins, as you entered it.</span>',
+        '</div>',
+        '<div class="tile">',
+          '<span class="tile__label">The next charging ' + periodWord + ' costs</span>',
+          '<span class="tile__value">' + escapeHtml(nextCharge) + '</span>',
+          '<span class="tile__note">That ' + periodWord + ' begins ' + escapeHtml(ukDate(win.nextChargeDate)) + '.</span>',
+        '</div>',
+      '</div>',
+
+      '<dl class="rows">',
+        '<div><dt class="k">Charging periods from the on-hire date to the date you are working from</dt><dd class="v">' + escapeHtml(String(win.periodsCharged)) + '</dd></div>',
+        '<div><dt class="k">Charged on those periods, at your rate</dt><dd class="v">' + escapeHtml(chargedSoFar) + '</dd></div>',
+        '<div><dt class="k">Minimum hire period ends</dt><dd class="v">' + escapeHtml(ukDate(win.minimumEndsDate)) +
+          (win.minimumNotYetMet ? " — still running" : "") + '</dd></div>',
+      '</dl>',
+
+      '<div class="basis">',
+        '<p class="eyebrow">How that was worked out</p>',
+        '<ol>' + basis + '</ol>',
+        '<p class="fine" style="margin-top:.75rem">Every line above comes from the hire terms you typed in. These are commercial terms between you and your hire company, not legislation.</p>',
+      '</div>',
+
+      '<div class="record">',
+        '<div class="record__head">',
+          '<div><p class="eyebrow">Copy-ready off-hire record</p></div>',
+          '<div style="display:flex;gap:.5rem;align-items:center">',
+            '<span class="copied" id="copied-flag" hidden>Copied</span>',
+            '<button class="btn btn--sm" id="copy-record" type="button">Copy the record</button>',
+          '</div>',
+        '</div>',
+        '<pre id="record-text">' + escapeHtml(record.text) + '</pre>',
+      '</div>',
+      '<p class="fine">Paste that into the email or message you send the hire desk, then keep it. If the charge is ever argued, this is the note that answers it. We never contact your hire company. You do, and you record it here.</p>',
+    '</div>'
+  ].join("");
+
+  resultBox.hidden = false;
+
+  const copyBtn = $("copy-record");
+  copyBtn.addEventListener("click", async () => {
+    const text = record.text;
+    let ok = false;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) { await navigator.clipboard.writeText(text); ok = true; }
+    } catch (e) { ok = false; }
+    if (!ok) {
+      const pre = $("record-text");
+      const range = document.createRange();
+      range.selectNodeContents(pre);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      $("copied-flag").textContent = "Selected — press Ctrl+C or Cmd+C";
+      $("copied-flag").hidden = false;
+    } else {
+      $("copied-flag").textContent = "Copied";
+      $("copied-flag").hidden = false;
+    }
+    track("aha_record_copied", { chargePeriod: terms.chargePeriod, copied: ok });
+  });
+}
+
+function renderErrors(errors) {
+  const head = errors.length === 1
+    ? "One thing to fill in before this can be worked out."
+    : "A few things to fill in before this can be worked out.";
+  resultBox.innerHTML = '<div class="notice"><strong>' + escapeHtml(head) +
+    '</strong><ul style="margin:.5rem 0 0;padding-left:1.1rem">' +
+    errors.map((e) => "<li>" + escapeHtml(e) + "</li>").join("") + "</ul></div>";
+  resultBox.hidden = false;
+}
+
+form.addEventListener("submit", (ev) => {
+  ev.preventDefault();
+  started();
+  if (!engine) { missingBox.hidden = false; resultBox.hidden = true; return; }
+  const read = readTerms();
+  if (read.errors.length) { renderErrors(read.errors); return; }
+  let win, record;
+  try {
+    win = engine.offHireWindow(read.terms, read.today);
+    record = engine.offHireRecord(read.recordFields);
+  } catch (err) {
+    console.error("[engine]", err);
+    resultBox.innerHTML = '<div class="notice"><strong>That could not be worked out from those figures.</strong> ' +
+      escapeHtml(err && err.message ? err.message : "Check the dates and the rate, then try again.") + '</div>';
+    resultBox.hidden = false;
+    return;
+  }
+  render(win, record, read.terms, read.today);
+  track("aha_completed", {
+    chargePeriod: read.terms.chargePeriod,
+    noticeDays: read.terms.noticeDays,
+    minimumPeriods: read.terms.minimumPeriods,
+    daysUntilCallBy: win.daysUntilCallBy
+  });
+});
+
+/* ---------------------------------------------------------------------------
+   Email capture. One handler, two forms, two event names.
+--------------------------------------------------------------------------- */
+function wireSignup(formId, statusId, eventName, successText) {
+  const f = $(formId);
+  const status = $(statusId);
+  f.addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    const input = f.querySelector('input[type="email"]');
+    const email = input.value.trim();
+    status.hidden = false;
+    status.classList.remove("status--err");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      status.classList.add("status--err");
+      status.textContent = "That does not look like an email address. Check it and send it again.";
+      input.focus();
+      return;
+    }
+    const body = Object.assign({ email, intent: eventName, page: location.pathname, at: new Date().toISOString() }, UTM);
+    if (!FORM_ENDPOINT) {
+      status.classList.add("status--err");
+      status.textContent = "This form is not connected yet, so nothing was sent. " +
+        (CONTACT_EMAIL ? "Email " + CONTACT_EMAIL + " and we will pick it up." : "An email address goes here before this page goes live.");
+      track(eventName, { endpoint: "none" });
+      return;
+    }
+    status.textContent = "Sending…";
+    try {
+      await fetch(FORM_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      status.textContent = successText;
+      f.reset();
+      track(eventName, { endpoint: "form" });
+    } catch (err) {
+      status.classList.add("status--err");
+      status.textContent = "That did not send. Try again in a moment" + (CONTACT_EMAIL ? ", or email " + CONTACT_EMAIL + "." : ".");
+    }
+  });
+}
+wireSignup("email-form", "email-status", "email_captured", "Got it. One email when Off-Hire Proof opens.");
+wireSignup("interview-form", "interview-status", "interview_booked", "Got it. We will write back to arrange a time.");
+
+/* ---------------------------------------------------------------------------
+   Pricing seen, deposit.
+--------------------------------------------------------------------------- */
+const pricing = $("pricing");
+let pricingFired = false;
+if ("IntersectionObserver" in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting && !pricingFired) { pricingFired = true; track("pricing_viewed", {}); io.disconnect(); }
+    });
+  }, { threshold: 0.25 });
+  io.observe(pricing);
+} else {
+  track("pricing_viewed", {});
+}
+
+const depositBtn = $("deposit-btn");
+const depositNote = $("deposit-note");
+if (!STRIPE_PAYMENT_LINK) {
+  depositBtn.disabled = true;
+  depositNote.hidden = false;
+  depositNote.textContent = "The card link is not switched on yet. Leave your email above and we will send it to you.";
+}
+depositBtn.addEventListener("click", () => {
+  track("deposit_started", {});
+  if (STRIPE_PAYMENT_LINK) location.href = STRIPE_PAYMENT_LINK;
+});
+
+/* Stripe sends the payer back with ?deposit=complete. The deposit is recorded;
+   nothing is unlocked, and a person sends the account by email. */
+if (new URLSearchParams(location.search).get("deposit") === "complete") {
+  track("deposit_completed", {});
+  depositNote.hidden = false;
+  depositNote.textContent = "Your £19 is in. Nothing is unlocked by that payment — we write to you by hand with your account when Off-Hire Proof opens.";
+}
+
+/* ---------------------------------------------------------------------------
+   Contact line, then the engine.
+--------------------------------------------------------------------------- */
+const contactLine = $("contact-line");
+contactLine.textContent = CONTACT_EMAIL
+  ? "Questions, refunds and deletion requests: " + CONTACT_EMAIL
+  : "Contact address for questions, refunds and deletion requests goes here before this page goes live.";
+
+prefillExample();
+engine = await loadEngine();
+if (!engine) {
+  console.warn("[engine] not loaded:\n" + engineProblems.join("\n"));
+  missingBox.hidden = false;
+  calcBtn.disabled = true;
+  calcBtn.textContent = "Calculator not loaded";
+} else if (!exampleTouched) {
+  prefillExample();
+}
+</script>
+</body>
+</html>

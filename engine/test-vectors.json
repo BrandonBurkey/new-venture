@@ -1,0 +1,1664 @@
+{
+  "note": "Generated inputs with expected outputs produced by an independent brute-force reference implementation, then checked against engine/index.mjs. Each case pins one edge named in `why`.",
+  "count": 70,
+  "vectors": [
+    {
+      "id": "weekly-callby-day-before",
+      "name": "weekly-callby-day-before",
+      "why": "boundary pair: the day before the notice call-by date",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 35000,
+        "minimumPeriods": 1,
+        "noticeDays": 2
+      },
+      "today": "2026-10-09",
+      "expect": {
+        "nextChargeDate": "2026-10-12",
+        "nextChargePence": 35000,
+        "callByDate": "2026-10-10",
+        "daysUntilCallBy": 1,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-10-11",
+        "periodsCharged": 1,
+        "chargedToDatePence": 35000
+      }
+    },
+    {
+      "id": "weekly-callby-exact-day",
+      "name": "weekly-callby-exact-day",
+      "why": "boundary pair: the call-by date itself, daysUntilCallBy must be 0",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 35000,
+        "minimumPeriods": 1,
+        "noticeDays": 2
+      },
+      "today": "2026-10-10",
+      "expect": {
+        "nextChargeDate": "2026-10-12",
+        "nextChargePence": 35000,
+        "callByDate": "2026-10-10",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-10-11",
+        "periodsCharged": 1,
+        "chargedToDatePence": 35000
+      }
+    },
+    {
+      "id": "weekly-callby-day-after",
+      "name": "weekly-callby-day-after",
+      "why": "boundary pair: the day after, daysUntilCallBy goes negative and no field judges it",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 35000,
+        "minimumPeriods": 1,
+        "noticeDays": 2
+      },
+      "today": "2026-10-11",
+      "expect": {
+        "nextChargeDate": "2026-10-12",
+        "nextChargePence": 35000,
+        "callByDate": "2026-10-10",
+        "daysUntilCallBy": -1,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-10-11",
+        "periodsCharged": 1,
+        "chargedToDatePence": 35000
+      }
+    },
+    {
+      "id": "weekly-min4-binding-week1",
+      "name": "weekly-min4-binding-week1",
+      "why": "minimum of 4 weeks still binding in week 1; both readings must appear",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 35000,
+        "minimumPeriods": 4,
+        "noticeDays": 2
+      },
+      "today": "2026-10-09",
+      "expect": {
+        "nextChargeDate": "2026-10-12",
+        "nextChargePence": 35000,
+        "callByDate": "2026-10-10",
+        "daysUntilCallBy": 1,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-11-01",
+        "periodsCharged": 1,
+        "chargedToDatePence": 35000
+      },
+      "expectBasisIncludes": [
+        "Reading from the notice period",
+        "Reading from the minimum hire period",
+        "earlier of the two"
+      ]
+    },
+    {
+      "id": "weekly-min4-day-before-min-ends",
+      "name": "weekly-min4-day-before-min-ends",
+      "why": "boundary: last full day of a 4-week minimum, still binding",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 35000,
+        "minimumPeriods": 4,
+        "noticeDays": 2
+      },
+      "today": "2026-10-31",
+      "expect": {
+        "nextChargeDate": "2026-11-02",
+        "nextChargePence": 35000,
+        "callByDate": "2026-10-31",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-11-01",
+        "periodsCharged": 4,
+        "chargedToDatePence": 140000
+      }
+    },
+    {
+      "id": "weekly-min4-on-min-ends",
+      "name": "weekly-min4-on-min-ends",
+      "why": "boundary: the minimum's final day, minimumNotYetMet flips to false",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 35000,
+        "minimumPeriods": 4,
+        "noticeDays": 2
+      },
+      "today": "2026-11-01",
+      "expect": {
+        "nextChargeDate": "2026-11-02",
+        "nextChargePence": 35000,
+        "callByDate": "2026-10-31",
+        "daysUntilCallBy": -1,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-11-01",
+        "periodsCharged": 4,
+        "chargedToDatePence": 140000
+      },
+      "expectBasisIncludes": [
+        "has been served"
+      ]
+    },
+    {
+      "id": "weekly-min4-day-after-min-ends",
+      "name": "weekly-min4-day-after-min-ends",
+      "why": "boundary: first day past the minimum, only the notice reading applies",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 35000,
+        "minimumPeriods": 4,
+        "noticeDays": 2
+      },
+      "today": "2026-11-02",
+      "expect": {
+        "nextChargeDate": "2026-11-09",
+        "nextChargePence": 35000,
+        "callByDate": "2026-11-07",
+        "daysUntilCallBy": 5,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-11-01",
+        "periodsCharged": 5,
+        "chargedToDatePence": 175000
+      },
+      "expectBasisIncludes": [
+        "Only the notice reading applies today"
+      ]
+    },
+    {
+      "id": "weekly-notice-longer-than-period",
+      "name": "weekly-notice-longer-than-period",
+      "why": "notice of 14 days against a 7-day period: call-by is already behind the user",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 35000,
+        "minimumPeriods": 1,
+        "noticeDays": 14
+      },
+      "today": "2026-10-09",
+      "expect": {
+        "nextChargeDate": "2026-10-12",
+        "nextChargePence": 35000,
+        "callByDate": "2026-09-28",
+        "daysUntilCallBy": -11,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-10-11",
+        "periodsCharged": 1,
+        "chargedToDatePence": 35000
+      }
+    },
+    {
+      "id": "weekly-notice-longer-than-remaining-hire",
+      "name": "weekly-notice-longer-than-remaining-hire",
+      "why": "30 days' notice on a 4-week minimum",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 35000,
+        "minimumPeriods": 4,
+        "noticeDays": 30
+      },
+      "today": "2026-10-20",
+      "expect": {
+        "nextChargeDate": "2026-10-26",
+        "nextChargePence": 35000,
+        "callByDate": "2026-09-26",
+        "daysUntilCallBy": -24,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-11-01",
+        "periodsCharged": 3,
+        "chargedToDatePence": 105000
+      }
+    },
+    {
+      "id": "weekly-notice-zero",
+      "name": "weekly-notice-zero",
+      "why": "noticeDays 0: the last day to call is the day the next period begins",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 35000,
+        "minimumPeriods": 1,
+        "noticeDays": 0
+      },
+      "today": "2026-10-09",
+      "expect": {
+        "nextChargeDate": "2026-10-12",
+        "nextChargePence": 35000,
+        "callByDate": "2026-10-12",
+        "daysUntilCallBy": 3,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-10-11",
+        "periodsCharged": 1,
+        "chargedToDatePence": 35000
+      },
+      "expectBasisIncludes": [
+        "Off-hire notice you entered: none"
+      ]
+    },
+    {
+      "id": "weekly-notice-zero-on-period-boundary",
+      "name": "weekly-notice-zero-on-period-boundary",
+      "why": "noticeDays 0 on the first day of a new weekly period",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 35000,
+        "minimumPeriods": 1,
+        "noticeDays": 0
+      },
+      "today": "2026-10-12",
+      "expect": {
+        "nextChargeDate": "2026-10-19",
+        "nextChargePence": 35000,
+        "callByDate": "2026-10-19",
+        "daysUntilCallBy": 7,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-10-11",
+        "periodsCharged": 2,
+        "chargedToDatePence": 70000
+      }
+    },
+    {
+      "id": "weekly-notice-one-day",
+      "name": "weekly-notice-one-day",
+      "why": "single day of notice, mid-period",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 35000,
+        "minimumPeriods": 1,
+        "noticeDays": 1
+      },
+      "today": "2026-10-08",
+      "expect": {
+        "nextChargeDate": "2026-10-12",
+        "nextChargePence": 35000,
+        "callByDate": "2026-10-11",
+        "daysUntilCallBy": 3,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-10-11",
+        "periodsCharged": 1,
+        "chargedToDatePence": 35000
+      }
+    },
+    {
+      "id": "weekly-notice-7-on-start-day",
+      "name": "weekly-notice-7-on-start-day",
+      "why": "7 days' notice, today is the on-hire date: call-by is today",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 35000,
+        "minimumPeriods": 1,
+        "noticeDays": 7
+      },
+      "today": "2026-10-05",
+      "expect": {
+        "nextChargeDate": "2026-10-12",
+        "nextChargePence": 35000,
+        "callByDate": "2026-10-05",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-10-11",
+        "periodsCharged": 1,
+        "chargedToDatePence": 35000
+      }
+    },
+    {
+      "id": "weekly-today-is-onhire-date",
+      "name": "weekly-today-is-onhire-date",
+      "why": "today equals onHireDate: one period charged, not zero",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 35000,
+        "minimumPeriods": 1,
+        "noticeDays": 2
+      },
+      "today": "2026-10-05",
+      "expect": {
+        "nextChargeDate": "2026-10-12",
+        "nextChargePence": 35000,
+        "callByDate": "2026-10-10",
+        "daysUntilCallBy": 5,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-10-11",
+        "periodsCharged": 1,
+        "chargedToDatePence": 35000
+      }
+    },
+    {
+      "id": "weekly-today-before-onhire",
+      "name": "weekly-today-before-onhire",
+      "why": "today before onHireDate: nothing charged, next charge is the hire's own first day",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-11-10",
+        "ratePence": 35000,
+        "minimumPeriods": 1,
+        "noticeDays": 2
+      },
+      "today": "2026-10-24",
+      "expect": {
+        "nextChargeDate": "2026-11-10",
+        "nextChargePence": 35000,
+        "callByDate": "2026-11-08",
+        "daysUntilCallBy": 15,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-11-16",
+        "periodsCharged": 0,
+        "chargedToDatePence": 0
+      },
+      "expectBasisIncludes": [
+        "before the on-hire date"
+      ]
+    },
+    {
+      "id": "weekly-today-day-before-onhire",
+      "name": "weekly-today-day-before-onhire",
+      "why": "boundary pair with the above: the day before charging starts",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-11-10",
+        "ratePence": 35000,
+        "minimumPeriods": 1,
+        "noticeDays": 2
+      },
+      "today": "2026-11-09",
+      "expect": {
+        "nextChargeDate": "2026-11-10",
+        "nextChargePence": 35000,
+        "callByDate": "2026-11-08",
+        "daysUntilCallBy": -1,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-11-16",
+        "periodsCharged": 0,
+        "chargedToDatePence": 0
+      }
+    },
+    {
+      "id": "weekly-shorter-than-minimum",
+      "name": "weekly-shorter-than-minimum",
+      "why": "hire shorter than its minimum: week 2 of a 4-week minimum",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 35000,
+        "minimumPeriods": 4,
+        "noticeDays": 2
+      },
+      "today": "2026-10-13",
+      "expect": {
+        "nextChargeDate": "2026-10-19",
+        "nextChargePence": 35000,
+        "callByDate": "2026-10-17",
+        "daysUntilCallBy": 4,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-11-01",
+        "periodsCharged": 2,
+        "chargedToDatePence": 70000
+      },
+      "expectBasisIncludes": [
+        "Periods inside the minimum are charged"
+      ]
+    },
+    {
+      "id": "weekly-min-52-weeks",
+      "name": "weekly-min-52-weeks",
+      "why": "long minimum: 52 weeks of a year-long hire",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-01-05",
+        "ratePence": 35000,
+        "minimumPeriods": 52,
+        "noticeDays": 7
+      },
+      "today": "2026-10-24",
+      "expect": {
+        "nextChargeDate": "2026-10-26",
+        "nextChargePence": 35000,
+        "callByDate": "2026-10-19",
+        "daysUntilCallBy": -5,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2027-01-03",
+        "periodsCharged": 42,
+        "chargedToDatePence": 1470000
+      }
+    },
+    {
+      "id": "weekly-month-end-rollover",
+      "name": "weekly-month-end-rollover",
+      "why": "weekly period crossing 31 January into February",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-01-28",
+        "ratePence": 28000,
+        "minimumPeriods": 1,
+        "noticeDays": 2
+      },
+      "today": "2026-02-02",
+      "expect": {
+        "nextChargeDate": "2026-02-04",
+        "nextChargePence": 28000,
+        "callByDate": "2026-02-02",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-02-03",
+        "periodsCharged": 1,
+        "chargedToDatePence": 28000
+      }
+    },
+    {
+      "id": "weekly-30-day-month-end",
+      "name": "weekly-30-day-month-end",
+      "why": "weekly period crossing 30 April into May",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-04-28",
+        "ratePence": 28000,
+        "minimumPeriods": 2,
+        "noticeDays": 3
+      },
+      "today": "2026-05-04",
+      "expect": {
+        "nextChargeDate": "2026-05-05",
+        "nextChargePence": 28000,
+        "callByDate": "2026-05-02",
+        "daysUntilCallBy": -2,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-05-11",
+        "periodsCharged": 1,
+        "chargedToDatePence": 28000
+      }
+    },
+    {
+      "id": "weekly-year-rollover",
+      "name": "weekly-year-rollover",
+      "why": "weekly period crossing 31 December into the new year",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-12-28",
+        "ratePence": 28000,
+        "minimumPeriods": 1,
+        "noticeDays": 2
+      },
+      "today": "2026-12-31",
+      "expect": {
+        "nextChargeDate": "2027-01-04",
+        "nextChargePence": 28000,
+        "callByDate": "2027-01-02",
+        "daysUntilCallBy": 2,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2027-01-03",
+        "periodsCharged": 1,
+        "chargedToDatePence": 28000
+      }
+    },
+    {
+      "id": "weekly-leap-day-onhire",
+      "name": "weekly-leap-day-onhire",
+      "why": "on-hire on 29 February 2024: minimum ends 6 March",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2024-02-29",
+        "ratePence": 42000,
+        "minimumPeriods": 1,
+        "noticeDays": 2
+      },
+      "today": "2024-02-29",
+      "expect": {
+        "nextChargeDate": "2024-03-07",
+        "nextChargePence": 42000,
+        "callByDate": "2024-03-05",
+        "daysUntilCallBy": 5,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2024-03-06",
+        "periodsCharged": 1,
+        "chargedToDatePence": 42000
+      }
+    },
+    {
+      "id": "weekly-leap-day-crossing",
+      "name": "weekly-leap-day-crossing",
+      "why": "weekly period running across 29 February 2024",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2024-02-26",
+        "ratePence": 42000,
+        "minimumPeriods": 2,
+        "noticeDays": 2
+      },
+      "today": "2024-03-01",
+      "expect": {
+        "nextChargeDate": "2024-03-04",
+        "nextChargePence": 42000,
+        "callByDate": "2024-03-02",
+        "daysUntilCallBy": 1,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2024-03-10",
+        "periodsCharged": 1,
+        "chargedToDatePence": 42000
+      }
+    },
+    {
+      "id": "weekly-leap-day-2028",
+      "name": "weekly-leap-day-2028",
+      "why": "the next leap year, to prove the rule is not hard-coded to 2024",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2028-02-27",
+        "ratePence": 42000,
+        "minimumPeriods": 1,
+        "noticeDays": 1
+      },
+      "today": "2028-02-29",
+      "expect": {
+        "nextChargeDate": "2028-03-05",
+        "nextChargePence": 42000,
+        "callByDate": "2028-03-04",
+        "daysUntilCallBy": 4,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2028-03-04",
+        "periodsCharged": 1,
+        "chargedToDatePence": 42000
+      }
+    },
+    {
+      "id": "weekly-weekend-flag-false-is-a-no-op",
+      "name": "weekly-weekend-flag-false-is-a-no-op",
+      "why": "chargesWeekends false with weekly charging changes no figure, and says so",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": false,
+        "onHireDate": "2026-10-05",
+        "ratePence": 35000,
+        "minimumPeriods": 2,
+        "noticeDays": 2
+      },
+      "today": "2026-10-09",
+      "expect": {
+        "nextChargeDate": "2026-10-12",
+        "nextChargePence": 35000,
+        "callByDate": "2026-10-10",
+        "daysUntilCallBy": 1,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-10-18",
+        "periodsCharged": 1,
+        "chargedToDatePence": 35000
+      },
+      "expectBasisIncludes": [
+        "changes none of the figures below"
+      ]
+    },
+    {
+      "id": "weekly-rate-zero",
+      "name": "weekly-rate-zero",
+      "why": "zero rate (kit on free loan) still produces dates and £0.00",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 0,
+        "minimumPeriods": 1,
+        "noticeDays": 2
+      },
+      "today": "2026-10-09",
+      "expect": {
+        "nextChargeDate": "2026-10-12",
+        "nextChargePence": 0,
+        "callByDate": "2026-10-10",
+        "daysUntilCallBy": 1,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-10-11",
+        "periodsCharged": 1,
+        "chargedToDatePence": 0
+      }
+    },
+    {
+      "id": "weekly-rate-large",
+      "name": "weekly-rate-large",
+      "why": "large rate, integer pence only, no float drift over many periods",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-01-05",
+        "ratePence": 1234567,
+        "minimumPeriods": 1,
+        "noticeDays": 2
+      },
+      "today": "2026-10-24",
+      "expect": {
+        "nextChargeDate": "2026-10-26",
+        "nextChargePence": 1234567,
+        "callByDate": "2026-10-24",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-01-11",
+        "periodsCharged": 42,
+        "chargedToDatePence": 51851814
+      }
+    },
+    {
+      "id": "weekly-far-future-today",
+      "name": "weekly-far-future-today",
+      "why": "many periods charged, to pin the period count arithmetic at scale",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2020-01-06",
+        "ratePence": 35000,
+        "minimumPeriods": 1,
+        "noticeDays": 2
+      },
+      "today": "2026-10-24",
+      "expect": {
+        "nextChargeDate": "2026-10-26",
+        "nextChargePence": 35000,
+        "callByDate": "2026-10-24",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2020-01-12",
+        "periodsCharged": 355,
+        "chargedToDatePence": 12425000
+      }
+    },
+    {
+      "id": "daily-31-day-month",
+      "name": "daily-31-day-month",
+      "why": "daily charging across all 31 days of July",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": true,
+        "onHireDate": "2026-07-01",
+        "ratePence": 4500,
+        "minimumPeriods": 1,
+        "noticeDays": 1
+      },
+      "today": "2026-07-31",
+      "expect": {
+        "nextChargeDate": "2026-08-01",
+        "nextChargePence": 4500,
+        "callByDate": "2026-07-31",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-07-01",
+        "periodsCharged": 31,
+        "chargedToDatePence": 139500
+      }
+    },
+    {
+      "id": "daily-31-day-month-plus-one",
+      "name": "daily-31-day-month-plus-one",
+      "why": "boundary pair: the day after a 31-day run, into the next month",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": true,
+        "onHireDate": "2026-07-01",
+        "ratePence": 4500,
+        "minimumPeriods": 1,
+        "noticeDays": 1
+      },
+      "today": "2026-08-01",
+      "expect": {
+        "nextChargeDate": "2026-08-02",
+        "nextChargePence": 4500,
+        "callByDate": "2026-08-01",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-07-01",
+        "periodsCharged": 32,
+        "chargedToDatePence": 144000
+      }
+    },
+    {
+      "id": "daily-month-end-31-jan",
+      "name": "daily-month-end-31-jan",
+      "why": "daily charging across 31 January into 1 February",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": true,
+        "onHireDate": "2026-01-30",
+        "ratePence": 4500,
+        "minimumPeriods": 3,
+        "noticeDays": 1
+      },
+      "today": "2026-02-01",
+      "expect": {
+        "nextChargeDate": "2026-02-02",
+        "nextChargePence": 4500,
+        "callByDate": "2026-02-01",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-02-01",
+        "periodsCharged": 3,
+        "chargedToDatePence": 13500
+      }
+    },
+    {
+      "id": "daily-month-end-30-apr",
+      "name": "daily-month-end-30-apr",
+      "why": "daily charging across 30 April into 1 May",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": true,
+        "onHireDate": "2026-04-29",
+        "ratePence": 4500,
+        "minimumPeriods": 3,
+        "noticeDays": 1
+      },
+      "today": "2026-05-01",
+      "expect": {
+        "nextChargeDate": "2026-05-02",
+        "nextChargePence": 4500,
+        "callByDate": "2026-05-01",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-05-01",
+        "periodsCharged": 3,
+        "chargedToDatePence": 13500
+      }
+    },
+    {
+      "id": "daily-year-rollover",
+      "name": "daily-year-rollover",
+      "why": "daily charging across 31 December into 1 January",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": true,
+        "onHireDate": "2026-12-30",
+        "ratePence": 4500,
+        "minimumPeriods": 2,
+        "noticeDays": 1
+      },
+      "today": "2027-01-01",
+      "expect": {
+        "nextChargeDate": "2027-01-02",
+        "nextChargePence": 4500,
+        "callByDate": "2027-01-01",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-12-31",
+        "periodsCharged": 3,
+        "chargedToDatePence": 13500
+      }
+    },
+    {
+      "id": "daily-leap-day-28th",
+      "name": "daily-leap-day-28th",
+      "why": "daily charging on 28 February 2024, the day before the leap day",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": true,
+        "onHireDate": "2024-02-28",
+        "ratePence": 4500,
+        "minimumPeriods": 5,
+        "noticeDays": 1
+      },
+      "today": "2024-02-28",
+      "expect": {
+        "nextChargeDate": "2024-02-29",
+        "nextChargePence": 4500,
+        "callByDate": "2024-02-28",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2024-03-03",
+        "periodsCharged": 1,
+        "chargedToDatePence": 4500
+      }
+    },
+    {
+      "id": "daily-leap-day-29th",
+      "name": "daily-leap-day-29th",
+      "why": "daily charging on the leap day itself: next charge is 1 March",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": true,
+        "onHireDate": "2024-02-28",
+        "ratePence": 4500,
+        "minimumPeriods": 5,
+        "noticeDays": 1
+      },
+      "today": "2024-02-29",
+      "expect": {
+        "nextChargeDate": "2024-03-01",
+        "nextChargePence": 4500,
+        "callByDate": "2024-02-29",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2024-03-03",
+        "periodsCharged": 2,
+        "chargedToDatePence": 9000
+      }
+    },
+    {
+      "id": "daily-non-leap-feb-28",
+      "name": "daily-non-leap-feb-28",
+      "why": "28 February 2026 is the month end: next charge is 1 March, no 29 February",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": true,
+        "onHireDate": "2026-02-27",
+        "ratePence": 4500,
+        "minimumPeriods": 3,
+        "noticeDays": 1
+      },
+      "today": "2026-02-28",
+      "expect": {
+        "nextChargeDate": "2026-03-01",
+        "nextChargePence": 4500,
+        "callByDate": "2026-02-28",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-03-01",
+        "periodsCharged": 2,
+        "chargedToDatePence": 9000
+      }
+    },
+    {
+      "id": "daily-non-leap-2023-feb",
+      "name": "daily-non-leap-2023-feb",
+      "why": "the same trap in a different non-leap year",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": true,
+        "onHireDate": "2023-02-27",
+        "ratePence": 4500,
+        "minimumPeriods": 2,
+        "noticeDays": 0
+      },
+      "today": "2023-02-28",
+      "expect": {
+        "nextChargeDate": "2023-03-01",
+        "nextChargePence": 4500,
+        "callByDate": "2023-03-01",
+        "daysUntilCallBy": 1,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2023-02-28",
+        "periodsCharged": 2,
+        "chargedToDatePence": 9000
+      }
+    },
+    {
+      "id": "daily-century-non-leap-2100",
+      "name": "daily-century-non-leap-2100",
+      "why": "2100 is divisible by 4 and by 100 but not 400, so it is not a leap year",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": true,
+        "onHireDate": "2100-02-27",
+        "ratePence": 4500,
+        "minimumPeriods": 3,
+        "noticeDays": 1
+      },
+      "today": "2100-02-28",
+      "expect": {
+        "nextChargeDate": "2100-03-01",
+        "nextChargePence": 4500,
+        "callByDate": "2100-02-28",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2100-03-01",
+        "periodsCharged": 2,
+        "chargedToDatePence": 9000
+      }
+    },
+    {
+      "id": "daily-year-2000-leap",
+      "name": "daily-year-2000-leap",
+      "why": "2000 is divisible by 400, so 29 February exists",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": true,
+        "onHireDate": "2000-02-28",
+        "ratePence": 4500,
+        "minimumPeriods": 3,
+        "noticeDays": 1
+      },
+      "today": "2000-02-29",
+      "expect": {
+        "nextChargeDate": "2000-03-01",
+        "nextChargePence": 4500,
+        "callByDate": "2000-02-29",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2000-03-01",
+        "periodsCharged": 2,
+        "chargedToDatePence": 9000
+      }
+    },
+    {
+      "id": "daily-notice-zero",
+      "name": "daily-notice-zero",
+      "why": "noticeDays 0 on daily charging: call by the day the next day's charge begins",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 4500,
+        "minimumPeriods": 1,
+        "noticeDays": 0
+      },
+      "today": "2026-10-08",
+      "expect": {
+        "nextChargeDate": "2026-10-09",
+        "nextChargePence": 4500,
+        "callByDate": "2026-10-09",
+        "daysUntilCallBy": 1,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-10-05",
+        "periodsCharged": 4,
+        "chargedToDatePence": 18000
+      }
+    },
+    {
+      "id": "daily-notice-zero-on-onhire-day",
+      "name": "daily-notice-zero-on-onhire-day",
+      "why": "noticeDays 0 on day one of the hire",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 4500,
+        "minimumPeriods": 1,
+        "noticeDays": 0
+      },
+      "today": "2026-10-05",
+      "expect": {
+        "nextChargeDate": "2026-10-06",
+        "nextChargePence": 4500,
+        "callByDate": "2026-10-06",
+        "daysUntilCallBy": 1,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-10-05",
+        "periodsCharged": 1,
+        "chargedToDatePence": 4500
+      }
+    },
+    {
+      "id": "daily-notice-longer-than-period",
+      "name": "daily-notice-longer-than-period",
+      "why": "10 days' notice against a one-day period: the call-by date is behind the user",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 4500,
+        "minimumPeriods": 1,
+        "noticeDays": 10
+      },
+      "today": "2026-10-09",
+      "expect": {
+        "nextChargeDate": "2026-10-10",
+        "nextChargePence": 4500,
+        "callByDate": "2026-09-30",
+        "daysUntilCallBy": -9,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-10-05",
+        "periodsCharged": 5,
+        "chargedToDatePence": 22500
+      }
+    },
+    {
+      "id": "daily-shorter-than-minimum",
+      "name": "daily-shorter-than-minimum",
+      "why": "day 3 of a 14-day minimum: early return does not avoid the minimum",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 4500,
+        "minimumPeriods": 14,
+        "noticeDays": 2
+      },
+      "today": "2026-10-07",
+      "expect": {
+        "nextChargeDate": "2026-10-08",
+        "nextChargePence": 4500,
+        "callByDate": "2026-10-06",
+        "daysUntilCallBy": -1,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-10-18",
+        "periodsCharged": 3,
+        "chargedToDatePence": 13500
+      },
+      "expectBasisIncludes": [
+        "Periods inside the minimum are charged"
+      ]
+    },
+    {
+      "id": "daily-minimum-one-period",
+      "name": "daily-minimum-one-period",
+      "why": "minimum of one day: minimumEndsDate equals onHireDate",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 4500,
+        "minimumPeriods": 1,
+        "noticeDays": 1
+      },
+      "today": "2026-10-05",
+      "expect": {
+        "nextChargeDate": "2026-10-06",
+        "nextChargePence": 4500,
+        "callByDate": "2026-10-05",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-10-05",
+        "periodsCharged": 1,
+        "chargedToDatePence": 4500
+      }
+    },
+    {
+      "id": "daily-min-day-before-end",
+      "name": "daily-min-day-before-end",
+      "why": "boundary triple on a 7-day minimum: the day before it ends",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 4500,
+        "minimumPeriods": 7,
+        "noticeDays": 1
+      },
+      "today": "2026-10-10",
+      "expect": {
+        "nextChargeDate": "2026-10-11",
+        "nextChargePence": 4500,
+        "callByDate": "2026-10-10",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-10-11",
+        "periodsCharged": 6,
+        "chargedToDatePence": 27000
+      }
+    },
+    {
+      "id": "daily-min-on-end",
+      "name": "daily-min-on-end",
+      "why": "boundary triple: the final day of the 7-day minimum",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 4500,
+        "minimumPeriods": 7,
+        "noticeDays": 1
+      },
+      "today": "2026-10-11",
+      "expect": {
+        "nextChargeDate": "2026-10-12",
+        "nextChargePence": 4500,
+        "callByDate": "2026-10-11",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-10-11",
+        "periodsCharged": 7,
+        "chargedToDatePence": 31500
+      }
+    },
+    {
+      "id": "daily-min-day-after-end",
+      "name": "daily-min-day-after-end",
+      "why": "boundary triple: the first day past the 7-day minimum",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 4500,
+        "minimumPeriods": 7,
+        "noticeDays": 1
+      },
+      "today": "2026-10-12",
+      "expect": {
+        "nextChargeDate": "2026-10-13",
+        "nextChargePence": 4500,
+        "callByDate": "2026-10-12",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-10-11",
+        "periodsCharged": 8,
+        "chargedToDatePence": 36000
+      }
+    },
+    {
+      "id": "daily-today-before-onhire",
+      "name": "daily-today-before-onhire",
+      "why": "today before onHireDate on daily charging",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": true,
+        "onHireDate": "2026-11-02",
+        "ratePence": 4500,
+        "minimumPeriods": 5,
+        "noticeDays": 2
+      },
+      "today": "2026-10-24",
+      "expect": {
+        "nextChargeDate": "2026-11-02",
+        "nextChargePence": 4500,
+        "callByDate": "2026-10-31",
+        "daysUntilCallBy": 7,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-11-06",
+        "periodsCharged": 0,
+        "chargedToDatePence": 0
+      }
+    },
+    {
+      "id": "dailyx-friday-min-met",
+      "name": "dailyx-friday-min-met",
+      "why": "weekends excluded: Friday is the 5th charged day of a 5-day minimum",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": false,
+        "onHireDate": "2026-10-05",
+        "ratePence": 4500,
+        "minimumPeriods": 5,
+        "noticeDays": 1
+      },
+      "today": "2026-10-09",
+      "expect": {
+        "nextChargeDate": "2026-10-12",
+        "nextChargePence": 4500,
+        "callByDate": "2026-10-11",
+        "daysUntilCallBy": 2,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-10-09",
+        "periodsCharged": 5,
+        "chargedToDatePence": 22500
+      }
+    },
+    {
+      "id": "dailyx-saturday-not-charged",
+      "name": "dailyx-saturday-not-charged",
+      "why": "weekends excluded: Saturday adds no charged day and the next charge is Monday",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": false,
+        "onHireDate": "2026-10-05",
+        "ratePence": 4500,
+        "minimumPeriods": 5,
+        "noticeDays": 1
+      },
+      "today": "2026-10-10",
+      "expect": {
+        "nextChargeDate": "2026-10-12",
+        "nextChargePence": 4500,
+        "callByDate": "2026-10-11",
+        "daysUntilCallBy": 1,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-10-09",
+        "periodsCharged": 5,
+        "chargedToDatePence": 22500
+      },
+      "expectBasisIncludes": [
+        "only Monday to Friday count as charged days"
+      ]
+    },
+    {
+      "id": "dailyx-sunday-is-callby",
+      "name": "dailyx-sunday-is-callby",
+      "why": "weekends excluded: the call-by date itself falls on a Sunday, and the engine flags the day",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": false,
+        "onHireDate": "2026-10-05",
+        "ratePence": 4500,
+        "minimumPeriods": 5,
+        "noticeDays": 1
+      },
+      "today": "2026-10-11",
+      "expect": {
+        "nextChargeDate": "2026-10-12",
+        "nextChargePence": 4500,
+        "callByDate": "2026-10-11",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-10-09",
+        "periodsCharged": 5,
+        "chargedToDatePence": 22500
+      },
+      "expectBasisIncludes": [
+        "is a Sunday"
+      ]
+    },
+    {
+      "id": "dailyx-monday-next-charge",
+      "name": "dailyx-monday-next-charge",
+      "why": "weekends excluded: Monday is charged day 6",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": false,
+        "onHireDate": "2026-10-05",
+        "ratePence": 4500,
+        "minimumPeriods": 5,
+        "noticeDays": 1
+      },
+      "today": "2026-10-12",
+      "expect": {
+        "nextChargeDate": "2026-10-13",
+        "nextChargePence": 4500,
+        "callByDate": "2026-10-12",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-10-09",
+        "periodsCharged": 6,
+        "chargedToDatePence": 27000
+      }
+    },
+    {
+      "id": "dailyx-onhire-on-saturday",
+      "name": "dailyx-onhire-on-saturday",
+      "why": "weekends excluded and the machine went out on a Saturday: charging starts Monday",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": false,
+        "onHireDate": "2026-10-10",
+        "ratePence": 4500,
+        "minimumPeriods": 2,
+        "noticeDays": 0
+      },
+      "today": "2026-10-10",
+      "expect": {
+        "nextChargeDate": "2026-10-12",
+        "nextChargePence": 4500,
+        "callByDate": "2026-10-12",
+        "daysUntilCallBy": 2,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-10-13",
+        "periodsCharged": 0,
+        "chargedToDatePence": 0
+      }
+    },
+    {
+      "id": "dailyx-onhire-on-sunday",
+      "name": "dailyx-onhire-on-sunday",
+      "why": "weekends excluded and the machine went out on a Sunday",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": false,
+        "onHireDate": "2026-10-11",
+        "ratePence": 4500,
+        "minimumPeriods": 2,
+        "noticeDays": 0
+      },
+      "today": "2026-10-11",
+      "expect": {
+        "nextChargeDate": "2026-10-12",
+        "nextChargePence": 4500,
+        "callByDate": "2026-10-12",
+        "daysUntilCallBy": 1,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-10-13",
+        "periodsCharged": 0,
+        "chargedToDatePence": 0
+      }
+    },
+    {
+      "id": "dailyx-min-7-spans-a-weekend",
+      "name": "dailyx-min-7-spans-a-weekend",
+      "why": "weekends excluded: a 7-charged-day minimum runs over the weekend to Tuesday",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": false,
+        "onHireDate": "2026-10-05",
+        "ratePence": 4500,
+        "minimumPeriods": 7,
+        "noticeDays": 1
+      },
+      "today": "2026-10-09",
+      "expect": {
+        "nextChargeDate": "2026-10-12",
+        "nextChargePence": 4500,
+        "callByDate": "2026-10-11",
+        "daysUntilCallBy": 2,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-10-13",
+        "periodsCharged": 5,
+        "chargedToDatePence": 22500
+      }
+    },
+    {
+      "id": "dailyx-min-10-spans-two-weeks",
+      "name": "dailyx-min-10-spans-two-weeks",
+      "why": "weekends excluded: a 10-charged-day minimum ends on the second Friday",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": false,
+        "onHireDate": "2026-10-05",
+        "ratePence": 4500,
+        "minimumPeriods": 10,
+        "noticeDays": 2
+      },
+      "today": "2026-10-14",
+      "expect": {
+        "nextChargeDate": "2026-10-15",
+        "nextChargePence": 4500,
+        "callByDate": "2026-10-13",
+        "daysUntilCallBy": -1,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-10-16",
+        "periodsCharged": 8,
+        "chargedToDatePence": 36000
+      }
+    },
+    {
+      "id": "dailyx-min-1",
+      "name": "dailyx-min-1",
+      "why": "weekends excluded with a one-day minimum",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": false,
+        "onHireDate": "2026-10-05",
+        "ratePence": 4500,
+        "minimumPeriods": 1,
+        "noticeDays": 0
+      },
+      "today": "2026-10-05",
+      "expect": {
+        "nextChargeDate": "2026-10-06",
+        "nextChargePence": 4500,
+        "callByDate": "2026-10-06",
+        "daysUntilCallBy": 1,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-10-05",
+        "periodsCharged": 1,
+        "chargedToDatePence": 4500
+      }
+    },
+    {
+      "id": "dailyx-31-day-month-weekdays-only",
+      "name": "dailyx-31-day-month-weekdays-only",
+      "why": "weekends excluded across all of July 2026: 23 charged days, not 31",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": false,
+        "onHireDate": "2026-07-01",
+        "ratePence": 4500,
+        "minimumPeriods": 1,
+        "noticeDays": 1
+      },
+      "today": "2026-07-31",
+      "expect": {
+        "nextChargeDate": "2026-08-03",
+        "nextChargePence": 4500,
+        "callByDate": "2026-08-02",
+        "daysUntilCallBy": 2,
+        "minimumNotYetMet": false,
+        "minimumEndsDate": "2026-07-01",
+        "periodsCharged": 23,
+        "chargedToDatePence": 103500
+      }
+    },
+    {
+      "id": "dailyx-today-before-onhire-over-a-weekend",
+      "name": "dailyx-today-before-onhire-over-a-weekend",
+      "why": "weekends excluded, today is the Sunday before a Monday on-hire",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": false,
+        "onHireDate": "2026-10-12",
+        "ratePence": 4500,
+        "minimumPeriods": 5,
+        "noticeDays": 2
+      },
+      "today": "2026-10-11",
+      "expect": {
+        "nextChargeDate": "2026-10-12",
+        "nextChargePence": 4500,
+        "callByDate": "2026-10-10",
+        "daysUntilCallBy": -1,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-10-16",
+        "periodsCharged": 0,
+        "chargedToDatePence": 0
+      }
+    },
+    {
+      "id": "dailyx-notice-3-lands-midweek",
+      "name": "dailyx-notice-3-lands-midweek",
+      "why": "weekends excluded with 3 days' notice, call-by lands on a weekday",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": false,
+        "onHireDate": "2026-10-05",
+        "ratePence": 4500,
+        "minimumPeriods": 20,
+        "noticeDays": 3
+      },
+      "today": "2026-10-20",
+      "expect": {
+        "nextChargeDate": "2026-10-21",
+        "nextChargePence": 4500,
+        "callByDate": "2026-10-18",
+        "daysUntilCallBy": -2,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2026-10-30",
+        "periodsCharged": 12,
+        "chargedToDatePence": 54000
+      }
+    },
+    {
+      "id": "dailyx-leap-day-weekend-skip",
+      "name": "dailyx-leap-day-weekend-skip",
+      "why": "weekends excluded across 29 February 2024, which was a Thursday",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": false,
+        "onHireDate": "2024-02-26",
+        "ratePence": 4500,
+        "minimumPeriods": 5,
+        "noticeDays": 1
+      },
+      "today": "2024-02-29",
+      "expect": {
+        "nextChargeDate": "2024-03-01",
+        "nextChargePence": 4500,
+        "callByDate": "2024-02-29",
+        "daysUntilCallBy": 0,
+        "minimumNotYetMet": true,
+        "minimumEndsDate": "2024-03-01",
+        "periodsCharged": 4,
+        "chargedToDatePence": 18000
+      }
+    },
+    {
+      "id": "invalid-onhire-date-30-feb",
+      "name": "invalid-onhire-date-30-feb",
+      "why": "30 February is not a date; parsing must refuse it",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-02-30",
+        "ratePence": 35000,
+        "minimumPeriods": 1,
+        "noticeDays": 2
+      },
+      "today": "2026-10-24",
+      "expect": {
+        "throws": true,
+        "throwsMessageIncludes": "terms.onHireDate"
+      }
+    },
+    {
+      "id": "invalid-onhire-date-format",
+      "name": "invalid-onhire-date-format",
+      "why": "a UK-format date string is not an ISO date",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "05/10/2026",
+        "ratePence": 35000,
+        "minimumPeriods": 1,
+        "noticeDays": 2
+      },
+      "today": "2026-10-24",
+      "expect": {
+        "throws": true,
+        "throwsMessageIncludes": "terms.onHireDate"
+      }
+    },
+    {
+      "id": "invalid-today-format",
+      "name": "invalid-today-format",
+      "why": "today must be an ISO date too",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 35000,
+        "minimumPeriods": 1,
+        "noticeDays": 2
+      },
+      "today": "24/10/2026",
+      "expect": {
+        "throws": true,
+        "throwsMessageIncludes": "today"
+      }
+    },
+    {
+      "id": "invalid-charge-period-month",
+      "name": "invalid-charge-period-month",
+      "why": "monthly charging is not in the frozen surface, so it is refused, not guessed",
+      "terms": {
+        "chargePeriod": "month",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 35000,
+        "minimumPeriods": 1,
+        "noticeDays": 2
+      },
+      "today": "2026-10-24",
+      "expect": {
+        "throws": true,
+        "throwsMessageIncludes": "terms.chargePeriod"
+      }
+    },
+    {
+      "id": "invalid-rate-float",
+      "name": "invalid-rate-float",
+      "why": "pence must be an integer: a float rate is refused",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 350.5,
+        "minimumPeriods": 1,
+        "noticeDays": 2
+      },
+      "today": "2026-10-24",
+      "expect": {
+        "throws": true,
+        "throwsMessageIncludes": "terms.ratePence"
+      }
+    },
+    {
+      "id": "invalid-minimum-zero",
+      "name": "invalid-minimum-zero",
+      "why": "minimumPeriods must be at least 1",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 35000,
+        "minimumPeriods": 0,
+        "noticeDays": 2
+      },
+      "today": "2026-10-24",
+      "expect": {
+        "throws": true,
+        "throwsMessageIncludes": "terms.minimumPeriods"
+      }
+    },
+    {
+      "id": "invalid-notice-negative",
+      "name": "invalid-notice-negative",
+      "why": "noticeDays cannot be negative",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": true,
+        "onHireDate": "2026-10-05",
+        "ratePence": 35000,
+        "minimumPeriods": 1,
+        "noticeDays": -1
+      },
+      "today": "2026-10-24",
+      "expect": {
+        "throws": true,
+        "throwsMessageIncludes": "terms.noticeDays"
+      }
+    },
+    {
+      "id": "invalid-weekends-string",
+      "name": "invalid-weekends-string",
+      "why": "chargesWeekends must be a boolean, not the string \"false\"",
+      "terms": {
+        "chargePeriod": "week",
+        "chargesWeekends": "false",
+        "onHireDate": "2026-10-05",
+        "ratePence": 35000,
+        "minimumPeriods": 1,
+        "noticeDays": 2
+      },
+      "today": "2026-10-24",
+      "expect": {
+        "throws": true,
+        "throwsMessageIncludes": "terms.chargesWeekends"
+      }
+    },
+    {
+      "id": "invalid-leap-day-2026",
+      "name": "invalid-leap-day-2026",
+      "why": "29 February 2026 does not exist",
+      "terms": {
+        "chargePeriod": "day",
+        "chargesWeekends": true,
+        "onHireDate": "2026-02-29",
+        "ratePence": 4500,
+        "minimumPeriods": 1,
+        "noticeDays": 0
+      },
+      "today": "2026-10-24",
+      "expect": {
+        "throws": true,
+        "throwsMessageIncludes": "terms.onHireDate"
+      }
+    }
+  ]
+}
