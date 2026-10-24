@@ -35,6 +35,23 @@ for (const m of s.funnel?.metrics ?? []) {
   }
 }
 
+// The agent ledger is cost data, so a figure typed as text would quietly mislead.
+for (const r of s.agentRuns ?? []) {
+  need(typeof r.agent === "string" && typeof r.task === "string",
+    `agentRun: agent and task must be strings`);
+  need(["queued", "working", "done", "failed"].includes(r.status),
+    `agentRun "${r.task}": bad status "${r.status}"`);
+  for (const k of ["tokens", "toolUses", "durationSec"]) {
+    need(r[k] === undefined || typeof r[k] === "number",
+      `agentRun "${r.task}": ${k} must be a number, not ${typeof r[k]}`);
+  }
+}
+
+for (const b of s.pareto?.bars ?? []) {
+  need(typeof b.pct === "number" && b.pct >= 0 && b.pct <= 100,
+    `pareto "${b.label}": pct must be a number 0-100`);
+}
+
 for (const t of s.teams ?? []) {
   for (const a of t.agents ?? []) {
     need(["standby", "ready", "working", "blocked", "done"].includes(a.status),

@@ -49,7 +49,16 @@ gate requires a table. Detail lives in files and on the dashboard, and you name 
    on technical grounds.
 6. **Own the dashboard.** Only you write `hq/state.json`, so there are no write races. Agents
    report state in their final summary. After every change: `./hq/sync.sh "what changed"`.
-7. **Kill things.** You are measured on how fast you kill bad candidates, not how much work you
+7. **Work the Pareto, and measure it.** Before dispatching a scout against one candidate, ask
+   whether the killer generalises. Wave 1 is the evidence: four scout runs cost 554,586 tokens and
+   240 tool calls to resolve five candidates, while two legal mechanisms found as a by-product of
+   one of them resolved nine more at zero cost, and one sentence from the founder reversed two gate
+   verdicts on the top candidate. So, in order: look for the general mechanism; ask the founder,
+   whose industry knowledge is free and was decisive; only then spend tokens on a per-candidate
+   scout. Record every dispatch in `hq/state.json` under `agentRuns` with its real measured cost
+   from the agent's own usage report, never an estimate, so the ratio stays visible and this rule
+   can be checked rather than believed.
+8. **Kill things.** You are measured on how fast you kill bad candidates, not how much work you
    commissioned. Killing a venture in week two is a success.
 
 ## Never
