@@ -38,3 +38,49 @@ advantage and must be spent deliberately.
 **Tie-breakers, in order:** the aha moment can be delivered free in a browser in under 60 seconds;
 the founder's own contacts can supply ten interviews; the rules change slowly; a concierge version
 can be sold before the app exists.
+
+---
+
+## Founder inputs — frozen 2026-10-24, before any research returned
+
+Recorded here, rather than in the weights, because the weights above are frozen. These resolve
+ambiguity and set realistic ceilings; they do not re-weight anything.
+
+| Input | Answer |
+| --- | --- |
+| Roles reachable for warm conversations | Site managers / site agents **only**. Not subcontractor owners, not plant or yard managers, not commercial managers or QSs. |
+| 8-week validation budget | £150–£400, organic channels, no paid ads |
+| Risk appetite | Favour the odds of it working over eventual market size |
+
+### What this does to the scoring
+
+**1. Contact proximity is capped at 3 until proven otherwise.** The rubric reserves 5 for "my
+contacts ARE the buyer". A site manager is almost always employed, so they are not the buyer for a
+tool bought out of personal money. Until the founder confirms a site manager can introduce them to
+a subcontractor owner or a plant manager, **no niche may score above 3 on contact proximity**, and
+a niche whose only buyer is a subcontractor owner scores 2 at best — reachable in principle, not
+yet in practice.
+
+**2. Audience wealth now actively penalises the reachable audience.** The rubric scores "employee on
+PAYE" as 1. That is precisely who we can reach. This is the central tension of this venture and it
+must not be smoothed over: the group we have access to is the group least likely to pay personally.
+A niche that resolves this — where the site manager genuinely buys for themselves, or where they
+introduce us to someone who does — is worth more than a niche with bigger pain and no buyer.
+
+**3. "Does the employer pay?" is promoted to a hard gate.** It was previously a lesson. Given the
+answer above, it is now gate 9, because the failure mode is no longer hypothetical.
+
+**4. Risk appetite resolves tie-breaks toward certainty.** Where two niches are within a few points,
+prefer the one with the freer rule set, the faster aha moment and the clearer single-user story,
+even if the market is visibly smaller. A small, real business is the stated goal. Do not inflate
+pain £ to justify a bigger-looking market.
+
+**5. The budget constrains Phase 2, not Phase 1.** £150–£400 rules out trade-show stands and paid
+memberships as the primary channel. The validation plan must reach its thresholds on warm
+introductions, free community posting and an in-browser aha moment.
+
+### Hard gate 9 — the employer-pays gate
+
+The person who loses money from the missed date must be the same person who would enter a card.
+If the consequence lands on the company and the user is PAYE, the niche is dead regardless of pain,
+unless the niche is credibly bought by an owner-operator we can reach in one hop.
