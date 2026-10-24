@@ -3,10 +3,10 @@
     "name": "Studio HQ",
     "venture": "UK commercial construction — niche not yet chosen",
     "founder": "Brandon",
-    "operatingPartner": "AI operating partner",
+    "operatingPartner": "Bob, project manager",
     "branch": "claude/construction-venture",
-    "updated": "2026-10-24T02:40:00Z",
-    "statusLine": "Rubric and founder inputs frozen. 33 candidates on the longlist. Next: the mechanic gate on the top five. Reachability is the open risk — site managers are not the buyer.",
+    "updated": "2026-10-24T14:05:00Z",
+    "statusLine": "Bob is running the studio. Three scouts out on the mechanic gate: plant hire off-hire, lifting and PPE service lives, retention release. Expect most to die.",
     "phaseCurrent": 1,
     "killDate": null,
     "stoppedMark": "0",
@@ -51,7 +51,7 @@
       "status": "active",
       "detail": "25+ niches, weights locked before evidence, counter-incentive and mechanic gates run INSIDE this phase, then adversarial deep dives on the survivors.",
       "deliverable": "research/market-research.md",
-      "progress": 25
+      "progress": 40
     },
     {
       "n": 2,
@@ -98,13 +98,24 @@
   ],
   "teams": [
     {
+      "team": "Command",
+      "agents": [
+        {
+          "name": "bob",
+          "charter": "Dispatch, sequencing, gate enforcement, arbitration, the dashboard. The founder’s only point of contact.",
+          "status": "working",
+          "assignment": "Running the Phase 1 mechanic gate in waves"
+        }
+      ]
+    },
+    {
       "team": "Research",
       "agents": [
         {
           "name": "research-analyst",
           "charter": "Sourced evidence, counter-incentive and mechanic gates, scoring, deep dives",
-          "status": "ready",
-          "assignment": "Cleared to start: 25+ niche brainstorm, with weights and hard gates frozen to file before any evidence returns."
+          "status": "working",
+          "assignment": "Wave 1 of the mechanic gate: three scouts on off-hire, lifting/PPE service lives, and retention release."
         }
       ]
     },
@@ -332,6 +343,11 @@
       "at": "2026-10-24T02:40:00Z",
       "who": "operating partner",
       "what": "Froze the founder’s three Gate 1 answers into research/scoring-rubric.md without touching the weights, and added hard gate 9 (does the employer pay?). Wrote research/niche-longlist.md: 33 candidates in four groups ordered by who holds the date, every line marked unverified, with predictions recorded before gating. Built the zero-cost HQ update path: hq/validate.mjs, hq/sync.sh and .github/workflows/hq.yml deploying hq/ to GitHub Pages on every push."
+    },
+    {
+      "at": "2026-10-24T14:05:00Z",
+      "who": "bob",
+      "what": "Founder asked for a project manager as single point of contact. Added .claude/agents/bob.md and studio/COMMS.md, which states plainly that sub-agents have no peer channel: they hand off through files at agreed paths and route questions through Bob via a mandatory handoff block. COMMS.md also fixes write ownership per path so two agents never hold one file in a wave, and sets the reporting contract that keeps the founder’s chat to decisions only. Dispatched wave 1 of the mechanic gate."
     }
   ]
 }

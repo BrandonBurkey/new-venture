@@ -5,12 +5,13 @@ Two humans-worth of decisions, ten agents of execution.
 | | |
 | --- | --- |
 | **Founder** | Brandon. Has insider access to UK commercial construction, which is this venture's one structural advantage. Owns the two decision gates, the money, the introductions, and anything requiring a legal identity: the company, the Apple Developer account, Stripe, the domain, and hiring the domain expert who signs off the rules. |
-| **Operating partner** | Runs the studio day to day, dispatches and briefs the agents, arbitrates between them, keeps `hq/state.json` current, and is accountable for everything shipped. |
+| **Bob, project manager** | The founder's single point of contact. Runs the studio day to day, dispatches and briefs the agents, arbitrates between them, keeps `hq/state.json` current, and is accountable for everything shipped. The founder speaks to Bob and to nobody else; the ten specialists report to Bob. Charter: `.claude/agents/bob.md`. Reporting contract and the limits of agent-to-agent messaging: `studio/COMMS.md`. |
 
 ## The teams
 
 | Team | Agent | Owns | Phase |
 | --- | --- | --- | --- |
+| Command | `bob` | Dispatch, sequencing, gate enforcement, arbitration, the dashboard | All |
 | Research | `research-analyst` | Sourced evidence, incumbent teardowns, scoring, deep dives | 1, and re-checks later |
 | Product and design | `ux-designer` | Aha moment before paywall, screen specs, design tokens, Dynamic Type, App Store screenshots | 2-3 |
 | Product and design | `brand-copywriter` | MAGIC name, Grand Slam Offer stack, paywall copy, ASO listing | 2-3 |
@@ -27,7 +28,7 @@ rules in `CLAUDE.md`, which outrank their own preferences.
 
 ## How the work actually flows
 
-1. The operating partner briefs an agent with a written charter, the constraints, and a
+1. Bob briefs an agent with a written charter, the constraints, and a
    definition of done. No agent starts without one.
 2. Agents with no dependency on each other run in parallel.
 3. Every agent reports what it could **not** verify. A gap is a deliverable; a plausible-sounding
@@ -37,7 +38,10 @@ rules in `CLAUDE.md`, which outrank their own preferences.
 5. Before any phase closes, `qa-verifier` runs the consistency sweep: event names, product name,
    prices, deposit terms, guarantee wording and the kill date must match character for character
    across the landing page, the emails and the app.
-6. The operating partner updates `hq/state.json`. Nobody else writes it, so there are no races.
+6. Bob updates `hq/state.json`. Nobody else writes it, so there are no races.
+7. Agents do not message each other — the tooling has no peer channel. They hand off through
+   files at agreed paths, and route questions through Bob via the `## Handoff` block. The full
+   protocol, including write ownership per path, is `studio/COMMS.md`.
 
 ## A note on this roster
 
