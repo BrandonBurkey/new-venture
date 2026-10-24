@@ -62,19 +62,48 @@ watch inventory; HSA receipts; small-landlord bookkeeping; STR host ops; nurse c
 tracking; multi-state professional licence and CPD tracking. Revisit one only with new evidence
 that changes the verdict, stated explicitly.
 
-## 3. Product constraints (v1, buildable by AI in about a week)
-- Native SwiftUI, iOS 17+, SwiftData, StoreKit 2 subscriptions, local notifications, on-device PDF.
-- No backend, no accounts, no data licensing, no hardware, no two-sided marketplace, no regulated
-  licensing domain (medical diagnosis, legal advice, financial advice, insurance advice).
-- **Single-user and phone-first.** This is the constraint that kills most construction ideas, so
-  apply it early and strictly. If the value is in *chasing other people* — subcontractors, agents,
-  suppliers — it needs a backend and accounts, and it is out. The target is one person's phone,
-  working offline in a site cabin with no signal.
-- The rule set we compute from must be public, free and stable. **British Standards (BS, BS EN) are
-  paywalled by BSI**, as are many trade-body documents. `legislation.gov.uk` and HSE guidance
-  (INDG, L-series, ACOPs) are free. A niche whose intervals exist only inside a paid standard is
-  out, unless the dates come from the user's own property and the intervals are published free
-  elsewhere — and you must verify that carve-out explicitly, not assume it.
+## 3. Product constraints — widened by founder decision, 2026-10-24
+
+The original constraint was a paid iOS app: single-user, no backend, no accounts. It was killing
+candidates for the wrong reason. Several died only because the value lay in chasing other people —
+and in construction, administration largely *is* chasing other people, which is where the pain and
+the budgets are. The founder widened the form on 2026-10-24. The guardrails below are what stop
+that widening turning into enterprise software, which two people cannot sell or support.
+
+**Form, now permitted:** a responsive web app that works in a phone browser, with accounts and a
+small backend. Managed hosting, boring stack, no bespoke infrastructure. A native iOS app is a
+later option, not the starting point.
+
+**The guardrails. These are hard gates, not preferences.**
+
+1. **Self-serve, by card, no demo.** The buyer must be able to find it, understand it and pay for
+   it without a sales call, a pilot, a procurement process, an RFP or a security questionnaire.
+   Target a firm under roughly 50 staff. The moment a candidate needs an enterprise sale, it is
+   out — that is a business two people cannot run.
+2. **Single-player value first.** The paying user must get real value from their own use *before*
+   any counterparty signs in. Multi-party is allowed; a cold-start dependency is not. If the tool
+   is useless until the subcontractors, suppliers or agents join, it is out.
+3. **One sharp job.** Not a suite, not a platform. If it needs a second module to be worth paying
+   for, it is out.
+4. **Buildable and maintainable by this studio.** Roughly two to three weeks for a v1, and
+   supportable afterwards by two people alongside everything else.
+5. **Still excluded:** data licensing, hardware, two-sided marketplaces, and regulated advice
+   domains (medical diagnosis, legal advice, financial advice, insurance advice).
+6. **The counter-incentive rule is unchanged and still comes first.** Widening the product form
+   changes nothing about §0. If the party holding the date already notifies, the niche is dead.
+
+**On "commercial construction software sucks".** True of the enterprise suites, and that is exactly
+the ground we are not fighting on. Note what actually beat us in wave 1: Retention Track at £10 a
+contract, YardLink free, Scannable's free tier, Papertrail. Modern, cheap, competent point
+solutions. So the opening is not "build better than the suites" — it is "sell one sharp tool,
+self-serve, to a small firm that cannot afford a suite and will never run a procurement process".
+
+**Where a rule set is still required.** Where the product computes a date or an entitlement from
+regulation, that rule set must be public, free and stable: `legislation.gov.uk` and HSE guidance
+are free, British Standards are paywalled by BSI and are out. Where the product instead organises
+what the user and their counterparties enter, there is no rule set to cite — and that is a real
+weakness, not a neutral fact, because it removes the cited-sources deliverable and the
+60-second in-browser aha. Say so when it applies rather than arguing round it.
 
 ## 4. App Store and liability wording
 The app organises the user's own data and computes from public rules. It never certifies,
@@ -84,15 +113,25 @@ tell a user that a person is "qualified to work", that a lift or a ladder is "sa
 a site is "compliant". State their own record and the published interval, and let them conclude.
 
 ## 5. Payments
-Pre-launch deposits: Stripe on the web. After launch: all digital unlocks through Apple IAP. Credit
-deposits with App Store offer codes. Never promise an automatic unlock from a web payment. **UK
+**Updated with §3, 2026-10-24.** A web app sells through **Stripe** — subscriptions and pre-launch
+deposits both. Apple IAP applies only if and when a native iOS app ships, and only to digital
+unlocks inside it; until then there are no App Store offer codes to issue and no IAP rules to
+satisfy. Never promise an automatic unlock from a web payment unless the system actually performs
+it. **UK
 specifics:** check the Consumer Contracts Regulations 14-day cancellation right against the deposit
 wording, and write refund terms accordingly. Apple issues App Store refunds, not us.
 
 ## 6. Data protection
-UK GDPR, not CCPA. An app holding a professional's qualification or employment records on device
-needs an accurate privacy manifest and App Store privacy label. Address what happens to an exported
-PDF once the user shares it.
+UK GDPR, not CCPA. **The §3 widening raises this from a label exercise to a real obligation, and it
+is now a gating question rather than a Phase 2 detail.** On-device data about yourself is one
+thing; a backend holding records about *other people* — a subcontractor's workers, their
+qualifications, their employment — makes us a controller or processor of other people's personal
+data. That brings a lawful basis, a privacy notice, data-subject rights, retention periods,
+breach notification, a processor agreement with the hosting provider, and security we can actually
+stand behind. Price that in before scoring any candidate that stores third-party personal data,
+and prefer designs that keep such data out of our systems entirely. A native app still needs an
+accurate privacy manifest and App Store privacy label. Address what happens to an exported PDF
+once the user shares it.
 
 ## 7. Code
 - Boring and correct beats clever. Business logic gets tests.

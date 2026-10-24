@@ -28,12 +28,25 @@ advantage and must be spent deliberately.
 3. **Mechanic gate:** about twenty searches on the computation itself, in the customer's words,
    finding nothing that already performs it — free or paid, app or spreadsheet. Run this in
    Phase 1, before the deep dive.
-4. Rule set public, free and stable. No BS/BS EN or other paywalled standard as shipped data.
-5. Single-user and phone-first. No multi-user chasing workflow.
+4. Rule set public, free and stable **where the product computes from regulation**. No BS/BS EN or
+   other paywalled standard as shipped data. Where the product instead organises what users enter,
+   this gate does not apply — but record the absence of a rule set as a weakness, because it
+   removes the cited-sources deliverable and the 60-second in-browser aha.
+5. ~~Single-user and phone-first. No multi-user chasing workflow.~~ **REPLACED 2026-10-24 by
+   founder decision — see `CLAUDE.md` §3.** Multi-party is now permitted. In its place, three
+   gates: **(5a) self-serve** — payable by card by a firm under roughly 50 staff with no demo,
+   pilot, procurement or security questionnaire; **(5b) single-player value** — the payer gets real
+   value from their own use before any counterparty signs in, so no cold-start dependency;
+   **(5c) one sharp job** — not a suite, and not useless without a second module.
 6. App-Store-safe framing: organises the user's own data, computes from public rules, never
    certifies, advises or issues a verdict about a person, a machine or a site.
 7. Recurring use over years, not once in a lifetime.
 8. Not already nailed by a well-funded competitor.
+
+10. **Third-party personal data.** A candidate whose backend would hold records about other
+    people — a subcontractor's workers, their qualifications, their employment — carries real UK
+    GDPR controller or processor duties. Score the cost in, and prefer designs that keep such data
+    out of our systems. Not an automatic kill, but never a free pass. See `CLAUDE.md` §6.
 
 **Tie-breakers, in order:** the aha moment can be delivered free in a browser in under 60 seconds;
 the founder's own contacts can supply ten interviews; the rules change slowly; a concierge version

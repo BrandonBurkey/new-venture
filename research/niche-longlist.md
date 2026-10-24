@@ -162,3 +162,34 @@ Only two, and both are thin. Neither is being advocated.
 
 Everything else that remains live sits in Group B, where the counterparty is commercial rather than
 statutory, and B1 is under re-gate against a corrected buyer.
+
+
+---
+
+## Revived by the §3 widening, 2026-10-24
+
+The founder widened the product form: a web app with accounts and a small backend is now allowed,
+under three guardrails (self-serve under ~50 staff, single-player value before counterparties, one
+sharp job). Rows that died **only** on the old single-user rule are therefore back. Rows that died
+on the counter-incentive test, on a paywalled rule set, or because a competitor already ships the
+mechanic stay dead — the widening changes the form, not §0.
+
+| # | Candidate | Was killed by | Status now |
+| --- | --- | --- | --- |
+| B12 | Subcontractor insurance and certificate expiry, tracked *by* the contractor | "Dead: multi-user chasing workflow" | **Revived.** Needs testing against guardrail 1: is the buyer a small contractor who pays by card, or a large one with procurement? |
+| D3 | Site inductions and training matrix across a workforce | "Chasing other people" | **Revived.** Strong single-player value: the record is useful to the holder before anyone else signs in. |
+| D4 | Subcontractor RAMS review and approval dates | "Multi-user approval workflow" | **Revived.** |
+| D1 | Building Safety Act gateway dates | Multi-user, project-level, one-off | **Partly revived**, still weak on the one-off test. |
+| D2 | Golden-thread information obligations | Document management, backend, multi-user | **Partly revived**, but document management is a suite, which guardrail 3 forbids. |
+| B2 | Scaffold hire period overruns | Gate 9 and gate 5, on site-manager reasoning now known to be wrong for an owner buyer | **Re-openable.** |
+| B3 | Skip, welfare and cabin hire overruns | As B2 | **Re-openable.** |
+
+**Explicitly still dead:** all of Group C (the scheme, body or insurer notifies), B5 (Retention
+Track ships it), A1, A2 and the nine rows killed by the statutory-report and employer-provision
+mechanisms. None of those turned on the product form.
+
+**Honest caveat.** This longlist was brainstormed under the app-only constraint, so it is the wrong
+shape for the new one. The newly opened ground — small-firm compliance and document chasing, where
+the buyer is a company rather than an individual — was never brainstormed at all, because it was
+out of scope when the list was written. A fresh brainstorm under the new guardrails is wave 2's
+first job, and it should carry gate 10 (third-party personal data) from the start.
