@@ -2,30 +2,37 @@
 window.HQ_STATE = {
   "studio": {
     "name": "Studio HQ",
-    "venture": "Motorsport gear dates — the one survivor of four",
+    "venture": "Stopped at Phase 1. Redirected to UK commercial construction.",
     "founder": "Brandon",
     "operatingPartner": "AI operating partner",
     "branch": "claude/venture-studio-ios-app-2ytfbe",
-    "updated": "2026-10-20T00:05:00Z",
-    "statusLine": "Three of four finalists are dead at the gate. Motorsport passed, and also passes the new counter-incentive test. Waiting on your pivot decision.",
+    "updated": "2026-10-24T09:00:00Z",
+    "statusLine": "Stopped deliberately with no app built. Three of four finalists died at the competitor gate, and the studio is moving to UK commercial construction where the founder has an insider edge.",
     "phaseCurrent": 2,
     "killDate": "2026-12-14",
-    "killCriterion": "If no niche reaches 10 paid founding deposits by the kill date, the venture stops and the studio picks a different market."
+    "killCriterion": "This venture was stopped at Gate 1b on 24 October 2026. The construction venture sets its own kill date in its Phase 1."
   },
   "needsYou": [
     {
-      "id": "gate-1",
-      "title": "Answer Gate 1: pick the niche",
-      "why": "Four candidates survived scoring. Your choice sets everything downstream: the rules engine, the landing page, the app. I have a recommendation ready.",
+      "id": "construction",
+      "title": "Start the construction venture in a fresh session and repo",
+      "why": "Paste everything below the horizontal rule in studio/PROMPT-construction.md into a new Claude Code session on a new, empty repo. It is self-contained and carries every lesson this run paid for.",
       "urgency": "now",
-      "effort": "10 minutes"
+      "effort": "2 minutes"
     },
     {
       "id": "network",
-      "title": "Optional: widen this environment's network access",
-      "why": "The environment's network policy refused connections to capterra.com, trustpilot.com, appfollow.io, apps.apple.com, reddit.com and every .gov host we tried, so all Phase 1 evidence is search-snippet only and no App Store competitive survey was possible. Open the cloud environment menu in the session title bar, choose Edit, and add those hosts under Allowed domains with 'Allow package managers' left ticked. Docs: https://code.claude.com/docs/en/cloud-environments#network-access",
-      "urgency": "before build",
+      "title": "Widen the network allowlist BEFORE that session starts researching",
+      "why": "This is the single highest-value five minutes available to you. Every page was refused this run, so no primary source was read and no App Store search was possible, which is why three finalists had competitors we had scored as blue ocean. Cloud environment menu in the session title bar, then Edit, then add under Allowed domains: apps.apple.com, legislation.gov.uk, hse.gov.uk, capterra.com, g2.com, trustpilot.com, reddit.com. Leave 'Allow package managers' ticked. https://code.claude.com/docs/en/cloud-environments#network-access",
+      "urgency": "before research",
       "effort": "5 minutes"
+    },
+    {
+      "id": "contacts",
+      "title": "Write down which construction roles and companies you can actually reach",
+      "why": "Your insider edge is the one asset this venture has that the last one did not, and reachability was the weakest dimension in all four finalists here. The new session will ask for this at Gate 1. Name real roles: site managers, commercial managers, QSs, plant managers, subcontractor owners.",
+      "urgency": "before gate 1",
+      "effort": "10 minutes"
     }
   ],
   "phases": [
@@ -40,8 +47,8 @@ window.HQ_STATE = {
     {
       "n": 2,
       "name": "Validation kit",
-      "status": "blocked",
-      "detail": "Halted at the hard gate before any Swift was written, exactly as designed. Five build agents stopped mid-flight. Fallback niches now being re-gated with a mechanic-first search.",
+      "status": "pending",
+      "detail": "Not run. Halted at the hard gate before any build, exactly as designed.",
       "deliverable": "engine/, landing/, validation/",
       "progress": 0
     },
@@ -49,7 +56,7 @@ window.HQ_STATE = {
       "n": 3,
       "name": "iOS MVP",
       "status": "pending",
-      "detail": "SwiftUI, SwiftData, StoreKit 2, engine ported to a local Swift package passing the same vectors, then an adversarial review pass.",
+      "detail": "Not run. The venture was stopped at Phase 1.",
       "deliverable": "ios/",
       "progress": 0
     },
@@ -57,7 +64,7 @@ window.HQ_STATE = {
       "n": 4,
       "name": "Ship-readiness",
       "status": "pending",
-      "detail": "Green CI on macOS, App Store listing, final report with your five actions.",
+      "detail": "Not run. The venture was stopped at Phase 1.",
       "deliverable": ".github/workflows/ios.yml",
       "progress": 0
     }
@@ -79,15 +86,12 @@ window.HQ_STATE = {
     {
       "n": "1b",
       "name": "Confirm the pivot",
-      "status": "awaiting_you",
-      "question": "Mariner is dead. Pivot to the pre-committed fallback, or redirect?",
+      "status": "done",
+      "question": "Mariner is dead. Pivot to the fallback, or redirect?",
       "options": [
-        "Motorsport gear dates, if it clears the same gate",
-        "Govcon recert portfolio, if it clears the same gate",
-        "Put this repo down and move to UK commercial construction",
-        "Something else"
+        "Decided: stop this venture and go all-in on UK commercial construction"
       ],
-      "alsoNeedFromYou": "Optional 4-minute check on your phone: open mmseas.com and confirm the free tier really does compute the window. It is the only thing that could reverse the kill."
+      "alsoNeedFromYou": "Nothing further here. The construction brief is ready to paste into a new session."
     },
     {
       "n": 2,
@@ -103,34 +107,22 @@ window.HQ_STATE = {
       "team": "Research",
       "agents": [
         {
-          "name": "research-analyst",
-          "charter": "E1/E2 competitor gate",
-          "status": "done",
-          "assignment": "FAIL. Found MM-SEAS, free, computing the exact window plus CG-719S generation"
-        },
-        {
-          "name": "research-analyst",
-          "charter": "Mechanic-first gate: govcon",
-          "status": "done",
-          "assignment": "FAIL. SBA already emails every window at 30, 90 and 120 days, and sets the 8(a) date by its own notice"
-        },
-        {
-          "name": "research-analyst",
-          "charter": "Mechanic-first gate: motorsport",
-          "status": "done",
-          "assignment": "PASS. 17 searches, nine idioms, nothing computes gear expiry. But SFI now prints the date on the label"
-        },
-        {
           "name": "research-analyst x5",
-          "charter": "Scouting: 48 niches",
+          "charter": "Scouting: 48 niches across five clusters",
           "status": "done",
-          "assignment": "Raw findings in research/raw/"
+          "assignment": "research/raw/"
         },
         {
           "name": "research-analyst x4",
-          "charter": "Finalist deep dives",
+          "charter": "Adversarial finalist deep dives",
           "status": "done",
-          "assignment": "research/deep-dive-*.md"
+          "assignment": "research/deep-dive-*.md — all four cut their own score"
+        },
+        {
+          "name": "research-analyst x3",
+          "charter": "Competitor gates",
+          "status": "done",
+          "assignment": "Two FAIL, one PASS. Killed the venture before any code was written"
         }
       ]
     },
@@ -298,57 +290,67 @@ window.HQ_STATE = {
   ],
   "files": [
     {
-      "path": "research/market-research.md",
-      "what": "The Phase 1 report: scores, deep dives, offers, hypotheses, MVPs",
+      "path": "studio/PROMPT-construction.md",
+      "what": "The live deliverable: self-contained brief for the construction venture",
       "state": "done"
     },
     {
-      "path": "research/scoring-rubric.md",
-      "what": "Weights and hard gates, locked before evidence arrived",
-      "state": "done"
-    },
-    {
-      "path": "research/raw/",
-      "what": "Raw scout findings with sources, quotes and caveats",
-      "state": "done"
-    },
-    {
-      "path": "studio/ORG.md",
-      "what": "Who is on the team and what each one owns",
+      "path": "HANDOFF.md",
+      "what": "What happened, what is reusable, what is dead",
       "state": "done"
     },
     {
       "path": "CLAUDE.md",
-      "what": "Studio standing rules every agent inherits",
+      "what": "Studio standing rules, now led by the counter-incentive test",
+      "state": "done"
+    },
+    {
+      "path": "research/market-research.md",
+      "what": "Phase 1 report: 48 niches scored, four deep-dived",
+      "state": "done"
+    },
+    {
+      "path": "research/E1-E2-competitor-gate.md",
+      "what": "The gate that killed the chosen niche",
+      "state": "done"
+    },
+    {
+      "path": "research/gate-govcon.md",
+      "what": "The gate that killed the first fallback",
+      "state": "done"
+    },
+    {
+      "path": "research/gate-motorsport.md",
+      "what": "The one gate that passed, with the SFI label caveat",
+      "state": "done"
+    },
+    {
+      "path": "validation/OFFER.md",
+      "what": "The frozen-contract pattern, reusable",
+      "state": "done"
+    },
+    {
+      "path": "engine/API.md",
+      "what": "The frozen engine-surface pattern, reusable",
       "state": "done"
     },
     {
       "path": "hq/index.html",
-      "what": "This dashboard",
+      "what": "This dashboard, reusable by swapping state.json",
       "state": "done"
     },
     {
-      "path": "engine/",
-      "what": "Rules engine and golden test vectors",
-      "state": "planned"
-    },
-    {
-      "path": "landing/index.html",
-      "what": "Landing page that delivers the aha moment free",
-      "state": "planned"
-    },
-    {
-      "path": "validation/",
-      "what": "8-week plan, channel posts, interview script, SOPs, risk memo",
-      "state": "planned"
-    },
-    {
-      "path": "ios/",
-      "what": "The app",
-      "state": "planned"
+      "path": "studio/ORG.md",
+      "what": "Org chart and how work flows",
+      "state": "done"
     }
   ],
   "log": [
+    {
+      "at": "2026-10-24T09:00:00Z",
+      "who": "founder",
+      "what": "Decision at Gate 1b: stop this venture, go all-in on UK commercial construction, where the founder has an insider edge."
+    },
     {
       "at": "2026-10-20T00:05:00Z",
       "who": "gate analyst",

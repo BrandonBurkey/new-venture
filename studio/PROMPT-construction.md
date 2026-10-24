@@ -77,14 +77,43 @@ These four questions killed 44 of 48 niches last time. Ask them before you get a
    "next LOLER date", "off-hire reminder". Do this before the deep dive, not after.
 6. **"Can I actually search for the competition?"** Last time the environment could not reach the App Store, and three of four finalists turned out to have competitors we had scored as blue ocean. **Fix this before you start** (see Environment).
 
+## What to expect, based on what just happened
+
+The previous run of this exact process produced: 48 niches examined, 44 killed in Phase 1, four
+deep-dived, **three of those four killed at the competitor gate**, and one survivor whose own
+analyst called it "a good first app, a small business". Zero lines of app code were written, which
+was the correct outcome, not a failure.
+
+Plan for that shape. Specifically:
+- **Most of your shortlist will die**, and the ones that die loudest will be the ones with the
+  biggest pain figures, because big pain attracts institutions that already solve it.
+- **Do not fall in love with an anchor.** A £250,000 mistake is not a business if the body that
+  holds the date emails a reminder 90 days out, for free, computed from the real record.
+- **The founder's time is the scarce resource, not mine.** Bring decisions, not updates.
+- If the shortlist collapses entirely, say so plainly and recommend stopping. Killing a venture in
+  week two is a success.
+
 ## Candidate seeds — a starting point, not a shortlist
 
-Brainstorm 25+ of your own. These are to prime the pump, and several are probably bad:
+Brainstorm 25+ of your own. These are to prime the pump, and several are probably bad. I have
+marked each with my guess at the counter-incentive test, which you must verify rather than trust:
+
+**Likely to FAIL the counter-incentive test — the holder profits from reminding you.** The card
+schemes, the accreditation bodies, the inspection companies and the insurers all sell renewals, so
+they almost certainly already email. Check before investing any research in these:
 
 - **CSCS / CPCS / NPORS card expiries** for a subcontractor and their gang; SMSTS and SSSTS five-year refreshes; first aid at work three-year; IPAF and PASMA; abrasive wheels; asbestos awareness; face-fit testing.
 - **Plant and equipment inspection intervals** — LOLER thorough examination (six or twelve months depending on use), PUWER inspections, scaffold seven-day inspections, excavation inspections, temporary works design check validity, PAT testing.
 - **Trade registration renewals** — Gas Safe, NICEIC, NAPIT, F-Gas, waste carrier licence, operator licence.
 - **Accreditation renewals** — CHAS, SafeContractor, Constructionline, Acclaim, ISO 9001/14001/45001 surveillance audits, PI and public liability renewal.
+- **Professional CPD** — RICS, CIOB, RIBA, ICE. The institution almost certainly tracks it free; that was the exact pattern that killed the engineers and the pharmacists last run.
+
+**More likely to PASS — nobody holds the date, or the holder profits from your forgetting.** Start
+here, because this is where the unserved dates live:
+
+- **Plant hire off-hire dates.** The hire company bills by the week and has **no incentive whatsoever** to remind you to off-hire. Unglamorous, recurring, single-user, phone-first, and a pure money leak. On the counter-incentive test this is the strongest seed on the list.
+- **Retention release and defects-liability expiry** for a subcontractor. The main contractor holds your money and gains nothing by reminding you it is due.
+- **Dates stamped on kit the user bought from many different vendors** — harnesses and lanyards with service lives, SWL/LOLER tags on lifting accessories bought piecemeal, resin and adhesive shelf lives, calibration dates on site instruments. No single party holds the set, which is precisely why nobody notifies.
 - **Payment and contract dates under the Construction Act** — payment notice and pay-less notice deadlines under HGCRA 1996 as amended, final account and retention release dates, defects liability expiry, adjudication timetables. **High value and high risk:** the money at stake is large and real, but computing a party's statutory deadline edges toward legal advice and the rules are contract-specific (JCT vs NEC). Evaluate it, and be ruthless about the advice line.
 - **Plant hire off-hire dates** — forgetting to off-hire keeps the meter running. Unglamorous, recurring, single-user, and a pure money leak.
 - **Building Safety Act 2022** — gateway dates, higher-risk building registration, golden-thread obligations. Check whether this is a one-off, a multi-user workflow, or genuinely an individual duty-holder's date portfolio.
@@ -98,9 +127,36 @@ Brainstorm 25+ of your own. These are to prime the pump, and several are probabl
 **Build me an HQ.** A locally hosted, dependency-free dashboard at `hq/index.html` driven by a single `hq/state.json` that only you write, with a `build.mjs` to regenerate an offline copy and a `serve.sh`. It must show: a one-line status, a "Needs you" to-do list, the phase pipeline, decision gates, the validation funnel against pre-committed targets, the agent roster with live assignments, honest risks, deliverables and a timestamped activity log. Mobile-first, dark mode, verified with Playwright screenshots at 390px and 1280px in light and dark. Targets stay empty until they are committed, rather than showing invented numbers.
 
 ### Phase 1: Research
-Brainstorm 25+ candidate niches. **Write the scoring weights and the hard gates to a file BEFORE any research returns**, so they cannot be bent to fit a favourite idea afterwards. For each niche gather: real complaints quoted and linked; incumbents with price, rating count and the weakness in their reviews; audience size and wealth signals; the pound cost of one mistake; where the audience gathers. Score 1-5 on pain £, audience wealth, competitive weakness, v1 buildability, reachability, willingness to pay, and — new for this run — **how close my contacts are to the buyer**.
 
-Deep-dive the top 3 or 4. For each: the full Value Equation, the Grand Slam Offer, Lean hypotheses, the MVP, experiments with pass/fail thresholds, a 6-8 feature v1 spec with the aha moment and onboarding flow, a competitor table, and the channels to the first 100 paying users.
+**Step 0 — fix the network allowlist before anything else.** See Environment. Do not dispatch a
+single scout until you have verified that a page actually fetches. Last run, every page was refused
+and the whole phase ran on search snippets.
+
+**Step 1 — brainstorm 25+ candidate niches.** **Write the scoring weights and the hard gates to a file BEFORE any research returns**, so they cannot be bent to fit a favourite idea afterwards. For each niche gather: real complaints quoted and linked; incumbents with price, rating count and the weakness in their reviews; audience size and wealth signals; the pound cost of one mistake; where the audience gathers. Score 1-5 on pain £, audience wealth, competitive weakness, v1 buildability, reachability, willingness to pay, and — new for this run — **how close my contacts are to the buyer**.
+
+**Step 2 — GATE BEFORE YOU DEEP-DIVE. This is the change that matters most.**
+
+Last run we ran the competitor gate in Phase 2, after four full deep dives, and it killed three of
+the four finalists — including the one the founder had chosen and the one we had begun to build.
+That wasted an entire phase. **The gate now runs inside Phase 1, as a scoring input, before any
+deep dive is written.**
+
+For every niche that survives the hard gates, run a mechanic-first gate costing about twenty
+searches:
+- Search the **computation**, in the words a customer would use, before any product name.
+- Search whether **the party holding the date already notifies** — the scheme, the body, the
+  insurer, the inspection company, the main contractor, the institution. Search their own help
+  pages for "we will remind you", "notification", "days before expiry".
+- Only then search named rivals.
+- A free spreadsheet circulating in a trade group is a competitor. So is a feature buried inside
+  a tool they already have, and so is a renewal email.
+
+A niche that fails this gate is dead before anyone writes a word about its Value Equation. Carry
+only survivors forward, and expect to lose most of them: **of the last run's four finalists, three
+died here.** So take five or six candidates into gating, not three, and tell me early if the whole
+shortlist is collapsing — that is a signal about the market, not a failure of research.
+
+**Step 3 — deep-dive the survivors, adversarially.** For each: the full Value Equation, the Grand Slam Offer, Lean hypotheses, the MVP, experiments with pass/fail thresholds, a 6-8 feature v1 spec with the aha moment and onboarding flow, a competitor table, and the channels to the first 100 paying users.
 
 **Make each deep-dive adversarial, not confirmatory.** Last run, every deep-dive cut its own Phase 1 score once it looked harder, and that was the most valuable output of the phase. Tell each analyst to attack the idea and to state its strength of bet out of 10.
 
