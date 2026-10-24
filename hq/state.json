@@ -1,12 +1,12 @@
 {
   "studio": {
     "name": "Studio HQ",
-    "venture": "UK commercial construction \u2014 niche not yet chosen",
+    "venture": "UK commercial construction — niche not yet chosen",
     "founder": "Brandon",
     "operatingPartner": "AI operating partner",
-    "branch": "main",
-    "updated": "2026-10-24T00:00:00Z",
-    "statusLine": "Scaffolding seeded. Nothing researched yet. Fix the network allowlist, then paste PROMPT.md to begin.",
+    "branch": "claude/construction-venture",
+    "updated": "2026-10-24T01:15:00Z",
+    "statusLine": "BLOCKED at step 0. Network access verified and it does not work: hse.gov.uk, legislation.gov.uk and itunes.apple.com all fail to resolve. No research dispatched, by design.",
     "phaseCurrent": 1,
     "killDate": null,
     "stoppedMark": "0",
@@ -17,24 +17,24 @@
   "needsYou": [
     {
       "id": "network",
-      "title": "Fix the network allowlist, and prove it works",
-      "why": "The highest-value five minutes available. Cloud environment menu in the title bar, then Edit, then Network access. Add apps.apple.com, itunes.apple.com, legislation.gov.uk, hse.gov.uk, reddit.com, capterra.com, g2.com, trustpilot.com. Leave 'Allow package managers' ticked. Then make the session fetch https://www.hse.gov.uk/ and confirm it returns content. See SETUP.md step 2.",
-      "urgency": "before any research",
+      "title": "Widen the network allowlist — verified blocked, research is held until you do",
+      "why": "Tested all three on 24 Oct: www.hse.gov.uk, www.legislation.gov.uk and itunes.apple.com each failed with no DNS resolution at all, and the proxy logged a 403 on CONNECT for each. github.com and registry.npmjs.org work, so the connection itself is fine — it is purely the allowed-domains list. Cloud environment menu in the session title bar, then Edit, then Network access. Add: apps.apple.com, itunes.apple.com, legislation.gov.uk, hse.gov.uk, reddit.com, capterra.com, g2.com, trustpilot.com, appfollow.io. Leave \"Allow package managers\" ticked. See SETUP.md step 2.",
+      "urgency": "blocking all research",
       "effort": "5 minutes"
-    },
-    {
-      "id": "prompt",
-      "title": "Paste PROMPT.md as your first message",
-      "why": "Self-contained brief. Restart the session first if you have just committed this scaffolding, so the agent roster and CLAUDE.md are loaded.",
-      "urgency": "now",
-      "effort": "2 minutes"
     },
     {
       "id": "contacts",
       "title": "List the construction roles and companies you can reach",
-      "why": "Your insider access is this venture's one structural advantage, and the rubric scores it at 10%. Name real roles: site managers, commercial managers, QSs, plant managers, subcontractor owners, H&S advisors. Gate 1 asks for this.",
+      "why": "Your insider access is this venture’s one structural advantage and the rubric scores it. Name real roles and firms: site managers, commercial managers, QSs, plant managers, subcontractor owners, H&S advisors. Gate 1 asks for this. You can send it with your \"allowlist done\" reply to save a round trip.",
       "urgency": "before gate 1",
       "effort": "10 minutes"
+    },
+    {
+      "id": "budget-risk",
+      "title": "Decide the validation budget and your risk appetite on market size",
+      "why": "The other two Gate 1 inputs from SETUP.md step 5. Budget is cash for an 8-week organic validation before any app (the previous venture’s plans came in at £170–£570). Risk appetite is how much you weigh eventual business size against the odds it works at all.",
+      "urgency": "before gate 1",
+      "effort": "5 minutes"
     }
   ],
   "phases": [
@@ -228,9 +228,9 @@
       "mitigation": "Hard gate 5, applied early and strictly. The target is one person's phone, offline in a site cabin."
     },
     {
-      "severity": "medium",
-      "risk": "If the network allowlist is not widened, research runs on search snippets, no App Store survey is possible, and competitive scores are unreliable.",
-      "mitigation": "SETUP.md step 2, and the session must prove a fetch works before research starts."
+      "severity": "high",
+      "risk": "CONFIRMED, not hypothetical: the network allowlist blocks every research host. hse.gov.uk, legislation.gov.uk and itunes.apple.com do not resolve. Web search snippets still work, but no primary source can be opened and no App Store lookup is possible — exactly the condition under which the previous venture mis-scored three of four finalists as near blue ocean.",
+      "mitigation": "Phase 1 is held at step 0 until the founder widens the allowlist and a fetch is proven. Researching on snippets is worse than waiting a day."
     },
     {
       "severity": "medium",
@@ -305,6 +305,11 @@
       "at": "2026-10-24T00:00:00Z",
       "who": "operating partner",
       "what": "Studio scaffolding seeded from the previous venture: ten agent charters, the standing rules, the rubric with the counter-incentive gate, the frozen-contract templates and this dashboard."
+    },
+    {
+      "at": "2026-10-24T01:15:00Z",
+      "who": "operating partner",
+      "what": "Step 0 network verification: all three test hosts refused. www.hse.gov.uk, www.legislation.gov.uk and itunes.apple.com each failed DNS resolution; the proxy recorded a 403 on CONNECT for all three. Control hosts github.com and registry.npmjs.org returned normally, so the egress path works and the allowed-domains list is the sole cause. Web search returns snippets only. Stopped and waiting for the founder; no research scouts dispatched."
     }
   ]
 }
