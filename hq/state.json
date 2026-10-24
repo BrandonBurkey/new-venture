@@ -96,8 +96,8 @@
         {
           "name": "research-analyst",
           "charter": "Sourced evidence, counter-incentive and mechanic gates, scoring, deep dives",
-          "status": "standby",
-          "assignment": "Starts when the brief is pasted"
+          "status": "blocked",
+          "assignment": "Held at step 0. Brief is loaded; waiting on the network allowlist before any scout is dispatched."
         }
       ]
     },
