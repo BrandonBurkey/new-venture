@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Revenue Model</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chivo:wght@700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout concept: an estimator's worksheet. Assumptions on the left of the reasoning,
+   the arithmetic always visible, and the honest zero case given equal weight to the
+   optimistic one. Sibling palette to the studio HQ, shifted warmer. */
+:root{
+  --bg:#f2f3f1; --surface:#ffffff; --surface-2:#e9ebe7; --surface-3:#dfe2dd;
+  --fg:#151a16; --fg-2:#4d564e; --fg-3:#737d74;
+  --line:#d6dad3; --line-strong:#bcc2b8;
+  --accent:#8a5a14; --accent-ink:#ffffff; --accent-soft:#f6e9d4;
+  --good:#1a6b43; --good-soft:#d9ecdf;
+  --warn:#8a5600; --warn-soft:#f7e7c9;
+  --crit:#a32a18; --crit-soft:#f7ded8;
+  --zero:#6b7268; --zero-soft:#e4e7e2;
+  --display:"Chivo","Helvetica Neue",Arial,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --r:10px; --shadow:0 1px 2px rgba(21,26,22,.06);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0d0f0c; --surface:#151813; --surface-2:#1c201a; --surface-3:#242922;
+  --fg:#eceee9; --fg-2:#a9b1a7; --fg-3:#828b80;
+  --line:#272c24; --line-strong:#363d33;
+  --accent:#e5a855; --accent-ink:#241603; --accent-soft:#2e2312;
+  --good:#4fc98a; --good-soft:#102a1c;
+  --warn:#dfa72f; --warn-soft:#2d2411;
+  --crit:#f0786a; --crit-soft:#331714;
+  --zero:#8d968a; --zero-soft:#1e221c;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0d0f0c; --surface:#151813; --surface-2:#1c201a; --surface-3:#242922;
+  --fg:#eceee9; --fg-2:#a9b1a7; --fg-3:#828b80;
+  --line:#272c24; --line-strong:#363d33;
+  --accent:#e5a855; --accent-ink:#241603; --accent-soft:#2e2312;
+  --good:#4fc98a; --good-soft:#102a1c;
+  --warn:#dfa72f; --warn-soft:#2d2411;
+  --crit:#f0786a; --crit-soft:#331714;
+  --zero:#8d968a; --zero-soft:#1e221c;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.55;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:700;margin:0;text-wrap:balance;letter-spacing:-.015em}
+h1{font-size:clamp(25px,5.4vw,36px);line-height:1.12}
+.sub{color:var(--fg-2);font-size:14.5px;margin-top:10px;max-width:62ch}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.banner{margin-top:20px;border:1px solid var(--warn);background:var(--warn-soft);
+  color:var(--fg);border-radius:var(--r);padding:14px 16px;font-size:14px}
+.banner b{font-family:var(--display)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  box-shadow:var(--shadow);margin-top:20px;overflow:hidden}
+.panel>h2{font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-2);
+  padding:13px 16px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.panel .body{padding:16px}
+.panel .body.flush{padding:0}
+.grid{display:grid;gap:20px}
+@media(min-width:880px){.grid.two{grid-template-columns:1fr 1fr}}
+
+/* scenario cards */
+.scen{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));padding:16px}
+.card{border:1px solid var(--line);border-radius:var(--r);padding:13px 14px;background:var(--surface);
+  cursor:pointer;text-align:left;font:inherit;color:inherit;min-width:0;
+  transition:border-color .12s,background .12s}
+.card:hover{border-color:var(--line-strong)}
+.card[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.card .nm{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-2);font-weight:600}
+.card .big{font-family:var(--mono);font-size:24px;font-weight:600;margin-top:7px;
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.card .cap{font-size:12.5px;color:var(--fg-3);margin-top:4px}
+.card.z[aria-pressed="true"]{border-color:var(--zero);background:var(--zero-soft)}
+
+/* chart */
+.chartbox{padding:16px;overflow-x:auto}
+svg{display:block;max-width:100%;height:auto}
+.lg{display:flex;flex-wrap:wrap;gap:14px;padding:0 16px 16px;font-size:12.5px;color:var(--fg-2)}
+.lg i{display:inline-block;width:20px;height:3px;border-radius:2px;margin-right:6px;
+  vertical-align:middle}
+
+/* inputs */
+.inp{display:grid;grid-template-columns:1fr auto;gap:5px 12px;align-items:center;
+  padding:12px 16px;border-top:1px solid var(--line)}
+.inp:first-child{border-top:0}
+.inp label{font-size:13.5px;font-weight:500;min-width:0}
+.inp .hint{grid-column:1/-1;font-size:12.5px;color:var(--fg-3)}
+.inp input[type=range]{width:100%;grid-column:1/-1;accent-color:var(--accent)}
+.inp .val{font-family:var(--mono);font-weight:600;font-size:14px;
+  background:var(--surface-3);border-radius:6px;padding:2px 8px;font-variant-numeric:tabular-nums}
+
+/* pareto */
+.lev{width:100%;text-align:left;font:inherit;color:inherit;background:var(--surface);
+  border:0;border-top:1px solid var(--line);padding:13px 16px;cursor:pointer;display:grid;
+  grid-template-columns:1fr auto;gap:5px 12px}
+.lev:first-child{border-top:0}
+.lev:hover{background:var(--surface-2)}
+.lev[aria-expanded="true"]{background:var(--accent-soft)}
+.lev .nm{font-weight:600;font-size:14px;min-width:0}
+.lev .d{font-family:var(--mono);font-weight:600;font-size:14px;color:var(--accent);
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.lev .bar{grid-column:1/-1;height:7px;border-radius:999px;background:var(--surface-3);overflow:hidden}
+.lev .bar i{display:block;height:100%;background:var(--accent);border-radius:999px}
+.det{padding:0 16px 16px;font-size:13.5px;color:var(--fg-2);border-top:1px solid var(--line);
+  background:var(--surface-2)}
+.det h3{font-size:13px;margin:14px 0 5px;color:var(--fg);font-family:var(--body);font-weight:600}
+.det p{margin:0 0 8px}
+.det .tag{display:inline-block;font-family:var(--mono);font-size:11.5px;padding:2px 7px;
+  border-radius:999px;background:var(--surface-3);color:var(--fg-2);margin-bottom:8px}
+
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{text-align:right;padding:8px 16px;border-top:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left}
+thead th{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);
+  border-top:0;font-weight:600}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums}
+tbody tr:nth-child(even){background:var(--surface-2)}
+.src{font-size:12.5px;color:var(--fg-3);padding:0 16px 16px}
+.src a{color:var(--accent)}
+.src li{margin-bottom:5px}
+footer{margin-top:28px;font-size:12.5px;color:var(--fg-3);text-align:center}
+.note{font-size:13px;color:var(--fg-3);padding:0 16px 16px;margin:0}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Revenue Model</h1>
+<p class="sub">Not a forecast. A model you can argue with: change any assumption and every number
+below recomputes. The Pareto panel measures which lever actually moves the twelve-month total.</p>
+
+<div class="banner">
+  <b>Read this first.</b> No niche has passed the gates, no price is set, and no customer has been
+  spoken to. Every input here is an <b>assumption</b>, not evidence. The only figures drawn from
+  research are the competitor prices at the bottom. Today the honest base case is
+  <b>Scenario 0 — stop</b>, which earns nothing.
+</div>
+
+<section class="panel">
+  <h2>Pick a scenario</h2>
+  <div class="scen" id="scen"></div>
+  <p class="note" id="scenNote"></p>
+</section>
+
+<section class="panel">
+  <h2>Cumulative revenue, twelve months</h2>
+  <div class="chartbox" id="chartbox"></div>
+  <div class="lg">
+    <span><i style="background:var(--crit)"></i>Worst</span>
+    <span><i style="background:var(--accent)"></i>Average</span>
+    <span><i style="background:var(--good)"></i>Best</span>
+    <span><i style="background:var(--zero)"></i>Stop (£0)</span>
+  </div>
+</section>
+
+<div class="grid two">
+  <section class="panel">
+    <h2>Assumptions — drag to change</h2>
+    <div class="body flush" id="inputs"></div>
+    <p class="note">Editing these only changes the scenario you have selected. Nothing is saved;
+      reload to return to the defaults.</p>
+  </section>
+
+  <section class="panel">
+    <h2>Pareto — which lever moves the money</h2>
+    <div class="body flush" id="levers"></div>
+    <p class="note" id="levNote"></p>
+  </section>
+</div>
+
+<section class="panel">
+  <h2>Month by month</h2>
+  <div class="body flush" style="overflow-x:auto">
+    <table>
+      <thead><tr><th>Month</th><th>What happens</th><th>Paying firms</th><th>MRR</th><th>Cumulative</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Where the price anchors come from</h2>
+  <ul class="src">
+    <li><b>Fast RAMS</b> — £12.99 one-off, Stripe, no account. <span class="mono">[verified-fetch]</span></li>
+    <li><b>Retention Track</b> — £10 per contract, first three free, no subscription. <span class="mono">[verified-fetch]</span></li>
+    <li><b>Risk Assessor Pro</b> — £18 per user per month. <span class="mono">[verified-fetch]</span></li>
+    <li><b>CertCove</b> — free tier, then about £99 per month for fifty vendors. <span class="mono">[verified-fetch]</span></li>
+    <li><b>HandsHQ</b> — £275 per month for ten users, billed annually plus a setup fee, demo-gated. <span class="mono">[verified-fetch]</span></li>
+    <li><b>Builder's Profile</b> — £299–£549 a year. <b>CHAS</b> — £429 / £659 / £949. <span class="mono">[verified-fetch]</span></li>
+  </ul>
+  <p class="note">These bracket a credible price for one sharp tool sold to a firm under fifty
+    staff: roughly £15 to £49 a month. Anything above that meets HandsHQ, which already ships more.</p>
+</section>
+
+<footer>Studio HQ · assumptions, not forecasts · every figure recomputes from the inputs above</footer>
+</div>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+
+  // ---- the model -------------------------------------------------------------
+  // Deliberately simple and legible: interviews convert to paying pilots, organic
+  // signups begin once a landing page exists, and churn eats the base each month.
+  var DEFS=[
+    {key:"intros",   label:"Warm introductions you complete", min:0,  max:30,  step:1,  unit:"",
+     hint:"Your site-manager contact introducing you to subcontractor owners. The brief assumes 10-15 are reachable."},
+    {key:"convPct",  label:"Introductions that become paying firms", min:0, max:60, step:5, unit:"%",
+     hint:"Of the owners you actually speak to, how many pay for a concierge or pilot. Nothing validates this yet."},
+    {key:"price",    label:"Price per firm per month", min:0, max:99, step:5, unit:"£",
+     hint:"Competitor anchors at the bottom of this page bracket roughly £15-£49."},
+    {key:"organic",  label:"New firms per month from organic channels", min:0, max:20, step:1, unit:"",
+     hint:"Trade forums, groups, guest articles. Starts in month 5, once something exists to send people to."},
+    {key:"churnPct", label:"Monthly churn", min:0, max:20, step:1, unit:"%",
+     hint:"Share of paying firms who leave each month. Small-firm construction software churns hard."}
+  ];
+  var SCEN={
+    stop:   {nm:"0 — Stop",   cap:"Interviews find nothing unserved",  tone:"z",
+             a:{intros:10,convPct:0,price:0,organic:0,churnPct:0}},
+    worst:  {nm:"Worst",      cap:"It works, barely",                  tone:"",
+             a:{intros:10,convPct:10,price:19,organic:1,churnPct:8}},
+    average:{nm:"Average",    cap:"A small real business",             tone:"",
+             a:{intros:12,convPct:25,price:29,organic:3,churnPct:5}},
+    best:   {nm:"Best",       cap:"Everything lands",                  tone:"",
+             a:{intros:15,convPct:40,price:39,organic:8,churnPct:3}}
+  };
+  var ORDER=["stop","worst","average","best"];
+  var PILOT_MONTH=3, ORGANIC_MONTH=5;
+
+  function run(a){
+    var pilots=Math.round(a.intros*a.convPct/100);
+    var firms=0, out=[], cum=0;
+    for(var m=1;m<=12;m++){
+      var added=0, what;
+      firms=firms*(1-a.churnPct/100);
+      if(m<PILOT_MONTH){ what=(m===1?"Interviews":"Build the smallest thing"); }
+      else if(m===PILOT_MONTH){ added=pilots; what="Pilots start paying"; }
+      else if(m<ORGANIC_MONTH){ what="Serve the pilots"; }
+      else { added=a.organic; what="Organic signups"; }
+      firms+=added;
+      var mrr=firms*a.price;
+      cum+=mrr;
+      out.push({m:m,what:what,firms:firms,mrr:mrr,cum:cum,added:added});
+    }
+    return {rows:out,total:cum,pilots:pilots,end:out[11].firms,endMrr:out[11].mrr};
+  }
+
+  function money(n){
+    var r=Math.round(n);
+    return "£"+String(r).replace(/\B(?=(\d{3})+(?!\d))/g,",");
+  }
+
+  // live copy of each scenario's assumptions, so edits persist per scenario
+  var live={}; ORDER.forEach(function(k){ live[k]=Object.assign({},SCEN[k].a) });
+  var sel="average", openLever=null;
+
+  // ---- scenario cards --------------------------------------------------------
+  function drawScen(){
+    $("scen").innerHTML=ORDER.map(function(k){
+      var r=run(live[k]);
+      return '<button class="card '+SCEN[k].tone+'" data-k="'+k+'" type="button" aria-pressed="'+
+        (k===sel)+'"><div class="nm">'+SCEN[k].nm+'</div><div class="big">'+money(r.total)+
+        '</div><div class="cap">'+SCEN[k].cap+'</div></button>';
+    }).join("");
+    Array.prototype.forEach.call($("scen").querySelectorAll(".card"),function(b){
+      b.addEventListener("click",function(){ sel=b.getAttribute("data-k"); openLever=null; drawAll(); });
+    });
+    var r=run(live[sel]);
+    $("scenNote").textContent= sel==="stop"
+      ? "The venture stops on 7 November and nothing is built. Two product forms have been gated and both were structurally served, so this is currently the most likely path, not the pessimistic one."
+      : "Twelve-month revenue "+money(r.total)+" from "+r.pilots+" pilot firms and organic growth, ending at "+
+        Math.round(r.end)+" paying firms and "+money(r.endMrr)+" a month. All assumptions, none evidenced.";
+  }
+
+  // ---- chart -----------------------------------------------------------------
+  function drawChart(){
+    var W=760,H=280,PL=58,PR=14,PT=14,PB=34;
+    var series=[{k:"worst",c:"var(--crit)"},{k:"average",c:"var(--accent)"},{k:"best",c:"var(--good)"}];
+    var max=0;
+    series.forEach(function(s){ run(live[s.k]).rows.forEach(function(r){ if(r.cum>max) max=r.cum }) });
+    if(max<=0) max=1000;
+    // round the axis up to something readable
+    var step=Math.pow(10,Math.floor(Math.log(max)/Math.LN10))/2;
+    var top=Math.ceil(max/step)*step;
+    var x=function(m){ return PL+(m-1)*(W-PL-PR)/11 };
+    var y=function(v){ return PT+(H-PT-PB)*(1-v/top) };
+    var g="";
+    for(var i=0;i<=4;i++){
+      var v=top*i/4, yy=y(v);
+      g+='<line x1="'+PL+'" y1="'+yy+'" x2="'+(W-PR)+'" y2="'+yy+'" stroke="var(--line)" stroke-width="1"/>'+
+         '<text x="'+(PL-8)+'" y="'+(yy+4)+'" text-anchor="end" font-size="11" fill="var(--fg-3)" '+
+         'font-family="IBM Plex Mono, monospace">'+money(v)+'</text>';
+    }
+    for(var m=1;m<=12;m+=(window.innerWidth<560?2:1)){
+      g+='<text x="'+x(m)+'" y="'+(H-12)+'" text-anchor="middle" font-size="11" fill="var(--fg-3)" '+
+         'font-family="IBM Plex Mono, monospace">'+m+'</text>';
+    }
+    g+='<line x1="'+PL+'" y1="'+y(0)+'" x2="'+(W-PR)+'" y2="'+y(0)+'" stroke="var(--zero)" '+
+       'stroke-width="2.5" stroke-dasharray="2 4"/>';
+    series.forEach(function(s){
+      var rows=run(live[s.k]).rows;
+      var d=rows.map(function(r,i){ return (i?"L":"M")+x(r.m).toFixed(1)+" "+y(r.cum).toFixed(1) }).join(" ");
+      var lastIsSel = s.k===sel;
+      g+='<path d="'+d+'" fill="none" stroke="'+s.c+'" stroke-width="'+(lastIsSel?3.2:1.8)+
+         '" stroke-linejoin="round" opacity="'+(lastIsSel?1:.5)+'"/>';
+      var last=rows[11];
+      g+='<circle cx="'+x(12).toFixed(1)+'" cy="'+y(last.cum).toFixed(1)+'" r="'+(lastIsSel?5:3.2)+
+         '" fill="'+s.c+'" opacity="'+(lastIsSel?1:.5)+'"/>';
+    });
+    $("chartbox").innerHTML='<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" '+
+      'role="img" aria-label="Cumulative revenue over twelve months for each scenario">'+g+'</svg>';
+  }
+
+  // ---- inputs ----------------------------------------------------------------
+  function drawInputs(){
+    var a=live[sel], dis=(sel==="stop");
+    $("inputs").innerHTML=DEFS.map(function(d){
+      var v=a[d.key];
+      var shown=(d.unit==="£")? "£"+v : (d.unit==="%"? v+"%" : String(v));
+      return '<div class="inp"><label for="i_'+d.key+'">'+d.label+'</label>'+
+        '<span class="val" id="v_'+d.key+'">'+shown+'</span>'+
+        '<input id="i_'+d.key+'" type="range" min="'+d.min+'" max="'+d.max+'" step="'+d.step+
+        '" value="'+v+'"'+(dis?' disabled':'')+'>'+
+        '<span class="hint">'+d.hint+'</span></div>';
+    }).join("");
+    DEFS.forEach(function(d){
+      var el=$("i_"+d.key); if(!el) return;
+      el.addEventListener("input",function(){
+        live[sel][d.key]=Number(el.value);
+        var shown=(d.unit==="£")? "£"+el.value : (d.unit==="%"? el.value+"%" : el.value);
+        $("v_"+d.key).textContent=shown;
+        drawScen(); drawChart(); drawLevers(); drawRows();
+      });
+    });
+  }
+
+  // ---- pareto: measured sensitivity, not opinion ------------------------------
+  var ACTIONS={
+    price:{
+      what:"Charge more, and anchor the price to what the mistake costs rather than to other apps.",
+      how:"The only verified personal-loss figure in our research is a court judgment: a partnership pursued for £26,155.50 over one machine, judgment £13,331 plus costs. Against that, £39 a month is rounding. Test £49 before £19 — the cheap end is where free incumbents live.",
+      need:"That one owner in ten can be shown a loss bigger than the annual price."
+    },
+    convPct:{
+      what:"Convert more of the owners you meet into paying firms.",
+      how:"This is the only lever your introductions touch directly, and it is the one input you can move this week. Run the five questions in validation/first-interview.md without pitching. A concierge offer — you do the work by hand for a fee — converts far better than asking someone to trust software that does not exist.",
+      need:"A pain specific enough that an owner pays before anything is built."
+    },
+    organic:{
+      what:"Add a repeatable channel so growth does not stop when your contacts run out.",
+      how:"Fifteen introductions is a ceiling, not a funnel. Organic means trade forums, federation groups and a guest article in the trade press. It compounds, which is why it dominates the twelve-month total even at a low monthly rate.",
+      need:"A place the audience gathers that we can post in honestly and for free."
+    },
+    churnPct:{
+      what:"Keep the firms you win.",
+      how:"Churn is quietly the most expensive number here, because it compounds against you every month. The defence is the date portfolio: a tool holding two years of a firm's own records is far harder to leave than a tool holding one month's.",
+      need:"Recurring value, not a one-off setup job."
+    },
+    intros:{
+      what:"Get more introductions.",
+      how:"Worth doing and the weakest lever on this page. Doubling introductions roughly doubles month-three revenue and barely moves month twelve, because organic growth and churn dominate by then. Do not mistake activity here for progress.",
+      need:"Nothing new — you already have the access."
+    }
+  };
+
+  function drawLevers(){
+    var base=live[sel], baseTotal=run(base).total;
+    var bestA=live.best;
+    var rows=DEFS.map(function(d){
+      var probe=Object.assign({},base); probe[d.key]=bestA[d.key];
+      return {key:d.key,label:d.label,delta:run(probe).total-baseTotal};
+    }).filter(function(r){ return r.delta>0.5 })
+      .sort(function(a,b){ return b.delta-a.delta });
+
+    if(sel==="stop"||!rows.length){
+      $("levers").innerHTML='<div class="det" style="border-top:0;padding:16px">'+
+        (sel==="stop"
+          ? "Nothing to optimise: this scenario builds nothing. Select Worst or Average to see which levers would matter."
+          : "This scenario already matches the best case on every input, so there is nothing left to pull.")+'</div>';
+      $("levNote").textContent="";
+      return;
+    }
+    var top=rows[0].delta, sum=rows.reduce(function(t,r){return t+r.delta},0);
+    $("levers").innerHTML=rows.map(function(r){
+      var open=(openLever===r.key), A=ACTIONS[r.key]||{};
+      var share=Math.round(r.delta/sum*100);
+      return '<button class="lev" type="button" data-k="'+r.key+'" aria-expanded="'+open+'">'+
+        '<span class="nm">'+r.label+'</span><span class="d">+'+money(r.delta)+'</span>'+
+        '<span class="bar"><i style="width:'+Math.max(2,Math.round(r.delta/top*100))+'%"></i></span>'+
+        '</button>'+ (open?
+        '<div class="det"><span class="tag">'+share+'% of the available upside</span>'+
+        '<h3>What it means</h3><p>'+A.what+'</p>'+
+        '<h3>How to push it</h3><p>'+A.how+'</p>'+
+        '<h3>What would have to be true</h3><p>'+A.need+'</p></div>' : '');
+    }).join("");
+    Array.prototype.forEach.call($("levers").querySelectorAll(".lev"),function(b){
+      b.addEventListener("click",function(){
+        var k=b.getAttribute("data-k");
+        openLever=(openLever===k)?null:k;
+        drawLevers();
+      });
+    });
+    var t=rows[0], two=rows.length>1? rows[0].delta+rows[1].delta : rows[0].delta;
+    $("levNote").textContent="Each bar is measured, not asserted: it is the change in the "+
+      "twelve-month total from moving that one input to its best-case value and leaving the rest alone. "+
+      "The top two levers hold "+Math.round(two/sum*100)+"% of the upside — that is the 20% to work on. "+
+      "Tap any lever for the action.";
+  }
+
+  // ---- table -----------------------------------------------------------------
+  function drawRows(){
+    var r=run(live[sel]);
+    $("rows").innerHTML=r.rows.map(function(x){
+      return "<tr><td class=\"n\">"+x.m+"</td><td>"+x.what+(x.added?" (+"+Math.round(x.added)+")":"")+
+        "</td><td class=\"n\">"+(Math.round(x.firms*10)/10)+"</td><td class=\"n\">"+money(x.mrr)+
+        "</td><td class=\"n\">"+money(x.cum)+"</td></tr>";
+    }).join("");
+  }
+
+  function drawAll(){ drawScen(); drawChart(); drawInputs(); drawLevers(); drawRows(); }
+  drawAll();
+  var t; window.addEventListener("resize",function(){ clearTimeout(t); t=setTimeout(drawChart,150) });
+})();
+</script>
+</body>
+</html>
