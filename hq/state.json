@@ -5,12 +5,12 @@
     "founder": "Brandon",
     "operatingPartner": "Bob, project manager",
     "branch": "claude/construction-venture",
-    "updated": "2026-10-24T15:10:00Z",
-    "statusLine": "Two of three gated candidates killed: plant hire off-hire and retention release. A1/A2 (harness and lifting kit service lives) is the last one standing in wave 1.",
+    "updated": "2026-10-24T15:40:00Z",
+    "statusLine": "Wave 1: all four gated candidates killed. The reason is structural and comes from UK law, not from these four ideas. Recommendation needed from the founder.",
     "phaseCurrent": 1,
     "killDate": null,
-    "stoppedMark": "3",
-    "stoppedLabel": "candidates gated, 2 killed",
+    "stoppedMark": "4",
+    "stoppedLabel": "candidates gated, 4 killed",
     "stoppedOn": "2026-10-24",
     "killCriterion": "The kill date is set in Phase 1, before any research returns, and written into validation/OFFER.md."
   },
@@ -51,7 +51,7 @@
       "status": "active",
       "detail": "25+ niches, weights locked before evidence, counter-incentive and mechanic gates run INSIDE this phase, then adversarial deep dives on the survivors.",
       "deliverable": "research/market-research.md",
-      "progress": 55
+      "progress": 65
     },
     {
       "n": 2,
@@ -82,9 +82,13 @@
     {
       "n": 1,
       "name": "Pick the niche",
-      "status": "scheduled",
-      "question": "Which surviving niche do we build?",
-      "options": [],
+      "status": "approaching",
+      "question": "The shortlist is collapsing for a structural reason. Do we test the two narrow survivors, pivot the audience, or stop?",
+      "options": [
+        "Run wave 2 on the few candidates that survive the three structural killers",
+        "Pivot the audience to genuinely self-employed trades who do buy their own kit",
+        "Stop the venture and write the handoff"
+      ],
       "alsoNeedFromYou": "Which roles and companies you can reach, your validation budget, and your risk appetite on market size."
     },
     {
@@ -114,8 +118,8 @@
         {
           "name": "research-analyst",
           "charter": "Sourced evidence, counter-incentive and mechanic gates, scoring, deep dives",
-          "status": "working",
-          "assignment": "Wave 1 closing: B1 and B5 killed. A1/A2 still running, and its free-source finding decides the phase."
+          "status": "standby",
+          "assignment": "Wave 1 complete, 4 of 4 killed. Awaiting the founder’s decision before wave 2."
         }
       ]
     },
@@ -230,6 +234,11 @@
     ]
   },
   "risks": [
+    {
+      "severity": "high",
+      "risk": "STRUCTURAL, not candidate-specific. Three general killers emerged from wave 1 and they apply across UK commercial construction. (1) Where an examination is statutory, the examiner is legally required to write the next due date on the report, so the date holder is compelled to notify — LOLER Schedule 1. (2) Employers must provide work equipment and PPE and may not charge employees for it — HASAWA s.9 and PPER reg 4 — so the individual never owns the kit and never loses the money. (3) Counterparties publish live portals where money is at stake. Together these mean the venture’s premise, an individual tracking their own dates on their own phone, is actively prevented by the legal structure of this industry.",
+      "mitigation": "Reported to the founder as a decision rather than absorbed as a research failure. Applied as a free pre-filter to the remaining longlist before any further search budget is spent."
+    },
     {
       "severity": "medium",
       "risk": "WebFetch is broken in this environment: it returns getaddrinfo ENOTFOUND on every host, including ones the allowlist permits, while the proxy reports healthy. A scout nearly recorded good hosts as blocked and downgraded verified claims to snippets because of it.",
@@ -368,6 +377,11 @@
       "at": "2026-10-24T15:10:00Z",
       "who": "bob",
       "what": "Wave 1 verdicts. B1 plant hire off-hire FAILED gates 3, 4, 5 and 9: hire-company portals publish live on-hire lists for free (Ardent InSite, Speedy, GAP, and HAE’s white-label Hire HQ sold to the whole association), Re-flow already sends automated return alerts, and off-hire is a salaried contractor role with its own apprenticeship standard, so the employer pays. B5 retention release FAILED gates 3, 4, 5 and 8: Retention Track already ships the entire v1 for the UK at £10 per contract with three free, a free browser calculator already outputs both moiety dates, and no free authoritative interval exists because retention dates live in paywalled JCT and NEC particulars. Both scouts lowered their own prior scores, which is the behaviour asked for. Also confirmed dead: C10, LOLER on hired plant, since hirers email expiry alerts. Separately verified that WebFetch is broken environment-wide and routed the curl workaround to the running scout."
+    },
+    {
+      "at": "2026-10-24T15:40:00Z",
+      "who": "bob",
+      "what": "A1 and A2 also FAILED, completing wave 1 at four kills from four. A2: the free rule set is genuine — LOLER reg 9(3)(a)(i) \"at least every 6 months\" verified on legislation.gov.uk — but LOLER Schedule 1 obliges the examiner to state the next due date on the report, so the holder is legally compelled to notify, and Scannable offers a free-forever plan explicitly for individuals managing their own gear. A1: the inspection interval is free in INDG367, but the service life, which is the actual mechanic, is per-manufacturer and published free nowhere; two manuals disagree at 5 and 10 years. Both also fail gate 9 via HASAWA s.9 and PPER reg 4, which forbid an employer charging an employee for equipment, so employed operatives never buy the kit; the only self-providers found were arborists and rope-access technicians, a different industry from the founder’s access. Scout rated contact proximity 1, not the capped 3. Its closing recommendation to spend remaining budget on B1 and B5 was written without knowing both were already dead, and was not acted on."
     }
   ]
 }
