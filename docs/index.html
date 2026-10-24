@@ -136,6 +136,23 @@ button.ghost:focus-visible,a:focus-visible{outline:2px solid var(--accent);outli
 .bar i{display:block;height:100%;background:var(--accent);border-radius:2px}
 
 /* roster */
+.run-row{border-top:1px solid var(--line);padding:12px 16px;display:grid;
+  grid-template-columns:1fr auto;gap:4px 12px;align-items:start}
+.run-row:first-child{border-top:0}
+.run-row .t{font-weight:600;font-size:13.5px;min-width:0}
+.run-row .who{font-family:var(--mono);font-size:11.5px;color:var(--fg-3)}
+.run-row .v{font-size:12.5px;color:var(--fg-2);grid-column:1/-1;min-width:0}
+.run-row .cost{font-family:var(--mono);font-size:11.5px;color:var(--fg-3);
+  grid-column:1/-1;font-variant-numeric:tabular-nums}
+.par{padding:14px 16px;border-top:1px solid var(--line)}
+.par:first-child{border-top:0}
+.par .lbl{display:flex;justify-content:space-between;gap:12px;font-size:12.5px;
+  margin-bottom:6px;align-items:baseline}
+.par .lbl b{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600}
+.par .bar{height:8px;border-radius:999px;background:var(--surface-3);overflow:hidden}
+.par .bar i{display:block;height:100%;border-radius:999px;background:var(--accent)}
+.par .bar i.warn{background:var(--warn)}
+.par .cap{font-size:12px;color:var(--fg-3);margin-top:6px}
 .team{border-top:1px solid var(--line);padding:13px 16px}
 .team:first-child{border-top:0}
 .team>h3{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);
@@ -234,6 +251,18 @@ footer{margin-top:28px;color:var(--fg-3);font-size:12.5px;text-align:center}
 
   <div class="grid two">
     <section class="panel">
+      <h2>Agent runs</h2>
+      <div class="body flush" id="runs"></div>
+    </section>
+    <section class="panel">
+      <h2>Pareto — where the output came from</h2>
+      <div class="body flush" id="pareto"></div>
+      <p class="note" id="paretoNote" style="padding:0 16px 14px"></p>
+    </section>
+  </div>
+
+  <div class="grid two">
+    <section class="panel">
       <h2>The team</h2>
       <div class="body flush" id="roster"></div>
     </section>
@@ -263,6 +292,7 @@ footer{margin-top:28px;color:var(--fg-3);font-size:12.5px;text-align:center}
 (function(){
   "use strict";
   var $ = function(id){ return document.getElementById(id); };
+  function fmtNum(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
   function esc(s){
     return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
       return ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[c];
@@ -372,6 +402,31 @@ footer{margin-top:28px;color:var(--fg-3);font-size:12.5px;text-align:center}
           '<div class="ch">' + esc(a.charter) + '</div><div class="as">' + esc(a.assignment) + "</div></div>";
       }).join("") + "</div>";
     }).join("");
+
+    // agent runs — the real dispatch ledger, newest first
+    var runs = (s.agentRuns || []).slice().reverse();
+    $("runs").innerHTML = runs.length ? runs.map(function(r){
+      var cost = [];
+      if (r.tokens) cost.push(fmtNum(r.tokens) + " tokens");
+      if (r.toolUses) cost.push(r.toolUses + " tool calls");
+      if (r.durationSec) cost.push(Math.round(r.durationSec / 60) + " min");
+      return '<div class="run-row"><div class="t">' + esc(r.task) +
+        '<div class="who">' + esc(r.agent) + "</div></div>" + chip(r.status) +
+        (r.verdict ? '<div class="v">' + esc(r.verdict) + "</div>" : "") +
+        (cost.length ? '<div class="cost">' + esc(cost.join("  \u00b7  ")) + "</div>" : "") +
+        "</div>";
+    }).join("") : '<div class="run-row"><div class="t">No agents dispatched yet.</div></div>';
+
+    // pareto — share of output against share of cost
+    var pr = s.pareto || {};
+    $("pareto").innerHTML = (pr.bars || []).map(function(b){
+      var pct = Math.max(0, Math.min(100, Number(b.pct) || 0));
+      return '<div class="par"><div class="lbl"><span>' + esc(b.label) + "</span><b>" +
+        pct + '%</b></div><div class="bar"><i class="' + (b.tone === "warn" ? "warn" : "") +
+        '" style="width:' + pct + '%"></i></div>' +
+        (b.caption ? '<div class="cap">' + esc(b.caption) + "</div>" : "") + "</div>";
+    }).join("");
+    $("paretoNote").textContent = pr.note || "";
 
     // risks
     $("risks").innerHTML = (s.risks || []).map(function(r){

@@ -5,7 +5,7 @@
     "founder": "Brandon",
     "operatingPartner": "Bob, project manager",
     "branch": "claude/construction-venture",
-    "updated": "2026-10-24T17:20:00Z",
+    "updated": "2026-10-24T18:00:00Z",
     "statusLine": "B1 off-hire revived to MARGINAL 3.05 on the founder’s correction. Two kills overturned by a court judgment. One free competitor still blocks it. Next step is one phone call, not more searching.",
     "phaseCurrent": 1,
     "killDate": null,
@@ -415,6 +415,84 @@
       "at": "2026-10-24T17:20:00Z",
       "who": "bob",
       "what": "B1 re-gate: MARGINAL 3.05 of 5, up from 2.35 FAIL, strength of bet 4 of 10. The founder’s push-back was correct and overturned two kills. Gate 9 now PASSES on evidence rather than inference: VP plc v Megarry [2012] NIQB 22, an unincorporated partnership pursued for £26,155.50 on one machine with the defence \"we thought it was off hire\", judgment £13,331 plus interest and costs. Gate 5 also passes: CPA Supplementary Conditions 2011 cl 7.2.3 makes the hirer liable if he cannot produce the off-hire number, so merely holding that reference is single-user, offline and phone-shaped. Re-flow was over-weighted by the first scout at £39 per user per month, one plan, demo-only entry, mid-market civils. But gate 3 is still not cleared: YardLink ships a free cross-supplier live hire report with one-click and scheduled off-hire from any supplier, limited only to kit ordered through YardLink. Gate 4 has no rule set at all, so there is no engine and no browser aha. Knock-on: B2 and B3 were killed on the same wrong site-manager reasoning and are now re-openable. Next step is the founder’s introduction, not more search budget."
+    },
+    {
+      "at": "2026-10-24T18:00:00Z",
+      "who": "bob",
+      "what": "Added a live agent-run ledger and a Pareto panel to the dashboard, driven by each agent’s own measured usage rather than estimates. Four scout runs cost 554,586 tokens and 240 tool calls to resolve 5 candidates. The two legal mechanisms one of those scouts found, reused as a free filter, resolved 9 more at zero cost, and one sentence from the founder reversed two gate verdicts on the top candidate. Operating rule written into Bob’s charter: search for the generalisable killer before dispatching a per-candidate scout, and ask the founder before buying the same answer in tokens."
     }
-  ]
+  ],
+  "agentRuns": [
+    {
+      "agent": "research-analyst",
+      "task": "Mechanic gate — plant hire off-hire (B1)",
+      "status": "done",
+      "verdict": "FAIL 2.35/5. Later overturned in part by the founder’s correction.",
+      "tokens": 104547,
+      "toolUses": 49,
+      "durationSec": 499,
+      "output": "research/gate-b1-offhire.md"
+    },
+    {
+      "agent": "research-analyst",
+      "task": "Mechanic gate — retention release (B5)",
+      "status": "done",
+      "verdict": "FAIL 2.85/5. Retention Track already ships the whole v1 at £10/contract, first three free.",
+      "tokens": 100328,
+      "toolUses": 40,
+      "durationSec": 497,
+      "output": "research/gate-b5-retention.md"
+    },
+    {
+      "agent": "research-analyst",
+      "task": "Mechanic gate — harness and lifting kit (A1/A2), incl. one resume",
+      "status": "done",
+      "verdict": "FAIL 1.95 and 2.15/5. Produced the two legal mechanisms that then killed nine more rows free.",
+      "tokens": 221549,
+      "toolUses": 104,
+      "durationSec": 1348,
+      "output": "research/gate-a1-a2-lifting-ppe.md"
+    },
+    {
+      "agent": "research-analyst",
+      "task": "Re-gate off-hire against the owner buyer (B1)",
+      "status": "done",
+      "verdict": "MARGINAL 3.05/5. Overturned gates 9 and 5 on a court judgment; YardLink still blocks gate 3.",
+      "tokens": 128162,
+      "toolUses": 47,
+      "durationSec": 659,
+      "output": "research/gate-b1-offhire-regate.md"
+    },
+    {
+      "agent": "bob",
+      "task": "Free pre-filter from two verified legal mechanisms",
+      "status": "done",
+      "verdict": "Killed A3, A5, A6, A8, A9, A10, A11, A12 and C10 — nine rows — at zero scout cost.",
+      "tokens": 0,
+      "toolUses": 0,
+      "durationSec": 0,
+      "output": "research/niche-longlist.md"
+    }
+  ],
+  "pareto": {
+    "bars": [
+      {
+        "label": "Two legal mechanisms, reused as a free filter",
+        "pct": 64,
+        "caption": "9 of the 14 resolved candidates. Zero agent tokens. Found as a by-product of one scout run."
+      },
+      {
+        "label": "Four paid scout runs",
+        "pct": 36,
+        "tone": "warn",
+        "caption": "5 of the 14 resolved candidates, for 554,586 tokens and 240 tool calls."
+      },
+      {
+        "label": "One sentence from the founder",
+        "pct": 20,
+        "caption": "\"Most plant is hired\" reversed 2 of 4 gate verdicts on the top candidate. Zero tokens."
+      }
+    ],
+    "note": "The operating rule this produces: look for the generalisable killer before dispatching a per-candidate scout, and put a question to the founder before buying the same answer in tokens. Candidate-by-candidate gating is the expensive 80% of effort that produced the smaller share of the result."
+  }
 }
