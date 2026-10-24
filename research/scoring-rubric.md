@@ -54,12 +54,20 @@ ambiguity and set realistic ceilings; they do not re-weight anything.
 
 ### What this does to the scoring
 
-**1. Contact proximity is capped at 3 until proven otherwise.** The rubric reserves 5 for "my
-contacts ARE the buyer". A site manager is almost always employed, so they are not the buyer for a
-tool bought out of personal money. Until the founder confirms a site manager can introduce them to
-a subcontractor owner or a plant manager, **no niche may score above 3 on contact proximity**, and
-a niche whose only buyer is a subcontractor owner scores 2 at best — reachable in principle, not
-yet in practice.
+**1. Contact proximity: one hop is confirmed, so the cap lifts to 3 — and no higher.**
+*Updated 2026-10-24, same day: the founder confirmed he knows a site manager who can introduce him
+to a subcontractor owner.* The rubric's own scale puts "one hop to the buyer" at exactly **3**, and
+reserves 5 for "my contacts ARE the buyer", which remains untrue. So a niche whose buyer is a
+subcontractor owner now scores **3** rather than the 2 it was capped at an hour ago. That reopens
+A1, A2 and B5, which are the candidates where the person who loses the money is the person who
+would pay.
+
+**The hop is a claim, not yet evidence.** A promised introduction and a completed one are different
+things, and the previous venture died of assuming a channel worked. So this is now a cheap, dated
+experiment rather than a scoring input we lean on: **one real introduction, completed, by
+2026-10-31.** If it happens, contact proximity stays at 3 and the owner-operator candidates stay
+live. If it does not, it drops back to 2 and the honest recommendation may be to stop. Do not
+raise any score above 3 on the strength of a promise.
 
 **2. Audience wealth now actively penalises the reachable audience.** The rubric scores "employee on
 PAYE" as 1. That is precisely who we can reach. This is the central tension of this venture and it
@@ -83,4 +91,6 @@ introductions, free community posting and an in-browser aha moment.
 
 The person who loses money from the missed date must be the same person who would enter a card.
 If the consequence lands on the company and the user is PAYE, the niche is dead regardless of pain,
-unless the niche is credibly bought by an owner-operator we can reach in one hop.
+unless the niche is credibly bought by an owner-operator we can reach in one hop. As of
+2026-10-24 that one hop is confirmed as available, pending the completed-introduction experiment
+above, so a subcontractor-owner buyer no longer fails this gate automatically.

@@ -5,8 +5,8 @@
     "founder": "Brandon",
     "operatingPartner": "Bob, project manager",
     "branch": "claude/construction-venture",
-    "updated": "2026-10-24T14:05:00Z",
-    "statusLine": "Bob is running the studio. Three scouts out on the mechanic gate: plant hire off-hire, lifting and PPE service lives, retention release. Expect most to die.",
+    "updated": "2026-10-24T14:30:00Z",
+    "statusLine": "One hop to the buyer confirmed, which reopens the owner-operator candidates. Three scouts still out on the mechanic gate.",
     "phaseCurrent": 1,
     "killDate": null,
     "stoppedMark": "0",
@@ -23,11 +23,11 @@
       "effort": "2 minutes"
     },
     {
-      "id": "gate1-roles",
-      "title": "Confirm whether a site manager can introduce you to a subcontractor owner or plant manager",
-      "why": "You can reach site managers, who are PAYE — so the company pays for a missed date and the company buys the software. That is hard gate 9, and it threatens the strongest candidates. One hop to an owner-operator is what reopens them. This is now the single most decision-changing fact outstanding.",
-      "urgency": "shapes Phase 1 scoring",
-      "effort": "5 minutes"
+      "id": "intro-experiment",
+      "title": "Get ONE real introduction to a subcontractor owner, by 31 Oct",
+      "why": "You confirmed a site manager can introduce you. Good — that reopens the candidates where the buyer actually loses their own money. But a promised introduction and a completed one are different things, and the previous venture died of assuming a channel worked. So this is a dated experiment, not a scoring input: one completed introduction by 31 Oct keeps contact proximity at 3 and keeps those candidates live. If it does not happen, it drops to 2.",
+      "urgency": "by 31 Oct",
+      "effort": "one phone call"
     },
     {
       "id": "gate1-budget",
@@ -231,9 +231,9 @@
   },
   "risks": [
     {
-      "severity": "high",
-      "risk": "The reachable audience is not the buyer. The founder can reach site managers only, who are employed, while the candidates that survive the counter-incentive test are bought by subcontractor owners and plant managers. The venture’s assumed structural advantage does not currently reach the person who would pay.",
-      "mitigation": "Contact proximity capped at 3 in the rubric until a one-hop introduction is confirmed, and \"does the employer pay?\" promoted to hard gate 9. If no one-hop route exists, the honest Phase 1 recommendation may be to stop or to go back for access."
+      "severity": "medium",
+      "risk": "The reachable audience is not the buyer, but a one-hop route to one now exists. The founder can reach site managers, who are PAYE; the candidates that survive the counter-incentive test are bought by subcontractor owners. On 24 Oct the founder confirmed a site manager can introduce him to an owner, which moves contact proximity from 2 to the rubric’s \"one hop\" score of 3.",
+      "mitigation": "Treated as a claim to test, not a fact to lean on: one completed introduction by 31 Oct. Scores stay capped at 3 — no niche is scored as though the founder IS the buyer. If the introduction does not happen, proximity drops to 2 and stopping becomes the honest recommendation."
     },
     {
       "severity": "high",
@@ -348,6 +348,11 @@
       "at": "2026-10-24T14:05:00Z",
       "who": "bob",
       "what": "Founder asked for a project manager as single point of contact. Added .claude/agents/bob.md and studio/COMMS.md, which states plainly that sub-agents have no peer channel: they hand off through files at agreed paths and route questions through Bob via a mandatory handoff block. COMMS.md also fixes write ownership per path so two agents never hold one file in a wave, and sets the reporting contract that keeps the founder’s chat to decisions only. Dispatched wave 1 of the mechanic gate."
+    },
+    {
+      "at": "2026-10-24T14:30:00Z",
+      "who": "bob",
+      "what": "Founder confirmed a site manager can introduce him to a subcontractor owner. Contact proximity lifted from the interim cap of 2 to the rubric’s defined \"one hop\" score of 3, and no higher — 5 is reserved for contacts who ARE the buyer, which remains untrue. Reopens candidates A1, A2 and B5. Recorded as a dated experiment rather than a scoring input: one completed introduction by 31 Oct, or proximity drops back to 2."
     }
   ]
 }
