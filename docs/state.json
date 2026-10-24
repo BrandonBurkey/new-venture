@@ -5,14 +5,14 @@
     "founder": "Brandon",
     "operatingPartner": "Bob, project manager",
     "branch": "claude/construction-venture",
-    "updated": "2026-10-24T18:40:00Z",
-    "statusLine": "Product form widened by founder decision: web app, accounts, small backend, under three guardrails. Seven rows revived. A fresh brainstorm under the new rules is wave 2’s first job.",
+    "updated": "2026-10-24T19:30:00Z",
+    "statusLine": "Both product forms are structurally served. Desk research is finished — it has told us the same thing three times. The venture now rests on customer voice, which has never been collected.",
     "phaseCurrent": 1,
-    "killDate": null,
-    "stoppedMark": "12",
-    "stoppedLabel": "killed of 33, one marginal",
+    "killDate": "2026-11-07",
+    "stoppedMark": "30+",
+    "stoppedLabel": "candidates killed across two forms",
     "stoppedOn": "2026-10-24",
-    "killCriterion": "The kill date is set in Phase 1, before any research returns, and written into validation/OFFER.md."
+    "killCriterion": "By 7 Nov: if the founder’s owner interviews do not produce a specific, unserved pain in a practitioner’s own words, the venture stops and the handoff is written. No further desk research is commissioned either way."
   },
   "needsYou": [
     {
@@ -58,7 +58,7 @@
       "status": "active",
       "detail": "25+ niches, weights locked before evidence, counter-incentive and mechanic gates run INSIDE this phase, then adversarial deep dives on the survivors.",
       "deliverable": "research/market-research.md",
-      "progress": 70
+      "progress": 95
     },
     {
       "n": 2,
@@ -89,8 +89,8 @@
     {
       "n": 1,
       "name": "Pick the niche",
-      "status": "waiting on evidence",
-      "question": "Does the off-hire gap survive YardLink? Decided by owner interviews, not by search.",
+      "status": "decision due 7 Nov",
+      "question": "Do the owner interviews produce a specific unserved pain in a practitioner’s own words? If not, stop.",
       "options": [],
       "alsoNeedFromYou": "Which roles and companies you can reach, your validation budget, and your risk appetite on market size."
     },
@@ -122,7 +122,7 @@
           "name": "research-analyst",
           "charter": "Sourced evidence, counter-incentive and mechanic gates, scoring, deep dives",
           "status": "standby",
-          "assignment": "Wave 1 complete, 4 of 4 killed. Awaiting the founder’s decision before wave 2."
+          "assignment": "Stood down. No further desk research is commissioned; the next evidence must come from interviews."
         }
       ]
     },
@@ -237,6 +237,16 @@
     ]
   },
   "risks": [
+    {
+      "severity": "high",
+      "risk": "Zero customer voice after roughly 680,000 tokens of desk research. Both waves searched specifically for practitioner complaints and both recorded \"no verbatim complaints found\". Not one UK construction practitioner has been spoken to, so every verdict rests on what vendors and regulators publish about themselves.",
+      "mitigation": "Desk research is now closed. The only remaining experiment is the founder’s owner interviews, with a dated decision on 7 Nov. The single input that has repeatedly changed a verdict for free is the founder’s own industry knowledge."
+    },
+    {
+      "severity": "high",
+      "risk": "The widened space is also structurally served, at both ends. The SSIP and common-database memberships already hold and share the documents (Builder’s Profile £299–£549/yr, CHAS £429–£949, and \"we no longer offer a free membership\"), the main contractor’s portal chases free with \"zero barriers to entry\", CSCS My Skills and the CITB register are free, HSE gives the templates away, and a cheap self-serve incumbent already exists: CertCove advertises flat pricing with no sales calls and a free tier, and Site Manager Pro ships a live subcontractor competency matrix with expiry reminders. The only hole is between roughly £13 one-off and £275/month, and it is a price and sales-motion gap rather than a capability gap.",
+      "mitigation": "Competitive weakness scored 1 to 2 for the whole space, so the rubric’s top score is simply unavailable here. Entering a price gap against funded incumbents with no rules engine and no aha is the weakest position available to two people, and is not recommended."
+    },
     {
       "severity": "high",
       "risk": "A backend holding records about other people — a subcontractor’s workers, their qualifications, their employment — makes the studio a UK GDPR controller or processor of third-party personal data. That is a lawful basis, a privacy notice, data-subject rights, retention periods, breach notification, a processor agreement and security we can stand behind. Under the old on-device constraint this was a privacy label; now it is a real obligation.",
@@ -435,6 +445,11 @@
       "at": "2026-10-24T18:40:00Z",
       "who": "bob",
       "what": "Founder widened the product form: a responsive web app with accounts and a small backend is now permitted, replacing the single-user no-backend rule. Rewrote CLAUDE.md §3 with three guardrails as hard gates — self-serve by card to a firm under roughly 50 staff with no demo or procurement, single-player value before any counterparty signs in, and one sharp job rather than a suite — plus §5 moving to Stripe as primary with Apple IAP only if a native app ships, and §6 raising UK GDPR from a label exercise to a gating question because a backend may hold third-party personal data. Rubric gate 5 replaced by 5a, 5b and 5c; gate 4 narrowed to products that compute from regulation; new gate 10 for third-party personal data. Weights deliberately untouched: gates are the founder’s to change, weights are not mine to re-cut once evidence is in, and buildability is now a harder score because a backend is more work than an offline app. Seven rows revived: B12, D3, D4, partly D1 and D2, and B2 and B3 re-openable. Group C, B5, A1, A2 and the nine mechanism kills stay dead, since none turned on the product form. Recorded that the longlist is the wrong shape for the new constraint and needs a fresh brainstorm."
+    },
+    {
+      "at": "2026-10-24T19:30:00Z",
+      "who": "bob",
+      "what": "Wave 2 verdict: the widened space is structurally served too. One scout, 124,523 tokens, produced seven named killer mechanisms that disposed of 17 of 20 candidates at zero further cost — the Pareto rule working, against wave 1’s four runs and 554,586 tokens for five candidates. The three survivors rate 3 to 4 out of 10 and none compute from legislation, so all forfeit the cited-sources deliverable and the 60-second aha. The only opening found is a price and sales-motion gap between roughly £13 one-off and £275 per month, which means selling the same capability cheaper than funded incumbents: the weakest position available to two people. Ran the W12 verification inline rather than delegating it; the cited Constructionline page 404s, so the claim stays snippet-only and was not upgraded. Standing the research analyst down and closing desk research, because it has now returned the same structural answer for two different product forms and has never once produced a practitioner’s own words. Kill date set at 7 Nov against the interviews."
     }
   ],
   "agentRuns": [
@@ -487,20 +502,40 @@
       "toolUses": 0,
       "durationSec": 0,
       "output": "research/niche-longlist.md"
+    },
+    {
+      "agent": "research-analyst",
+      "task": "Wave 2 — generalisable killers for the small-firm web-app space",
+      "status": "done",
+      "verdict": "Space structurally served. Seven named killer mechanisms; 17 of 20 candidates died free. Best survivor 4/10.",
+      "tokens": 124523,
+      "toolUses": 58,
+      "durationSec": 736,
+      "output": "research/wave2-space-scan.md"
+    },
+    {
+      "agent": "bob",
+      "task": "W12 verification — does Constructionline email expiry notices?",
+      "status": "done",
+      "verdict": "Not established. Cited URL returns 404; claim stays snippet-only and was not upgraded. Run inline rather than delegated.",
+      "tokens": 0,
+      "toolUses": 4,
+      "durationSec": 60,
+      "output": "research/wave2-space-scan.md"
     }
   ],
   "pareto": {
     "bars": [
       {
-        "label": "Two legal mechanisms, reused as a free filter",
-        "pct": 64,
-        "caption": "9 of the 14 resolved candidates. Zero agent tokens. Found as a by-product of one scout run."
+        "label": "Wave 2: one scout hunting general killers",
+        "pct": 85,
+        "caption": "17 of 20 candidates resolved free by seven named mechanisms, from a single 124,523-token run."
       },
       {
-        "label": "Four paid scout runs",
+        "label": "Wave 1: four scouts gating candidates one at a time",
         "pct": 36,
         "tone": "warn",
-        "caption": "5 of the 14 resolved candidates, for 554,586 tokens and 240 tool calls."
+        "caption": "5 of 14 candidates resolved, for 554,586 tokens and 240 tool calls."
       },
       {
         "label": "One sentence from the founder",
@@ -508,6 +543,6 @@
         "caption": "\"Most plant is hired\" reversed 2 of 4 gate verdicts on the top candidate. Zero tokens."
       }
     ],
-    "note": "The operating rule this produces: look for the generalisable killer before dispatching a per-candidate scout, and put a question to the founder before buying the same answer in tokens. Candidate-by-candidate gating is the expensive 80% of effort that produced the smaller share of the result."
+    "note": "Wave 2 proved the rule wave 1 paid to learn: hunt the generalisable killer, not the candidate. One run resolved 17 candidates where four runs resolved 5. The remaining 20% that desk research cannot reach is customer voice — both waves recorded \"no verbatim complaints found\", and no practitioner has been spoken to."
   }
 }
