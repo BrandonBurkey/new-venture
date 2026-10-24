@@ -29,6 +29,16 @@ paywall elements, Restore Purchases, no external purchase links for digital unlo
 manifest and nutrition label accuracy, no claims the app cannot support, account-free operation,
 and anything in a regulated category that triggers extra scrutiny.
 
+## UK specifics
+UK GDPR, not CCPA. Check the Consumer Contracts Regulations 14-day cancellation right against the
+deposit wording. Flag any name or icon implying affiliation with a scheme or body — CITB, CSCS,
+CHAS, Constructionline, Gas Safe, NICEIC, HSE, RICS, CIOB — as an App Store Guideline 5.2 problem
+and a consumer-protection one, not a branding question.
+
+**The wording trap specific to this industry:** never tell a user that a person is qualified to
+work, that a lift, ladder or machine is safe to use, or that a site is compliant. State their own
+record and the published interval, and let them conclude.
+
 ## Payments
 Pre-launch Stripe deposits are a service commitment, not a digital unlock. After launch all
 digital unlocks go through Apple IAP. Deposits are credited by App Store offer code. Never

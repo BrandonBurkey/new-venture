@@ -4,7 +4,7 @@ Two humans-worth of decisions, ten agents of execution.
 
 | | |
 | --- | --- |
-| **Founder** | Brandon. Owns the two decision gates, the money, and anything requiring a legal identity: the LLC, the Apple Developer account, Stripe, the domain, and hiring the domain expert who signs off the rules. |
+| **Founder** | Brandon. Has insider access to UK commercial construction, which is this venture's one structural advantage. Owns the two decision gates, the money, the introductions, and anything requiring a legal identity: the company, the Apple Developer account, Stripe, the domain, and hiring the domain expert who signs off the rules. |
 | **Operating partner** | Runs the studio day to day, dispatches and briefs the agents, arbitrates between them, keeps `hq/state.json` current, and is accountable for everything shipped. |
 
 ## The teams

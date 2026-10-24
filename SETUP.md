@@ -5,10 +5,14 @@ evidence quality, so do not skip it.
 
 ---
 
-## 1. Make the repo
+## 1. The repo is already set up
 
-On GitHub, create a new empty repository — call it something like `construction-venture`. Private
-is fine. **Do not** add a README, a licence or a .gitignore; the starter brings its own.
+This branch, `claude/construction-venture`, **is** the construction venture, with the scaffolding at
+its root. The previous venture is preserved untouched on `claude/venture-studio-ios-app-2ytfbe`.
+
+If you would rather it lived in its own repository: create an empty one on GitHub, then
+`git remote add construction <url> && git push construction claude/construction-venture:main`.
+Nothing here depends on that; it is tidiness, not a requirement.
 
 ## 2. Open a Claude Code cloud session, and fix the network allowlist BEFORE anything else
 
@@ -44,25 +48,16 @@ good test — and confirm it actually returns content before any research starts
 matters as much as `apps.apple.com`, because Apple's JSON lookup API lives there and it answers
 competitor questions in one request.
 
-## 3. Drop in this starter
+## 3. The session is already running
 
-Unzip `construction-starter` into the fresh clone, so the repo root contains `CLAUDE.md`,
-`PROMPT.md`, `.claude/`, `hq/`, `studio/`, `research/` and `templates/`. Then:
+A Claude Code cloud session has been created against this branch, and its opening instruction is to
+verify network access and then wait for you. It will not start scouting until step 2 is done and you
+tell it to go.
 
-```bash
-git add -A
-git commit -m "Seed studio scaffolding, rules and agent roster"
-git push
-```
+## 4. Nothing to paste
 
-**Restart the Claude Code session after this commit**, or start it fresh afterwards. Agent
-definitions in `.claude/agents/` and the rules in `CLAUDE.md` are read at session start, so a
-session that was already running will not see them.
-
-## 4. Paste the brief
-
-Open `PROMPT.md`, copy the whole file, and paste it as your first message. It is self-contained and
-assumes nothing from this conversation.
+`PROMPT.md` was given to that session as its brief. It is kept here so you can read what it was
+asked to do, and so a future session can be started the same way.
 
 ## 5. Have these three answers ready for Gate 1
 

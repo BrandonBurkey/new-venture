@@ -1,18 +1,11 @@
-# new-venture
+# Construction venture
 
-Venture-studio working repo. **Stopped deliberately at the end of Phase 1 with no app built** —
-three of four finalist niches died at the competitor gate, and the studio has been redirected to
-UK commercial construction. Read `HANDOFF.md` first.
+Venture studio: one niche, one paid iOS app, UK commercial construction.
 
-| Path | What it is |
-| --- | --- |
-| `research/market-research.md` | Phase 1 market research: 25+ niches scored, top-3 deep dives, offers, hypotheses, MVPs |
-| `research/raw/` | Raw scout findings behind the report (evidence, quotes, source URLs) |
-| `studio/PROMPT-construction.md` | **The live deliverable:** self-contained brief for the next venture |
-| `studio/ORG.md` | The ten-agent roster and how work flows |
-| `hq/` | The founder's dashboard. `./hq/serve.sh`, then localhost:4173 |
-| `validation/OFFER.md` | The frozen-contract pattern that keeps parallel agents consistent |
-| `engine/API.md` | The same pattern for code: freeze the surface before agents build against it |
-| `engine/`, `landing/`, `ios/` | Not built. The venture was stopped at the gate first. |
+**Start with `SETUP.md`.** The scaffolding, standing rules and agent roster are already in place and
+a session has been started against this branch. `PROMPT.md` is the brief it was given.
 
-Start with `HANDOFF.md`.
+The previous venture — 48 niches examined, stopped deliberately with no app built — is preserved on
+`claude/venture-studio-ios-app-2ytfbe`, and its `HANDOFF.md` explains what was learned.
+
+`./hq/serve.sh` then `localhost:4173` for the dashboard.

@@ -1,26 +1,12 @@
-# macOS
 .DS_Store
-
-# Xcode / XcodeGen
+node_modules/
 *.xcodeproj
 *.xcworkspace
-xcuserdata/
 DerivedData/
 build/
 .swiftpm/
-*.hmap
-*.ipa
-*.dSYM.zip
-
-# Node
-node_modules/
-npm-debug.log*
-
-# Playwright / local artifacts
-playwright-report/
-test-results/
-screenshots/*.tmp.png
-
-# Secrets / local config
+xcuserdata/
 .env
 .env.local
+playwright-report/
+test-results/
