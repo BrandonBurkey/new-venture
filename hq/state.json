@@ -1,12 +1,12 @@
 {
   "studio": {
     "name": "Studio HQ",
-    "venture": "UK commercial construction — niche not yet chosen",
+    "venture": "UK commercial construction — web app with accounts, sold self-serve to small firms",
     "founder": "Brandon",
     "operatingPartner": "Bob, project manager",
     "branch": "claude/construction-venture",
-    "updated": "2026-10-24T18:00:00Z",
-    "statusLine": "B1 off-hire revived to MARGINAL 3.05 on the founder’s correction. Two kills overturned by a court judgment. One free competitor still blocks it. Next step is one phone call, not more searching.",
+    "updated": "2026-10-24T18:40:00Z",
+    "statusLine": "Product form widened by founder decision: web app, accounts, small backend, under three guardrails. Seven rows revived. A fresh brainstorm under the new rules is wave 2’s first job.",
     "phaseCurrent": 1,
     "killDate": null,
     "stoppedMark": "12",
@@ -58,7 +58,7 @@
       "status": "active",
       "detail": "25+ niches, weights locked before evidence, counter-incentive and mechanic gates run INSIDE this phase, then adversarial deep dives on the survivors.",
       "deliverable": "research/market-research.md",
-      "progress": 85
+      "progress": 70
     },
     {
       "n": 2,
@@ -237,6 +237,16 @@
     ]
   },
   "risks": [
+    {
+      "severity": "high",
+      "risk": "A backend holding records about other people — a subcontractor’s workers, their qualifications, their employment — makes the studio a UK GDPR controller or processor of third-party personal data. That is a lawful basis, a privacy notice, data-subject rights, retention periods, breach notification, a processor agreement and security we can stand behind. Under the old on-device constraint this was a privacy label; now it is a real obligation.",
+      "mitigation": "Added as rubric gate 10 and written into CLAUDE.md §6, to be priced in before any candidate is scored rather than discovered in Phase 2. Designs that keep third-party personal data out of our systems are preferred."
+    },
+    {
+      "severity": "high",
+      "risk": "The widening is the right call and it carries the venture’s biggest new risk: drift into enterprise software. Multi-party compliance tools are normally bought by large contractors through procurement, with pilots and security questionnaires, which is a business two people cannot run. The pull toward that buyer will be constant, because that is where the budget looks biggest.",
+      "mitigation": "Three guardrails written into CLAUDE.md §3 as hard gates, and into the rubric as gates 5a, 5b and 5c: self-serve by card under roughly 50 staff with no demo or procurement; single-player value before any counterparty signs in, so no cold start; one sharp job rather than a suite. A candidate needing an enterprise sale is out regardless of score."
+    },
     {
       "severity": "medium",
       "risk": "B1 has no rule set to compute from. Hire charging terms are commercial, not statutory, so there is no cited regulation, no conflicting-sources UI and no 60-second in-browser aha — which was our first tie-breaker. The product would be a reminder over user-entered dates.",
@@ -420,6 +430,11 @@
       "at": "2026-10-24T18:00:00Z",
       "who": "bob",
       "what": "Added a live agent-run ledger and a Pareto panel to the dashboard, driven by each agent’s own measured usage rather than estimates. Four scout runs cost 554,586 tokens and 240 tool calls to resolve 5 candidates. The two legal mechanisms one of those scouts found, reused as a free filter, resolved 9 more at zero cost, and one sentence from the founder reversed two gate verdicts on the top candidate. Operating rule written into Bob’s charter: search for the generalisable killer before dispatching a per-candidate scout, and ask the founder before buying the same answer in tokens."
+    },
+    {
+      "at": "2026-10-24T18:40:00Z",
+      "who": "bob",
+      "what": "Founder widened the product form: a responsive web app with accounts and a small backend is now permitted, replacing the single-user no-backend rule. Rewrote CLAUDE.md §3 with three guardrails as hard gates — self-serve by card to a firm under roughly 50 staff with no demo or procurement, single-player value before any counterparty signs in, and one sharp job rather than a suite — plus §5 moving to Stripe as primary with Apple IAP only if a native app ships, and §6 raising UK GDPR from a label exercise to a gating question because a backend may hold third-party personal data. Rubric gate 5 replaced by 5a, 5b and 5c; gate 4 narrowed to products that compute from regulation; new gate 10 for third-party personal data. Weights deliberately untouched: gates are the founder’s to change, weights are not mine to re-cut once evidence is in, and buildability is now a harder score because a backend is more work than an offline app. Seven rows revived: B12, D3, D4, partly D1 and D2, and B2 and B3 re-openable. Group C, B5, A1, A2 and the nine mechanism kills stay dead, since none turned on the product form. Recorded that the longlist is the wrong shape for the new constraint and needs a fresh brainstorm."
     }
   ],
   "agentRuns": [
