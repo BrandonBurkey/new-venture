@@ -1,0 +1,59 @@
+# Keeps the founder's HQ dashboard live, for free, with no server and no session.
+#
+# On every push that touches hq/, this validates state.json, regenerates the
+# offline state.js from it, and publishes hq/ to GitHub Pages. The dashboard then
+# re-reads state.json every 30 seconds, so an open tab updates itself.
+#
+# One-time setup by the repo owner: Settings -> Pages -> Source: "GitHub Actions".
+name: HQ
+
+on:
+  push:
+    branches: [claude/construction-venture]
+    paths: ["hq/**", ".github/workflows/hq.yml"]
+  workflow_dispatch: {}
+
+# Allow the Pages deployment, and let a newer run supersede an in-flight one
+# rather than queueing stale dashboards behind it.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: hq-pages
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # Fails the run on a malformed or invented-number state file, so a broken
+      # dashboard never reaches the founder.
+      - name: Validate state
+        run: node hq/validate.mjs
+
+      # state.js is the offline fallback the dashboard uses when opened from disk.
+      # Regenerating here means it can never drift from state.json.
+      - name: Rebuild offline state
+        run: |
+          node hq/build.mjs
+          git diff --stat -- hq/state.js
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: hq
+
+      - id: deploy
+        uses: actions/deploy-pages@v4

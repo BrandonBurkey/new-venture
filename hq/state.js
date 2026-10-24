@@ -6,8 +6,8 @@ window.HQ_STATE = {
     "founder": "Brandon",
     "operatingPartner": "AI operating partner",
     "branch": "claude/construction-venture",
-    "updated": "2026-10-24T02:05:00Z",
-    "statusLine": "Network access verified working, including GB App Store search. Phase 1 can begin. Waiting on three Gate 1 inputs from the founder.",
+    "updated": "2026-10-24T02:40:00Z",
+    "statusLine": "Rubric and founder inputs frozen. 33 candidates on the longlist. Next: the mechanic gate on the top five. Reachability is the open risk — site managers are not the buyer.",
     "phaseCurrent": 1,
     "killDate": null,
     "stoppedMark": "0",
@@ -17,9 +17,16 @@ window.HQ_STATE = {
   },
   "needsYou": [
     {
+      "id": "pages",
+      "title": "Turn on GitHub Pages so your HQ updates itself, free and forever",
+      "why": "One click: repo Settings → Pages → Source: \"GitHub Actions\". Then the Actions tab → run the \"HQ\" workflow once, and it prints your permanent URL. After that every push updates the dashboard with no server, no session and no cost. Note it is a public site, as this repo already is.",
+      "urgency": "whenever — blocks nothing",
+      "effort": "2 minutes"
+    },
+    {
       "id": "gate1-roles",
-      "title": "Name the construction roles and firms you can actually reach",
-      "why": "The rubric scores how close your contacts are to the buyer. Reachability was the weakest dimension in all four of the previous venture’s finalists, so this is the input most likely to change which niche wins.",
+      "title": "Confirm whether a site manager can introduce you to a subcontractor owner or plant manager",
+      "why": "You can reach site managers, who are PAYE — so the company pays for a missed date and the company buys the software. That is hard gate 9, and it threatens the strongest candidates. One hop to an owner-operator is what reopens them. This is now the single most decision-changing fact outstanding.",
       "urgency": "shapes Phase 1 scoring",
       "effort": "5 minutes"
     },
@@ -42,10 +49,10 @@ window.HQ_STATE = {
     {
       "n": 1,
       "name": "Research",
-      "status": "pending",
+      "status": "active",
       "detail": "25+ niches, weights locked before evidence, counter-incentive and mechanic gates run INSIDE this phase, then adversarial deep dives on the survivors.",
       "deliverable": "research/market-research.md",
-      "progress": 0
+      "progress": 25
     },
     {
       "n": 2,
@@ -215,6 +222,11 @@ window.HQ_STATE = {
   "risks": [
     {
       "severity": "high",
+      "risk": "The reachable audience is not the buyer. The founder can reach site managers only, who are employed, while the candidates that survive the counter-incentive test are bought by subcontractor owners and plant managers. The venture’s assumed structural advantage does not currently reach the person who would pay.",
+      "mitigation": "Contact proximity capped at 3 in the rubric until a one-hop introduction is confirmed, and \"does the employer pay?\" promoted to hard gate 9. If no one-hop route exists, the honest Phase 1 recommendation may be to stop or to go back for access."
+    },
+    {
+      "severity": "high",
       "risk": "The card schemes, accreditation bodies, inspection companies and insurers all sell renewals, so they probably already email every date. That pattern killed three of four finalists on the previous venture.",
       "mitigation": "The counter-incentive test is hard gate 2 and carries 20% of the score. Verify who notifies before investing research in any candidate."
     },
@@ -316,6 +328,11 @@ window.HQ_STATE = {
       "at": "2026-10-24T02:05:00Z",
       "who": "operating partner",
       "what": "Founder widened the network allowlist. Re-verified: www.hse.gov.uk 200, www.legislation.gov.uk 200, itunes.apple.com lookup 200 with parsed JSON. Deep pages confirmed (HSE thorough-examinations guidance; LOLER 1998 reg 9 on legislation.gov.uk). GB App Store search returns names, sellers, prices and rating counts, so the mechanic gate is runnable. One transient empty search body observed and retried successfully. Step 0 closed."
+    },
+    {
+      "at": "2026-10-24T02:40:00Z",
+      "who": "operating partner",
+      "what": "Froze the founder’s three Gate 1 answers into research/scoring-rubric.md without touching the weights, and added hard gate 9 (does the employer pay?). Wrote research/niche-longlist.md: 33 candidates in four groups ordered by who holds the date, every line marked unverified, with predictions recorded before gating. Built the zero-cost HQ update path: hq/validate.mjs, hq/sync.sh and .github/workflows/hq.yml deploying hq/ to GitHub Pages on every push."
     }
   ]
 };
